@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9f13d4b246f5c4c93e23d51024f27d, type: 3}
+  m_Name: IngredientGenerators_SO
+  m_EditorClassIdentifier: 
+  ingredientGenerators:
+    baseInfo:
+    - name: Meat Generator
+      tier: 0
+      spite: {fileID: 0}
+      description: 
+    - name: Flour Grain Generator
+      tier: 0
+      spite: {fileID: 0}
+      description: 
+    - name: Veggie Generator
+      tier: 0
+      spite: {fileID: 0}
+      description: 
+    - name: Seafood Generator
+      tier: 0
+      spite: {fileID: 0}
+      description: 
+    - name: Fruits Generator
+      tier: 1
+      spite: {fileID: 0}
+      description: 
+    - name: Spices Generator
+      tier: 1
+      spite: {fileID: 0}
+      description: 
+    - name: Dairy Generator
+      tier: 1
+      spite: {fileID: 0}
+      description: 
+    - name: Fats 'n Oils Generator
+      tier: 1
+      spite: {fileID: 0}
+      description: 
+    tier:
+    - specsByLevel:
+      - level: 1
+        upgradeGoldCost: 0
+        upgradeGemCost: 0
+        productionRate: 6
+        upgradeDuration: 30
+      - level: 2
+        upgradeGoldCost: 2000
+        upgradeGemCost: 30
+        productionRate: 6.5
+        upgradeDuration: 60
+      - level: 3
+        upgradeGoldCost: 20000
+        upgradeGemCost: 50
+        productionRate: 7
+        upgradeDuration: 120
+      - level: 4
+        upgradeGoldCost: 48000
+        upgradeGemCost: 140
+        productionRate: 7.5
+        upgradeDuration: 240
+      - level: 5
+        upgradeGoldCost: 210000
+        upgradeGemCost: 240
+        productionRate: 8
+        upgradeDuration: 480
+      - level: 6
+        upgradeGoldCost: 800000
+        upgradeGemCost: 320
+        productionRate: 8.5
+        upgradeDuration: 960
+      - level: 7
+        upgradeGoldCost: 2500000
+        upgradeGemCost: 400
+        productionRate: 9
+        upgradeDuration: 1920
+      - level: 8
+        upgradeGoldCost: 5600000
+        upgradeGemCost: 400
+        productionRate: 9.5
+        upgradeDuration: 3840
+      - level: 9
+        upgradeGoldCost: 27000000
+        upgradeGemCost: 840
+        productionRate: 10
+        upgradeDuration: 7680
+      - level: 10
+        upgradeGoldCost: 150000000
+        upgradeGemCost: 1200
+        productionRate: 10.75
+        upgradeDuration: 15360
+    - specsByLevel:
+      - level: 1
+        upgradeGoldCost: 0
+        upgradeGemCost: 0
+        productionRate: 0.7
+        upgradeDuration: 30
+      - level: 2
+        upgradeGoldCost: 4000
+        upgradeGemCost: 60
+        productionRate: 0.9
+        upgradeDuration: 60
+      - level: 3
+        upgradeGoldCost: 40000
+        upgradeGemCost: 100
+        productionRate: 1.1
+        upgradeDuration: 120
+      - level: 4
+        upgradeGoldCost: 96000
+        upgradeGemCost: 280
+        productionRate: 1.2
+        upgradeDuration: 240
+      - level: 5
+        upgradeGoldCost: 420000
+        upgradeGemCost: 480
+        productionRate: 1.5
+        upgradeDuration: 480
+      - level: 6
+        upgradeGoldCost: 1600000
+        upgradeGemCost: 640
+        productionRate: 1.7
+        upgradeDuration: 960
+      - level: 7
+        upgradeGoldCost: 5000000
+        upgradeGemCost: 800
+        productionRate: 1.9
+        upgradeDuration: 1920
+      - level: 8
+        upgradeGoldCost: 11200000
+        upgradeGemCost: 800
+        productionRate: 2.1
+        upgradeDuration: 3840
+      - level: 9
+        upgradeGoldCost: 54000000
+        upgradeGemCost: 1680
+        productionRate: 2.3
+        upgradeDuration: 7680
+      - level: 10
+        upgradeGoldCost: 300000000
+        upgradeGemCost: 2400
+        productionRate: 2.6
+        upgradeDuration: 15360

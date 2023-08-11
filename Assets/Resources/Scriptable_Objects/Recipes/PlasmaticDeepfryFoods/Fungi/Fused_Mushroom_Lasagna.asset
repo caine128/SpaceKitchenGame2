@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9f1851912422847be9d1af2b2670da, type: 3}
+  m_Name: Fused_Mushroom_Lasagna
+  m_EditorClassIdentifier: 
+  recipeName: Fused Mushroom Lasagna
+  receipeImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Vegetable1
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  recipeDescription: 
+  requiredEquipment: 600
+  productType: 605
+  unlockPrerequisite: []
+  researchPointsRequired: 1
+  productLevel: 2
+  productValue: 180
+  craftDuration: 60
+  merchantXPAward: 480
+  workerXPAwward: 7
+  requiredworkers:
+  - requiredWorker: 5
+    requiredWorkerLevel: 2
+  requiredIngredients:
+  - ingredient: 2
+    amountRequired: 9
+  requiredAdditionalItems: []
+  craftingUpgrades:
+  - craftsNeeded: 8
+    craftUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 1.5
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 20
+    craftUpgradeType: 5
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 11400000, guid: 12a9c22da590e2e46b39c1e93fc0b0da, type: 2}
+  - craftsNeeded: 36
+    craftUpgradeType: 1
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 2
+      reductionAmount: 2
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 55
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 2
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 85
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 3
+    unlockRecipe: {fileID: 0}
+  ascensionUpgrades:
+  - shardsNeeded: 5
+    ascensionUpgradeType: 1
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 2
+      reductionAmount: 5
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 5
+    ascensionUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 20
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 5
+    ascensionUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 3
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  mealStatBonuses:
+  - statType: 1
+    statBonus: 14
+  _discountEnergy: 10
+  _surchargeEnergy: 25
+  _suggestEnergy: 5
+  _speedUpEnergy: 40

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f1959410296d74ea4bf0ba3cc311e4, type: 3}
+  m_Name: Keys_Shards_Scrolls
+  m_EditorClassIdentifier: 
+  researchScrollInfo:
+    name: Research Scroll
+    description: Here will write somethng about research scroll...
+    sprite: {fileID: 0}
+  ascensionShardInfo:
+    name: Ascension Shard
+    description: Here will write somethng about ascension shard...
+    sprite: {fileID: 0}
+  keyInfos:
+  - name: Wooden Key
+    description: Here will write somethng about wooden key...
+    sprite: {fileID: 0}
+    type: 0
+  - name: Frozen Key
+    description: Here will write somethng about frozen key...
+    sprite: {fileID: 0}
+    type: 1
+  - name: Slimy Key
+    description: Here will write somethng about slimy key...
+    sprite: {fileID: 0}
+    type: 2

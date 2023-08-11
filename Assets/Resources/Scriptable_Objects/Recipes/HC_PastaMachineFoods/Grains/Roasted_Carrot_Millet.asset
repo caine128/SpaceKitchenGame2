@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9f1851912422847be9d1af2b2670da, type: 3}
+  m_Name: Roasted_Carrot_Millet
+  m_EditorClassIdentifier: 
+  recipeName: Roasted Carrot Millet
+  receipeImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Grains
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  recipeDescription: 
+  requiredEquipment: 200
+  productType: 202
+  unlockPrerequisite: []
+  researchPointsRequired: 0
+  productLevel: 1
+  productValue: 190
+  craftDuration: 70
+  merchantXPAward: 520
+  workerXPAwward: 8
+  requiredworkers:
+  - requiredWorker: 1
+    requiredWorkerLevel: 2
+  requiredIngredients:
+  - ingredient: 1
+    amountRequired: 9
+  requiredAdditionalItems: []
+  craftingUpgrades:
+  - craftsNeeded: 8
+    craftUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 1.5
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 20
+    craftUpgradeType: 5
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 11400000, guid: 5f82fae76391ee747b0f21f2da63ee59, type: 2}
+  - craftsNeeded: 36
+    craftUpgradeType: 1
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 1
+      reductionAmount: 2
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 55
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 2
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 85
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 3
+    unlockRecipe: {fileID: 0}
+  ascensionUpgrades:
+  - shardsNeeded: 5
+    ascensionUpgradeType: 0
+    craftTimeReductionModifier: 0.5
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 5
+    ascensionUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 30
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 5
+    ascensionUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 3
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  mealStatBonuses:
+  - statType: 0
+    statBonus: 30
+  _discountEnergy: 10
+  _surchargeEnergy: 25
+  _suggestEnergy: 5
+  _speedUpEnergy: 40

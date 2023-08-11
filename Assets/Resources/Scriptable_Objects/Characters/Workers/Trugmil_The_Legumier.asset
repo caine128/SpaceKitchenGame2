@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba7ce7a0a5c6b14d8609a889b758412, type: 3}
+  m_Name: Trugmil_The_Legumier
+  m_EditorClassIdentifier: 
+  characterName: Trugmil
+  characterDescription: 'Trugmil specialises in legumes. Also does other things. '
+  requiredLevel: 2
+  characterImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Trugmil
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  characterType: 301
+  workerType: 5
+  workStationPrerequisites:
+  - type: 600
+    level: 1
+  goldCostForHire: 0
+  gemCostForHire: 0
+  unlockRecipes:
+  - {fileID: 11400000, guid: a70f7167c9210d3459ecb2d0fda50d6f, type: 2}
+  - {fileID: 11400000, guid: 39f0c8b177a163b429405c3b36c10750, type: 2}
+  - {fileID: 11400000, guid: e9e3926cd35f3394896e68e3736c0fde, type: 2}
+  allDialoguePhrases:
+  - phrases:
+    - I am Trugmil, and I do legumes. healthy business
+    - Let's do some legumes already shall we?

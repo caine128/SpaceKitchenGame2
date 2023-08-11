@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9f1851912422847be9d1af2b2670da, type: 3}
+  m_Name: Buttery_Crab_Caseroles
+  m_EditorClassIdentifier: 
+  recipeName: Buttery Crab Casseroles
+  receipeImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Seafood2
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  recipeDescription: 
+  requiredEquipment: 300
+  productType: 302
+  unlockPrerequisite: []
+  researchPointsRequired: 1
+  productLevel: 2
+  productValue: 980
+  craftDuration: 280
+  merchantXPAward: 2500
+  workerXPAwward: 38
+  requiredworkers:
+  - requiredWorker: 2
+    requiredWorkerLevel: 3
+  requiredIngredients:
+  - ingredient: 3
+    amountRequired: 17
+  requiredAdditionalItems:
+  - requiredExtraComponentsType: 0
+    requiredExtraComponent:
+      extraComponentType: 103
+      amountRequired: 2
+    requiredProduct:
+      requiredProduct_Name: {fileID: 0}
+      requiredProductQuality: 0
+      amountRequired: 0
+  craftingUpgrades:
+  - craftsNeeded: 9
+    craftUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 1.5
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 22
+    craftUpgradeType: 5
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 11400000, guid: b10167897d580664aab099e4931cfaae, type: 2}
+  - craftsNeeded: 40
+    craftUpgradeType: 0
+    craftTimeReductionModifier: 0.75
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 65
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 2
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 100
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 3
+    unlockRecipe: {fileID: 0}
+  ascensionUpgrades:
+  - shardsNeeded: 5
+    ascensionUpgradeType: 0
+    craftTimeReductionModifier: 0.5
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 5
+    ascensionUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 20
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 5
+    ascensionUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 3
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  mealStatBonuses:
+  - statType: 2
+    statBonus: 9
+  _discountEnergy: 25
+  _surchargeEnergy: 55
+  _suggestEnergy: 10
+  _speedUpEnergy: 110

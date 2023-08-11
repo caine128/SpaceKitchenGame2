@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9f1851912422847be9d1af2b2670da, type: 3}
+  m_Name: Grilled_Lamb_Breast
+  m_EditorClassIdentifier: 
+  recipeName: Grilled Lamb Breast
+  receipeImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Meatfood2
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  recipeDescription: 
+  requiredEquipment: 100
+  productType: 106
+  unlockPrerequisite: []
+  researchPointsRequired: 3
+  productLevel: 3
+  productValue: 1300
+  craftDuration: 290
+  merchantXPAward: 2650
+  workerXPAwward: 40
+  requiredworkers:
+  - requiredWorker: 0
+    requiredWorkerLevel: 3
+  requiredIngredients:
+  - ingredient: 0
+    amountRequired: 17
+  - ingredient: 2
+    amountRequired: 9
+  requiredAdditionalItems:
+  - requiredExtraComponentsType: 0
+    requiredExtraComponent:
+      extraComponentType: 101
+      amountRequired: 3
+    requiredProduct:
+      requiredProduct_Name: {fileID: 0}
+      requiredProductQuality: 0
+      amountRequired: 0
+  craftingUpgrades:
+  - craftsNeeded: 7
+    craftUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 1.25
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 18
+    craftUpgradeType: 0
+    craftTimeReductionModifier: 0.75
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 32
+    craftUpgradeType: 5
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 11400000, guid: c3df1fac3b2f7b249a56989f4ad61e63, type: 2}
+  - craftsNeeded: 50
+    craftUpgradeType: 1
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 3
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 80
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 3
+    unlockRecipe: {fileID: 0}
+  ascensionUpgrades:
+  - shardsNeeded: 10
+    ascensionUpgradeType: 2
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 101
+      reductionAmount: 1
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 10
+    ascensionUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 10
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 10
+    ascensionUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 3
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  mealStatBonuses:
+  - statType: 1
+    statBonus: 36
+  _discountEnergy: 25
+  _surchargeEnergy: 60
+  _suggestEnergy: 10
+  _speedUpEnergy: 110

@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9f1851912422847be9d1af2b2670da, type: 3}
+  m_Name: Apple_Crumble
+  m_EditorClassIdentifier: 
+  recipeName: Apple Crumble
+  receipeImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Cake
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  recipeDescription: 
+  requiredEquipment: 400
+  productType: 401
+  unlockPrerequisite:
+  - unlockPrerequisiteType: 0
+    requiredworkers:
+      requiredWorker:
+      - requiredWorker: 3
+        requiredWorkerLevel: 1
+    chest: 0
+  researchPointsRequired: 0
+  productLevel: 3
+  productValue: 3350
+  craftDuration: 630
+  merchantXPAward: 4950
+  workerXPAwward: 74
+  requiredworkers:
+  - requiredWorker: 3
+    requiredWorkerLevel: 1
+  requiredIngredients:
+  - ingredient: 1
+    amountRequired: 30
+  - ingredient: 2
+    amountRequired: 15
+  requiredAdditionalItems:
+  - requiredExtraComponentsType: 0
+    requiredExtraComponent:
+      extraComponentType: 103
+      amountRequired: 4
+    requiredProduct:
+      requiredProduct_Name: {fileID: 0}
+      requiredProductQuality: 0
+      amountRequired: 0
+  craftingUpgrades:
+  - craftsNeeded: 8
+    craftUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 1.25
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 20
+    craftUpgradeType: 0
+    craftTimeReductionModifier: 0.75
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 36
+    craftUpgradeType: 5
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 11400000, guid: e8384877b667ba14982467fc0811d53d, type: 2}
+  - craftsNeeded: 55
+    craftUpgradeType: 1
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 1
+      reductionAmount: 6
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 0
+    unlockRecipe: {fileID: 0}
+  - craftsNeeded: 85
+    craftUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    valueIncreaseModifier: 0
+    qualityChanceIncreaseModifier: 3
+    unlockRecipe: {fileID: 0}
+  ascensionUpgrades:
+  - shardsNeeded: 10
+    ascensionUpgradeType: 3
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 3
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 10
+    ascensionUpgradeType: 4
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 0
+      reductionAmount: 0
+    multicraftChanceModifier: 10
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  - shardsNeeded: 10
+    ascensionUpgradeType: 2
+    craftTimeReductionModifier: 0
+    ingredientReduction:
+      ingredient: 0
+      reductionAmount: 0
+    extraComponentReduction:
+      extraComponent: 103
+      reductionAmount: 3
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    requiredProductReduction:
+      requiredProduct_Name: {fileID: 0}
+      reductionAmount: 0
+  mealStatBonuses:
+  - statType: 0
+    statBonus: 64
+  _discountEnergy: 45
+  _surchargeEnergy: 100
+  _suggestEnergy: 20
+  _speedUpEnergy: 190

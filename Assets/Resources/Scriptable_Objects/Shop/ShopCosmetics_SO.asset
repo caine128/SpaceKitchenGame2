@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133429a93c5c52345b39c82b44a37026, type: 3}
+  m_Name: ShopCosmetics_SO
+  m_EditorClassIdentifier: 
+  flooringCosmeticsList:
+  - name: Standart
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 0
+  - name: Autmn Diamond
+    prestigeBonus: 5
+    unlockGoldCost: 500
+    unlockGemcost: 0
+    requiredLevel: 5
+  - name: Hardwood
+    prestigeBonus: 10
+    unlockGoldCost: 1000
+    unlockGemcost: 0
+    requiredLevel: 6
+  - name: Rough Stone
+    prestigeBonus: 15
+    unlockGoldCost: 20000
+    unlockGemcost: 0
+    requiredLevel: 8
+  - name: Checkered Sepia
+    prestigeBonus: 25
+    unlockGoldCost: 30000
+    unlockGemcost: 0
+    requiredLevel: 10
+  - name: Green Panel
+    prestigeBonus: 20
+    unlockGoldCost: 40000
+    unlockGemcost: 0
+    requiredLevel: 12
+  - name: Purple Panel
+    prestigeBonus: 20
+    unlockGoldCost: 40000
+    unlockGemcost: 0
+    requiredLevel: 12
+  - name: Sparse Leaves
+    prestigeBonus: 30
+    unlockGoldCost: 40000
+    unlockGemcost: 0
+    requiredLevel: 12
+  - name: Late Harvest
+    prestigeBonus: 20
+    unlockGoldCost: 40000
+    unlockGemcost: 0
+    requiredLevel: 12
+  - name: Leaves Bundle
+    prestigeBonus: 30
+    unlockGoldCost: 75000
+    unlockGemcost: 0
+    requiredLevel: 15
+  - name: Still Life
+    prestigeBonus: 30
+    unlockGoldCost: 75000
+    unlockGemcost: 0
+    requiredLevel: 15
+  - name: Great Acorn
+    prestigeBonus: 100
+    unlockGoldCost: 0
+    unlockGemcost: 50
+    requiredLevel: 18
+  - name: Checkered Brown
+    prestigeBonus: 200
+    unlockGoldCost: 0
+    unlockGemcost: 100
+    requiredLevel: 20
+  - name: Red Diamond
+    prestigeBonus: 200
+    unlockGoldCost: 0
+    unlockGemcost: 100
+    requiredLevel: 20
+  - name: Green Diamond
+    prestigeBonus: 200
+    unlockGoldCost: 0
+    unlockGemcost: 100
+    requiredLevel: 20
+  - name: Patterned Green
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 24
+  - name: 'Patterned Blue '
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 25
+  - name: Acorn Jr.
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 26
+  - name: Star Tile
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 27
+  - name: Super Tile
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 30
+  exteriorCosmeticsList:
+  - name: 
+    size: {x: 0, y: 0}
+    prestigeBonus: 0
+    unlockGoldCost: 0
+    unlockGemcost: 0
+    requiredLevel: 0

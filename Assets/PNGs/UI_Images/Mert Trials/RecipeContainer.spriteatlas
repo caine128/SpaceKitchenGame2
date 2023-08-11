@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RecipeContainer
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: d254a3e8d190cff4a9a7c611b084c494, type: 3}
+    - {fileID: 102900000, guid: 276511029feb0234d89a8b17d5f0c16b, type: 3}
+    - {fileID: 21300000, guid: ab07ba315cba0294dafa4cc87006afbd, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 0bd790906c630204e843420d99ca5d4f: 21300000
+    - 6ffff7d081ee37d4aafe5522bfd063af: 21300000
+    - ab07ba315cba0294dafa4cc87006afbd: 21300000
+    - 69b6059192678e544a34cfe4e64e37b0: 21300000
+    - 91da0d155e58bd84a99b4a29b1eded3e: 21300000
+    - ab9bcb75b6bec134a851e14acdf16461: 21300000
+    - 57dbdeb5174bc1a4387159e86d78f70f: 21300000
+    - cc0163270b667ef40bd7fc68290155d3: 21300000
+    - e5860f18be23e5443b1870c9195228c7: 21300000
+    - b9e9b5298005071438f573783faa044c: 21300000
+    - e7184b2c019a77142a2d6b326a302886: 21300000
+    - a4f00c4c01e75ca48b5a4f1464207955: 21300000
+    - 2d9b221ff194fe843b635193eae84014: 21300000
+    - 748f7e7f3cc10d3499795abe11b4364f: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0bd790906c630204e843420d99ca5d4f, type: 3}
+  - {fileID: 21300000, guid: 6ffff7d081ee37d4aafe5522bfd063af, type: 3}
+  - {fileID: 21300000, guid: ab07ba315cba0294dafa4cc87006afbd, type: 3}
+  - {fileID: 21300000, guid: 69b6059192678e544a34cfe4e64e37b0, type: 3}
+  - {fileID: 21300000, guid: 91da0d155e58bd84a99b4a29b1eded3e, type: 3}
+  - {fileID: 21300000, guid: ab9bcb75b6bec134a851e14acdf16461, type: 3}
+  - {fileID: 21300000, guid: 57dbdeb5174bc1a4387159e86d78f70f, type: 3}
+  - {fileID: 21300000, guid: cc0163270b667ef40bd7fc68290155d3, type: 3}
+  - {fileID: 21300000, guid: e5860f18be23e5443b1870c9195228c7, type: 3}
+  - {fileID: 21300000, guid: b9e9b5298005071438f573783faa044c, type: 3}
+  - {fileID: 21300000, guid: e7184b2c019a77142a2d6b326a302886, type: 3}
+  - {fileID: 21300000, guid: a4f00c4c01e75ca48b5a4f1464207955, type: 3}
+  - {fileID: 21300000, guid: 2d9b221ff194fe843b635193eae84014, type: 3}
+  - {fileID: 21300000, guid: 748f7e7f3cc10d3499795abe11b4364f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Classic Cheeseburger
+  - Star_Biggest
+  - Gem icon
+  - Bar
+  - Star_Smallest
+  - Classic Burger
+  - Red Chili Burger
+  - Cheddar Stuffed Burger
+  - _cardResourceContainer
+  - Star_Middle
+  - Nacho Burger
+  - BarEmpty
+  - Card2
+  - CurrentlyBeingCrafted
+  m_RenderDataMap: {}
+  m_Tag: RecipeContainer
+  m_IsVariant: 0

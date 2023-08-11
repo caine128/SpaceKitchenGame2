@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba7ce7a0a5c6b14d8609a889b758412, type: 3}
+  m_Name: Krixath_The_Rotisseur
+  m_EditorClassIdentifier: 
+  characterName: Krixath
+  characterDescription: 'Krixath specialises in meaty stuff. Also does other things. '
+  requiredLevel: 1
+  characterImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Kirxath
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  characterType: 301
+  workerType: 0
+  workStationPrerequisites:
+  - type: 100
+    level: 1
+  goldCostForHire: 0
+  gemCostForHire: 0
+  unlockRecipes:
+  - {fileID: 11400000, guid: a83b567f23de87d41a23f8c1c745f342, type: 2}
+  allDialoguePhrases:
+  - phrases:
+    - "I am Kr\u0131xath, and I can cook  just about anything mdae of meat. Pigs,
+      veals, burgers just name it.."
+    - "I am Kr\u0131xath, and I can cook  just about anything mdae of meat. Pigs,
+      veals, burgers just name it...So what are you waiting for ? Let's meat!  "

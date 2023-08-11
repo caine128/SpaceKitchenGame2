@@ -1,0 +1,624 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e5fc91ae9cf054fbe2b29f2d6d3acc, type: 3}
+  m_Name: Tubers_AscensionTree
+  m_EditorClassIdentifier: 
+  productType: 606
+  ascensionTreeRewards:
+  - ascensionsNeeded: 3
+    isPremiumReward: 0
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 2500
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 3
+    isPremiumReward: 1
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 3000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 0
+        reductionAmountPercent: 0.9
+      - ingredient: 1
+        reductionAmountPercent: 0.9
+      - ingredient: 2
+        reductionAmountPercent: 0.9
+      - ingredient: 3
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 6
+    isPremiumReward: 0
+    ascensionTreeRewardType: 1
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 10
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 6
+    isPremiumReward: 1
+    ascensionTreeRewardType: 1
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 15
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 9
+    isPremiumReward: 0
+    ascensionTreeRewardType: 2
+    ascensionTitle: Tubers Amateur
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 2.25
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 12
+    isPremiumReward: 0
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 100000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 12
+    isPremiumReward: 1
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 125000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 15
+    isPremiumReward: 0
+    ascensionTreeRewardType: 3
+    ascensionTitle: Tubers Novice
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0.9
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 18
+    isPremiumReward: 0
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 2000000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 18
+    isPremiumReward: 1
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 2500000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 21
+    isPremiumReward: 0
+    ascensionTreeRewardType: 4
+    ascensionTitle: Tubers Initiate
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 5
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 24
+    isPremiumReward: 0
+    ascensionTreeRewardType: 1
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 100
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 24
+    isPremiumReward: 1
+    ascensionTreeRewardType: 1
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 125
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 27
+    isPremiumReward: 0
+    ascensionTreeRewardType: 5
+    ascensionTitle: Tubers Specialist
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 2
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 30
+    isPremiumReward: 0
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 10000000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 30
+    isPremiumReward: 1
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 10000000
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 0
+    ingredientsReduction:
+      ingredientReduction: []
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 33
+    isPremiumReward: 0
+    ascensionTreeRewardType: 6
+    ascensionTitle: Tubers Conaisseur
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 0
+        reductionAmountPercent: 0.9
+      - ingredient: 1
+        reductionAmountPercent: 0.9
+      - ingredient: 2
+        reductionAmountPercent: 0.9
+      - ingredient: 3
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 36
+    isPremiumReward: 0
+    ascensionTreeRewardType: 7
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 0
+        reductionAmountPercent: 0.9
+      - ingredient: 1
+        reductionAmountPercent: 0.9
+      - ingredient: 2
+        reductionAmountPercent: 0.9
+      - ingredient: 3
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 1
+      amount: 50
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 36
+    isPremiumReward: 1
+    ascensionTreeRewardType: 7
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 0
+        reductionAmountPercent: 0.9
+      - ingredient: 1
+        reductionAmountPercent: 0.9
+      - ingredient: 2
+        reductionAmountPercent: 0.9
+      - ingredient: 3
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 1
+      amount: 25
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 39
+    isPremiumReward: 0
+    ascensionTreeRewardType: 6
+    ascensionTitle: Tubers Expert
+    goldRewards: 0
+    gemRewards: 0
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 42
+    isPremiumReward: 0
+    ascensionTreeRewardType: 1
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 42
+    isPremiumReward: 1
+    ascensionTreeRewardType: 1
+    ascensionTitle: 
+    goldRewards: 0
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 
+      surchargeValueIncreaseModifier: 0
+  - ascensionsNeeded: 45
+    isPremiumReward: 0
+    ascensionTreeRewardType: 8
+    ascensionTitle: Tubers Boss
+    goldRewards: 0
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 5e020000
+      surchargeValueIncreaseModifier: 1.05
+  - ascensionsNeeded: 48
+    isPremiumReward: 0
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 100000000
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 65000000
+      surchargeValueIncreaseModifier: 1.5
+  - ascensionsNeeded: 48
+    isPremiumReward: 1
+    ascensionTreeRewardType: 0
+    ascensionTitle: 
+    goldRewards: 100000000
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 65000000
+      surchargeValueIncreaseModifier: 1.5
+  - ascensionsNeeded: 51
+    isPremiumReward: 0
+    ascensionTreeRewardType: 8
+    ascensionTitle: Tubers Pro
+    goldRewards: 100000000
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 0
+      amount: 0
+    surchargeValueIncreaseModifier:
+      productTypes: 65000000660000006700000068000000690000006a0000006b000000c9000000ca000000cb000000cc000000cd0000002d0100002e01000091010000f5010000590200005a0200005b0200005c0200005d0200005e020000bd020000
+      surchargeValueIncreaseModifier: 1.01
+  - ascensionsNeeded: 54
+    isPremiumReward: 0
+    ascensionTreeRewardType: 7
+    ascensionTitle: 
+    goldRewards: 100000000
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 2
+      amount: 75
+    surchargeValueIncreaseModifier:
+      productTypes: 65000000660000006700000068000000690000006a0000006b000000c9000000ca000000cb000000cc000000cd0000002d0100002e01000091010000f5010000590200005a0200005b0200005c0200005d0200005e020000bd020000
+      surchargeValueIncreaseModifier: 1.01
+  - ascensionsNeeded: 54
+    isPremiumReward: 1
+    ascensionTreeRewardType: 7
+    ascensionTitle: 
+    goldRewards: 100000000
+    gemRewards: 150
+    workerXPIncreasemodifier: 0
+    reduceSurchargeEnergyModifier: 0
+    multicraftChanceModifier: 0
+    qualityChanceIncreaseModifier: 1
+    ingredientsReduction:
+      ingredientReduction:
+      - ingredient: 4
+        reductionAmountPercent: 0.9
+      - ingredient: 5
+        reductionAmountPercent: 0.9
+      - ingredient: 6
+        reductionAmountPercent: 0.9
+      - ingredient: 7
+        reductionAmountPercent: 0.9
+    commanderBadges:
+      commanderType: 2
+      amount: 35
+    surchargeValueIncreaseModifier:
+      productTypes: 65000000660000006700000068000000690000006a0000006b000000c9000000ca000000cb000000cc000000cd0000002d0100002e01000091010000f5010000590200005a0200005b0200005c0200005d0200005e020000bd020000
+      surchargeValueIncreaseModifier: 1.01

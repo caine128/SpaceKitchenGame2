@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI_Panels
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: 4bb0115018d01dd43960cc4a6d18a29f, type: 3}
+    - {fileID: 21300000, guid: 068ebd6cb7a1e0741bf7a4b15ac1531d, type: 3}
+    - {fileID: 21300000, guid: effdf48edeb644b40b10054a5f77f744, type: 3}
+    - {fileID: 21300000, guid: e8c6f97e50907f145b4e6ab581dd3d88, type: 3}
+    - {fileID: 21300000, guid: 17000c552e4c74845867826e26c38c50, type: 3}
+    - {fileID: 21300000, guid: fb4412fc4efded5479525a8e55686e07, type: 3}
+    - {fileID: 21300000, guid: ca45fd33a4df4544f97d6513ee0245cf, type: 3}
+    - {fileID: 21300000, guid: 290921e71c7aef944af15825beb57bb4, type: 3}
+    - {fileID: 21300000, guid: 96975d23a2f4b1740963511fe4965b66, type: 3}
+    - {fileID: 21300000, guid: e4c9c006275b07e4aae59dc3e9708dfe, type: 3}
+    - {fileID: 21300000, guid: 366264cb84cef614bb3f0fc50b784d93, type: 3}
+    - {fileID: 21300000, guid: 38597f75d4cc4f44d8f055fe69a68c0c, type: 3}
+    - {fileID: 21300000, guid: 1a03932763255ea4bb4f3361db7d8770, type: 3}
+    - {fileID: 21300000, guid: 65ae0a47b88db9f4db5f742078a6052f, type: 3}
+    - {fileID: 21300000, guid: bd324ecaaef437c42847281b39fda4da, type: 3}
+    - {fileID: 21300000, guid: 38d2b98992349e341b3e65291f5ff558, type: 3}
+    - {fileID: 21300000, guid: 6b8156e064e67e342b5d8262d0f916d9, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 4bb0115018d01dd43960cc4a6d18a29f: 21300000
+    - 6b8156e064e67e342b5d8262d0f916d9: 21300000
+    - 96975d23a2f4b1740963511fe4965b66: 21300000
+    - ca45fd33a4df4544f97d6513ee0245cf: 21300000
+    - 17000c552e4c74845867826e26c38c50: 21300000
+    - 38597f75d4cc4f44d8f055fe69a68c0c: 21300000
+    - e4c9c006275b07e4aae59dc3e9708dfe: 21300000
+    - 1a03932763255ea4bb4f3361db7d8770: 21300000
+    - 65ae0a47b88db9f4db5f742078a6052f: 21300000
+    - 290921e71c7aef944af15825beb57bb4: 21300000
+    - 38d2b98992349e341b3e65291f5ff558: 21300000
+    - bd324ecaaef437c42847281b39fda4da: 21300000
+    - 366264cb84cef614bb3f0fc50b784d93: 21300000
+    - 068ebd6cb7a1e0741bf7a4b15ac1531d: 21300000
+    - fb4412fc4efded5479525a8e55686e07: 21300000
+    - e8c6f97e50907f145b4e6ab581dd3d88: 21300000
+    - effdf48edeb644b40b10054a5f77f744: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4bb0115018d01dd43960cc4a6d18a29f, type: 3}
+  - {fileID: 21300000, guid: 6b8156e064e67e342b5d8262d0f916d9, type: 3}
+  - {fileID: 21300000, guid: 96975d23a2f4b1740963511fe4965b66, type: 3}
+  - {fileID: 21300000, guid: ca45fd33a4df4544f97d6513ee0245cf, type: 3}
+  - {fileID: 21300000, guid: 17000c552e4c74845867826e26c38c50, type: 3}
+  - {fileID: 21300000, guid: 38597f75d4cc4f44d8f055fe69a68c0c, type: 3}
+  - {fileID: 21300000, guid: e4c9c006275b07e4aae59dc3e9708dfe, type: 3}
+  - {fileID: 21300000, guid: 1a03932763255ea4bb4f3361db7d8770, type: 3}
+  - {fileID: 21300000, guid: 65ae0a47b88db9f4db5f742078a6052f, type: 3}
+  - {fileID: 21300000, guid: 290921e71c7aef944af15825beb57bb4, type: 3}
+  - {fileID: 21300000, guid: 38d2b98992349e341b3e65291f5ff558, type: 3}
+  - {fileID: 21300000, guid: bd324ecaaef437c42847281b39fda4da, type: 3}
+  - {fileID: 21300000, guid: 366264cb84cef614bb3f0fc50b784d93, type: 3}
+  - {fileID: 21300000, guid: 068ebd6cb7a1e0741bf7a4b15ac1531d, type: 3}
+  - {fileID: 21300000, guid: fb4412fc4efded5479525a8e55686e07, type: 3}
+  - {fileID: 21300000, guid: e8c6f97e50907f145b4e6ab581dd3d88, type: 3}
+  - {fileID: 21300000, guid: effdf48edeb644b40b10054a5f77f744, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Diamond
+  - Craft
+  - Energy icon
+  - EnergyBar_ProgressBar_BG
+  - Left B1
+  - Empty X icon
+  - B3
+  - DesignButton_BG
+  - InventoryButton_BG
+  - EnergyBar_ProgressBar_FG
+  - PlanetViewButton_BG
+  - CharactersButton_BG
+  - Notification
+  - LevelBar_PlayerInfoArea
+  - B4
+  - LevelBar_ExperienceArea_Progressbar
+  - LevelBar_ExperienceArea_BG
+  m_RenderDataMap: {}
+  m_Tag: UI_Panels
+  m_IsVariant: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ingredients64
+  m_EditorClassIdentifier: 
+  m_GroupName: Ingredients64
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2396ae86f1a87404381204fb1ead1615
+  m_SerializeEntries:
+  - m_GUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_Address: UI_DynamicContent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a312288c7ef8e0c4ab75c064f3ba47ea
+    m_Address: Assets/PNGs/UI_Images/PanelBackground/HireCharacterPanel_BG.jpeg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f798e310f7a8efe42b254b122b8de1d1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a988e0ddd96afce40aac0facd1b8f0f6, type: 2}
+    - {fileID: 11400000, guid: 6ba101dae32e8804cb8266fdeda6e327, type: 2}

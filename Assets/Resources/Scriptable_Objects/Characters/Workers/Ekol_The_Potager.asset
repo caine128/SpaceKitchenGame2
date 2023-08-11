@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba7ce7a0a5c6b14d8609a889b758412, type: 3}
+  m_Name: Ekol_The_Potager
+  m_EditorClassIdentifier: 
+  characterName: Ekol
+  characterDescription: 'Ekol specialises in soups. Also does other things. '
+  requiredLevel: 12
+  characterImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Ekol
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  characterType: 301
+  workerType: 6
+  workStationPrerequisites:
+  - type: 700
+    level: 1
+  - type: 300
+    level: 3
+  goldCostForHire: 50000
+  gemCostForHire: 300
+  unlockRecipes:
+  - {fileID: 11400000, guid: 917b9f123e9f6f3478859f6aceffb3dd, type: 2}
+  - {fileID: 11400000, guid: 823426a892d8a934fb7e7e412424bf16, type: 2}
+  - {fileID: 11400000, guid: c9072d85f52c5424b82bd8f171ed3dfe, type: 2}
+  allDialoguePhrases:
+  - phrases:
+    - I am Ekol , and I can cook just about anything concerning liquid, like soups
+      of any kind just name it..
+    - So what are you waiting for? Let's start cooking some soups already..

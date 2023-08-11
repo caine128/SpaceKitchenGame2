@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba7ce7a0a5c6b14d8609a889b758412, type: 3}
+  m_Name: Master_Chef
+  m_EditorClassIdentifier: 
+  characterName: Master Chef
+  characterDescription: Master chef doesnt have a name and knows a lot of things.
+  requiredLevel: 30
+  characterImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: MasterChef
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  characterType: 301
+  workerType: 7
+  workStationPrerequisites:
+  - type: 800
+    level: 1
+  - type: 100
+    level: 7
+  goldCostForHire: 1000000
+  gemCostForHire: 1500
+  unlockRecipes: []
+  allDialoguePhrases:
+  - phrases:
+    - I am Master Chef, my help in ideniable in cookking high level recipes. You'd
+      need my in your quest of total domination.
+    - What are you waiting for, let's do some masters business already

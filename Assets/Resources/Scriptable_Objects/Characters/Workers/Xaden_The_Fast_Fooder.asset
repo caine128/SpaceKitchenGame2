@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba7ce7a0a5c6b14d8609a889b758412, type: 3}
+  m_Name: Xaden_The_Fast_Fooder
+  m_EditorClassIdentifier: 
+  characterName: Xaden
+  characterDescription: 'Xaden specialises in fast-food. Also does other things. '
+  requiredLevel: 25
+  characterImageRef:
+    m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+    m_SubObjectName: Xaden
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  characterType: 301
+  workerType: 4
+  workStationPrerequisites:
+  - type: 500
+    level: 1
+  - type: 200
+    level: 5
+  goldCostForHire: 500000
+  gemCostForHire: 1000
+  unlockRecipes:
+  - {fileID: 11400000, guid: 54d586b7c6b0447428887069a45956b5, type: 2}
+  - {fileID: 11400000, guid: bb201dd4d065a914fb16a641b71d7550, type: 2}
+  - {fileID: 11400000, guid: 2157b59b617b98f48beca8744d9976e0, type: 2}
+  - {fileID: 11400000, guid: 83ba92deace37924f872b90e597192de, type: 2}
+  allDialoguePhrases:
+  - phrases:
+    - I am Xaden, and I do fast food. Unhealthy but dreay stuff.
+    - Let's do some sandwchies for starters.

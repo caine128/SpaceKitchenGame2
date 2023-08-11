@@ -1,0 +1,826 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d612e50eebf042f428eca481d6a670fb, type: 3}
+  m_Name: ShopUpgrades_SO
+  m_EditorClassIdentifier: 
+  foodDisplay_Upgrades:
+    baseInfo:
+    - name: Rotisserie
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 0
+      foodTypeToDisplay: 100
+      description: 
+    - name: Starches Station
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 1
+      foodTypeToDisplay: 200
+      description: 
+    - name: Veggie Bar
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 5
+      foodTypeToDisplay: 600
+      description: 
+    - name: Seafood Bar
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 2
+      foodTypeToDisplay: 300
+      description: 
+    - name: Patisserie
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 3
+      foodTypeToDisplay: 400
+      description: 
+    - name: Soup Station
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 6
+      foodTypeToDisplay: 700
+      description: 
+    - name: Fast Food Station
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      requiredWorkerToUnlock: 4
+      foodTypeToDisplay: 500
+      description: 
+    specsBylevel:
+    - level: 1
+      requiredCharacterLevel: 1
+      maxEnergyCap: 9
+      storageCapIncrease: 3
+      upgradeGoldCost: 100
+      upgradeGemCost: 10
+      upgradeDuration: 0
+    - level: 2
+      requiredCharacterLevel: 1
+      maxEnergyCap: 12
+      storageCapIncrease: 3
+      upgradeGoldCost: 500
+      upgradeGemCost: 20
+      upgradeDuration: 300
+    - level: 3
+      requiredCharacterLevel: 1
+      maxEnergyCap: 15
+      storageCapIncrease: 3
+      upgradeGoldCost: 2500
+      upgradeGemCost: 30
+      upgradeDuration: 3600
+    - level: 4
+      requiredCharacterLevel: 1
+      maxEnergyCap: 18
+      storageCapIncrease: 3
+      upgradeGoldCost: 12500
+      upgradeGemCost: 50
+      upgradeDuration: 10800
+    - level: 5
+      requiredCharacterLevel: 1
+      maxEnergyCap: 21
+      storageCapIncrease: 3
+      upgradeGoldCost: 25000
+      upgradeGemCost: 75
+      upgradeDuration: 10800
+    - level: 6
+      requiredCharacterLevel: 12
+      maxEnergyCap: 24
+      storageCapIncrease: 3
+      upgradeGoldCost: 100000
+      upgradeGemCost: 100
+      upgradeDuration: 16200
+    - level: 7
+      requiredCharacterLevel: 12
+      maxEnergyCap: 30
+      storageCapIncrease: 6
+      upgradeGoldCost: 250000
+      upgradeGemCost: 125
+      upgradeDuration: 28800
+    - level: 8
+      requiredCharacterLevel: 12
+      maxEnergyCap: 36
+      storageCapIncrease: 6
+      upgradeGoldCost: 500000
+      upgradeGemCost: 150
+      upgradeDuration: 41400
+    - level: 9
+      requiredCharacterLevel: 12
+      maxEnergyCap: 42
+      storageCapIncrease: 6
+      upgradeGoldCost: 1000000
+      upgradeGemCost: 200
+      upgradeDuration: 57600
+    - level: 10
+      requiredCharacterLevel: 12
+      maxEnergyCap: 48
+      storageCapIncrease: 6
+      upgradeGoldCost: 2500000
+      upgradeGemCost: 250
+      upgradeDuration: 100800
+    - level: 11
+      requiredCharacterLevel: 24
+      maxEnergyCap: 54
+      storageCapIncrease: 6
+      upgradeGoldCost: 6250000
+      upgradeGemCost: 300
+      upgradeDuration: 172800
+    - level: 12
+      requiredCharacterLevel: 24
+      maxEnergyCap: 63
+      storageCapIncrease: 9
+      upgradeGoldCost: 12500000
+      upgradeGemCost: 400
+      upgradeDuration: 194400
+    - level: 13
+      requiredCharacterLevel: 24
+      maxEnergyCap: 72
+      storageCapIncrease: 9
+      upgradeGoldCost: 25000000
+      upgradeGemCost: 500
+      upgradeDuration: 216000
+    - level: 14
+      requiredCharacterLevel: 24
+      maxEnergyCap: 81
+      storageCapIncrease: 9
+      upgradeGoldCost: 50000000
+      upgradeGemCost: 750
+      upgradeDuration: 259200
+    - level: 15
+      requiredCharacterLevel: 24
+      maxEnergyCap: 90
+      storageCapIncrease: 9
+      upgradeGoldCost: 75000000
+      upgradeGemCost: 1000
+      upgradeDuration: 302400
+  counter_Upgrades:
+    name: Sales Counter
+    description: 
+    specsByLevel:
+    - level: 1
+      requiredCharacterLevel: 1
+      energyPersale: 1
+      upgradeGoldCost: 0
+      upgradeGemCost: 0
+      upgradeDuration: 0
+    - level: 2
+      requiredCharacterLevel: 1
+      energyPersale: 2
+      upgradeGoldCost: 1000
+      upgradeGemCost: 30
+      upgradeDuration: 600
+    - level: 3
+      requiredCharacterLevel: 1
+      energyPersale: 3
+      upgradeGoldCost: 20000
+      upgradeGemCost: 50
+      upgradeDuration: 7200
+    - level: 4
+      requiredCharacterLevel: 1
+      energyPersale: 4
+      upgradeGoldCost: 100000
+      upgradeGemCost: 100
+      upgradeDuration: 21600
+    - level: 5
+      requiredCharacterLevel: 1
+      energyPersale: 5
+      upgradeGoldCost: 250000
+      upgradeGemCost: 150
+      upgradeDuration: 21600
+    - level: 6
+      requiredCharacterLevel: 12
+      energyPersale: 7
+      upgradeGoldCost: 1000000
+      upgradeGemCost: 200
+      upgradeDuration: 32400
+    - level: 7
+      requiredCharacterLevel: 12
+      energyPersale: 9
+      upgradeGoldCost: 1500000
+      upgradeGemCost: 250
+      upgradeDuration: 57600
+    - level: 8
+      requiredCharacterLevel: 12
+      energyPersale: 11
+      upgradeGoldCost: 3000000
+      upgradeGemCost: 300
+      upgradeDuration: 82800
+    - level: 9
+      requiredCharacterLevel: 12
+      energyPersale: 13
+      upgradeGoldCost: 6000000
+      upgradeGemCost: 400
+      upgradeDuration: 115200
+    - level: 10
+      requiredCharacterLevel: 12
+      energyPersale: 15
+      upgradeGoldCost: 18000000
+      upgradeGemCost: 500
+      upgradeDuration: 201600
+    - level: 11
+      requiredCharacterLevel: 24
+      energyPersale: 18
+      upgradeGoldCost: 25000000
+      upgradeGemCost: 600
+      upgradeDuration: 345600
+    - level: 12
+      requiredCharacterLevel: 24
+      energyPersale: 21
+      upgradeGoldCost: 50000000
+      upgradeGemCost: 800
+      upgradeDuration: 388800
+    - level: 13
+      requiredCharacterLevel: 24
+      energyPersale: 24
+      upgradeGoldCost: 125000000
+      upgradeGemCost: 1000
+      upgradeDuration: 432000
+    - level: 14
+      requiredCharacterLevel: 24
+      energyPersale: 27
+      upgradeGoldCost: 300000000
+      upgradeGemCost: 1500
+      upgradeDuration: 518400
+    - level: 15
+      requiredCharacterLevel: 24
+      energyPersale: 30
+      upgradeGoldCost: 500000000
+      upgradeGemCost: 2000
+      upgradeDuration: 604800
+  inventory_Upgrades:
+    baseInfo:
+    - name: Inventory Trunk
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: SpiritEnhancement
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      description: 
+    specsByLevel:
+    - level: 1
+      requiredCharacterLevel: 1
+      inventoryBaseCap: 15
+      upgradeGoldCost: 0
+      upgradeGemCost: 0
+      upgradeDuration: 0
+    - level: 2
+      requiredCharacterLevel: 1
+      inventoryBaseCap: 20
+      upgradeGoldCost: 1000
+      upgradeGemCost: 20
+      upgradeDuration: 300
+    - level: 3
+      requiredCharacterLevel: 1
+      inventoryBaseCap: 25
+      upgradeGoldCost: 2500
+      upgradeGemCost: 30
+      upgradeDuration: 3600
+    - level: 4
+      requiredCharacterLevel: 1
+      inventoryBaseCap: 30
+      upgradeGoldCost: 12500
+      upgradeGemCost: 50
+      upgradeDuration: 10800
+    - level: 5
+      requiredCharacterLevel: 1
+      inventoryBaseCap: 35
+      upgradeGoldCost: 25000
+      upgradeGemCost: 75
+      upgradeDuration: 10800
+    - level: 6
+      requiredCharacterLevel: 12
+      inventoryBaseCap: 40
+      upgradeGoldCost: 100000
+      upgradeGemCost: 100
+      upgradeDuration: 16200
+    - level: 7
+      requiredCharacterLevel: 12
+      inventoryBaseCap: 47
+      upgradeGoldCost: 250000
+      upgradeGemCost: 125
+      upgradeDuration: 28800
+    - level: 8
+      requiredCharacterLevel: 12
+      inventoryBaseCap: 54
+      upgradeGoldCost: 500000
+      upgradeGemCost: 150
+      upgradeDuration: 41400
+    - level: 9
+      requiredCharacterLevel: 12
+      inventoryBaseCap: 61
+      upgradeGoldCost: 1000000
+      upgradeGemCost: 200
+      upgradeDuration: 57600
+    - level: 10
+      requiredCharacterLevel: 12
+      inventoryBaseCap: 68
+      upgradeGoldCost: 2500000
+      upgradeGemCost: 250
+      upgradeDuration: 100800
+    - level: 11
+      requiredCharacterLevel: 24
+      inventoryBaseCap: 75
+      upgradeGoldCost: 6250000
+      upgradeGemCost: 300
+      upgradeDuration: 172800
+    - level: 12
+      requiredCharacterLevel: 24
+      inventoryBaseCap: 85
+      upgradeGoldCost: 12500000
+      upgradeGemCost: 400
+      upgradeDuration: 194400
+    - level: 13
+      requiredCharacterLevel: 24
+      inventoryBaseCap: 95
+      upgradeGoldCost: 25000000
+      upgradeGemCost: 500
+      upgradeDuration: 216000
+    - level: 14
+      requiredCharacterLevel: 24
+      inventoryBaseCap: 105
+      upgradeGoldCost: 50000000
+      upgradeGemCost: 750
+      upgradeDuration: 259200
+    - level: 15
+      requiredCharacterLevel: 24
+      inventoryBaseCap: 115
+      upgradeGoldCost: 75000000
+      upgradeGemCost: 1000
+      upgradeDuration: 302400
+  resourceCabinet_Upgrades:
+    baseInfo:
+    - name: Meat Container
+      tier: 0
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Flour & Grain Container
+      tier: 0
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Veggie Container
+      tier: 0
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Seafood Container
+      tier: 0
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Fruit Container
+      tier: 1
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Spices Container
+      tier: 1
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Dairy Container
+      tier: 1
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    - name: Fats & Oils Pot
+      tier: 1
+      spriteRef:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      description: 
+    tier:
+    - specsByLevel:
+      - level: 1
+        requiredCharacterLevel: 1
+        storageBaseCap: 35
+        upgradeGoldCost: 300
+        upgradeGemCost: 0
+        upgradeDuration: 0
+        requiredIngredientGeneratorLevel: 0
+      - level: 2
+        requiredCharacterLevel: 1
+        storageBaseCap: 41
+        upgradeGoldCost: 500
+        upgradeGemCost: 0
+        upgradeDuration: 300
+        requiredIngredientGeneratorLevel: 0
+      - level: 3
+        requiredCharacterLevel: 1
+        storageBaseCap: 47
+        upgradeGoldCost: 2500
+        upgradeGemCost: 0
+        upgradeDuration: 3600
+        requiredIngredientGeneratorLevel: 2
+      - level: 4
+        requiredCharacterLevel: 1
+        storageBaseCap: 53
+        upgradeGoldCost: 12500
+        upgradeGemCost: 0
+        upgradeDuration: 10800
+        requiredIngredientGeneratorLevel: 3
+      - level: 5
+        requiredCharacterLevel: 1
+        storageBaseCap: 59
+        upgradeGoldCost: 50000
+        upgradeGemCost: 0
+        upgradeDuration: 10800
+        requiredIngredientGeneratorLevel: 4
+      - level: 6
+        requiredCharacterLevel: 12
+        storageBaseCap: 65
+        upgradeGoldCost: 100000
+        upgradeGemCost: 0
+        upgradeDuration: 16200
+        requiredIngredientGeneratorLevel: 6
+      - level: 7
+        requiredCharacterLevel: 12
+        storageBaseCap: 77
+        upgradeGoldCost: 250000
+        upgradeGemCost: 0
+        upgradeDuration: 28800
+        requiredIngredientGeneratorLevel: 7
+      - level: 8
+        requiredCharacterLevel: 12
+        storageBaseCap: 89
+        upgradeGoldCost: 500000
+        upgradeGemCost: 0
+        upgradeDuration: 41400
+        requiredIngredientGeneratorLevel: 9
+      - level: 9
+        requiredCharacterLevel: 12
+        storageBaseCap: 101
+        upgradeGoldCost: 1000000
+        upgradeGemCost: 0
+        upgradeDuration: 57600
+        requiredIngredientGeneratorLevel: 10
+      - level: 10
+        requiredCharacterLevel: 12
+        storageBaseCap: 113
+        upgradeGoldCost: 2500000
+        upgradeGemCost: 0
+        upgradeDuration: 100800
+        requiredIngredientGeneratorLevel: 11
+      - level: 11
+        requiredCharacterLevel: 24
+        storageBaseCap: 125
+        upgradeGoldCost: 6250000
+        upgradeGemCost: 0
+        upgradeDuration: 172800
+        requiredIngredientGeneratorLevel: 12
+      - level: 12
+        requiredCharacterLevel: 24
+        storageBaseCap: 145
+        upgradeGoldCost: 12500000
+        upgradeGemCost: 0
+        upgradeDuration: 194400
+        requiredIngredientGeneratorLevel: 13
+      - level: 13
+        requiredCharacterLevel: 24
+        storageBaseCap: 165
+        upgradeGoldCost: 25000000
+        upgradeGemCost: 0
+        upgradeDuration: 216000
+        requiredIngredientGeneratorLevel: 15
+      - level: 14
+        requiredCharacterLevel: 24
+        storageBaseCap: 185
+        upgradeGoldCost: 50000000
+        upgradeGemCost: 0
+        upgradeDuration: 259200
+        requiredIngredientGeneratorLevel: 17
+      - level: 15
+        requiredCharacterLevel: 24
+        storageBaseCap: 205
+        upgradeGoldCost: 75000000
+        upgradeGemCost: 0
+        upgradeDuration: 302400
+        requiredIngredientGeneratorLevel: 20
+    - specsByLevel:
+      - level: 1
+        requiredCharacterLevel: 1
+        storageBaseCap: 15
+        upgradeGoldCost: 20000
+        upgradeGemCost: 0
+        upgradeDuration: 0
+        requiredIngredientGeneratorLevel: 0
+      - level: 2
+        requiredCharacterLevel: 1
+        storageBaseCap: 18
+        upgradeGoldCost: 50000
+        upgradeGemCost: 30
+        upgradeDuration: 10800
+        requiredIngredientGeneratorLevel: 0
+      - level: 3
+        requiredCharacterLevel: 1
+        storageBaseCap: 21
+        upgradeGoldCost: 150000
+        upgradeGemCost: 50
+        upgradeDuration: 12600
+        requiredIngredientGeneratorLevel: 2
+      - level: 4
+        requiredCharacterLevel: 1
+        storageBaseCap: 24
+        upgradeGoldCost: 250000
+        upgradeGemCost: 125
+        upgradeDuration: 18000
+        requiredIngredientGeneratorLevel: 3
+      - level: 5
+        requiredCharacterLevel: 1
+        storageBaseCap: 27
+        upgradeGoldCost: 350000
+        upgradeGemCost: 150
+        upgradeDuration: 25200
+        requiredIngredientGeneratorLevel: 4
+      - level: 6
+        requiredCharacterLevel: 25
+        storageBaseCap: 30
+        upgradeGoldCost: 500000
+        upgradeGemCost: 175
+        upgradeDuration: 36000
+        requiredIngredientGeneratorLevel: 6
+      - level: 7
+        requiredCharacterLevel: 25
+        storageBaseCap: 36
+        upgradeGoldCost: 750000
+        upgradeGemCost: 200
+        upgradeDuration: 46800
+        requiredIngredientGeneratorLevel: 7
+      - level: 8
+        requiredCharacterLevel: 25
+        storageBaseCap: 42
+        upgradeGoldCost: 1500000
+        upgradeGemCost: 250
+        upgradeDuration: 79200
+        requiredIngredientGeneratorLevel: 9
+      - level: 9
+        requiredCharacterLevel: 25
+        storageBaseCap: 48
+        upgradeGoldCost: 3000000
+        upgradeGemCost: 300
+        upgradeDuration: 90000
+        requiredIngredientGeneratorLevel: 10
+      - level: 10
+        requiredCharacterLevel: 25
+        storageBaseCap: 54
+        upgradeGoldCost: 9000000
+        upgradeGemCost: 350
+        upgradeDuration: 201600
+        requiredIngredientGeneratorLevel: 11
+      - level: 11
+        requiredCharacterLevel: 40
+        storageBaseCap: 60
+        upgradeGoldCost: 15000000
+        upgradeGemCost: 400
+        upgradeDuration: 223200
+        requiredIngredientGeneratorLevel: 12
+      - level: 12
+        requiredCharacterLevel: 40
+        storageBaseCap: 68
+        upgradeGoldCost: 25000000
+        upgradeGemCost: 450
+        upgradeDuration: 266400
+        requiredIngredientGeneratorLevel: 13
+      - level: 13
+        requiredCharacterLevel: 40
+        storageBaseCap: 76
+        upgradeGoldCost: 75000000
+        upgradeGemCost: 500
+        upgradeDuration: 309600
+        requiredIngredientGeneratorLevel: 15
+      - level: 14
+        requiredCharacterLevel: 40
+        storageBaseCap: 84
+        upgradeGoldCost: 150000000
+        upgradeGemCost: 600
+        upgradeDuration: 352800
+        requiredIngredientGeneratorLevel: 17
+      - level: 15
+        requiredCharacterLevel: 40
+        storageBaseCap: 92
+        upgradeGoldCost: 250000000
+        upgradeGemCost: 750
+        upgradeDuration: 388800
+        requiredIngredientGeneratorLevel: 20
+  workstation_Upgrades:
+    baseInfo:
+    - workstationType: 100
+      name: Solar Grill
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: SolarGrill
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite: []
+      description: The description of The Solar Grill Station will be coming and
+        displayed here.
+    - workstationType: 200
+      name: Hand Cranked Pasta Machine
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Hand Cranked Pasta Machine
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite: []
+      description: The description of The Hand Cranked Pasta Machine Station will
+        be coming and displayed here.
+    - workstationType: 600
+      name: Plasmatic Deepfry
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Plasmatic Deepfry
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite: []
+      description: The description of The Plasmatic Deepfry Station will be coming
+        and displayed here.
+    - workstationType: 300
+      name: Laser Precision Carving Knife Station
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Laser Precision Carving Knife Station
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite: []
+      description: The description of The Laser Precision Carving Knife will be coming
+        and displayed here.
+    - workstationType: 400
+      name: Convection Oven
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Convection Oven
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite:
+      - requiredWorkstation: 600
+        requiredWorkstationLevel: 5
+      description: The description of The Convection Oven Station will be coming
+        and displayed here.
+    - workstationType: 700
+      name: Higgs Pot
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Higgs Pot
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite:
+      - requiredWorkstation: 300
+        requiredWorkstationLevel: 3
+      description: The description of The Higgs-Pot Station will be coming and displayed
+        here.
+    - workstationType: 500
+      name: Griddle Oven Sixburner
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Griddle Oven Sixburner
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 1
+      workstationUpgradePrerequisite:
+      - requiredWorkstation: 200
+        requiredWorkstationLevel: 5
+      description: The description of The Griddle Oven Sixburner Station will be
+        coming and displayed here.
+    - workstationType: 800
+      name: Master Chef Station
+      spriteRef:
+        m_AssetGUID: 668c1265fbf4bf3479bfc3b3aab35f4d
+        m_SubObjectName: Master Chef Station
+        m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_EditorAssetChanged: 0
+      tierMultiplier: 2
+      workstationUpgradePrerequisite:
+      - requiredWorkstation: 100
+        requiredWorkstationLevel: 7
+      description: The description of The Master Chef's Station will be coming and
+        displayed here.
+    specsByLevel:
+    - level: 1
+      ticksNeeded: 0
+      upgradeGoldCost: 0
+      upgradeGemCost: 0
+      upgradeDuration: 0
+      maxWorkerLevelCap: 3
+    - level: 2
+      ticksNeeded: 0
+      upgradeGoldCost: 2000
+      upgradeGemCost: 30
+      upgradeDuration: 120
+      maxWorkerLevelCap: 5
+    - level: 3
+      ticksNeeded: 0
+      upgradeGoldCost: 20000
+      upgradeGemCost: 50
+      upgradeDuration: 300
+      maxWorkerLevelCap: 7
+    - level: 4
+      ticksNeeded: 0
+      upgradeGoldCost: 48000
+      upgradeGemCost: 140
+      upgradeDuration: 600
+      maxWorkerLevelCap: 9
+    - level: 5
+      ticksNeeded: 0
+      upgradeGoldCost: 210000
+      upgradeGemCost: 240
+      upgradeDuration: 1800
+      maxWorkerLevelCap: 11
+    - level: 6
+      ticksNeeded: 0
+      upgradeGoldCost: 800000
+      upgradeGemCost: 300
+      upgradeDuration: 3600
+      maxWorkerLevelCap: 13
+    - level: 7
+      ticksNeeded: 0
+      upgradeGoldCost: 2500000
+      upgradeGemCost: 400
+      upgradeDuration: 7200
+      maxWorkerLevelCap: 15
+    - level: 8
+      ticksNeeded: 0
+      upgradeGoldCost: 5600000
+      upgradeGemCost: 400
+      upgradeDuration: 14400
+      maxWorkerLevelCap: 17
+    - level: 9
+      ticksNeeded: 0
+      upgradeGoldCost: 27000000
+      upgradeGemCost: 840
+      upgradeDuration: 28800
+      maxWorkerLevelCap: 19
+    - level: 10
+      ticksNeeded: 0
+      upgradeGoldCost: 150000000
+      upgradeGemCost: 1200
+      upgradeDuration: 57600
+      maxWorkerLevelCap: 21

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b9d1421a4574f47820e8a2452c6db2, type: 3}
+  m_Name: Chests_SO
+  m_EditorClassIdentifier: 
+  chest:
+  - name: Wooden Chest
+    description: Here will write something about wooden Chest..
+    sprite: {fileID: 0}
+    type: 1
+    unlockCostGem: 50
+    chestDrops:
+    - dropType: 0
+      dropRatio: 9.7
+    - dropType: 1
+      dropRatio: 41.6
+    - dropType: 2
+      dropRatio: 30
+    - dropType: 3
+      dropRatio: 2.4
+    - dropType: 4
+      dropRatio: 1.9
+    - dropType: 5
+      dropRatio: 2.9
+    - dropType: 6
+      dropRatio: 5
+    - dropType: 7
+      dropRatio: 2.5
+    - dropType: 8
+      dropRatio: 2.5
+    - dropType: 9
+      dropRatio: 1.5
+  - name: Frozen Chest
+    description: Here will write something about frozen Chest..
+    sprite: {fileID: 0}
+    type: 2
+    unlockCostGem: 100
+    chestDrops:
+    - dropType: 0
+      dropRatio: 9.9
+    - dropType: 1
+      dropRatio: 42.6
+    - dropType: 2
+      dropRatio: 30
+    - dropType: 3
+      dropRatio: 2.25
+    - dropType: 4
+      dropRatio: 2
+    - dropType: 5
+      dropRatio: 3
+    - dropType: 6
+      dropRatio: 5
+    - dropType: 7
+      dropRatio: 2
+    - dropType: 8
+      dropRatio: 2
+    - dropType: 9
+      dropRatio: 1.25
+  - name: Slimy Chest
+    description: Here will write something about slimy chest...
+    sprite: {fileID: 0}
+    type: 3
+    unlockCostGem: 150
+    chestDrops:
+    - dropType: 0
+      dropRatio: 10
+    - dropType: 1
+      dropRatio: 42.5
+    - dropType: 2
+      dropRatio: 30
+    - dropType: 3
+      dropRatio: 2.25
+    - dropType: 4
+      dropRatio: 2
+    - dropType: 5
+      dropRatio: 4
+    - dropType: 6
+      dropRatio: 5
+    - dropType: 7
+      dropRatio: 1.5
+    - dropType: 8
+      dropRatio: 1.5
+    - dropType: 9
+      dropRatio: 1.25
