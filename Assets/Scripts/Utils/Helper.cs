@@ -1284,7 +1284,13 @@ public static class CRHelper
                                                                  easeFactor);
                     break;
                 case MoveRoutineType.Rotation:
-                    transform.rotation = Quaternion.LerpUnclamped(Quaternion.Euler(originalValue), Quaternion.Euler(targetValue) , easeFactor);
+                    transform.rotation = Quaternion.LerpUnclamped(Quaternion.Euler(new Vector3(x: coordinateFlags.HasFlag(CoordinateFlags.X) ? originalValue.x : transform.eulerAngles.x,
+                                                                                               y: coordinateFlags.HasFlag(CoordinateFlags.Y) ? originalValue.y : transform.eulerAngles.y,
+                                                                                               z: coordinateFlags.HasFlag(CoordinateFlags.Z) ? originalValue.z : transform.eulerAngles.z)), 
+                                                                  Quaternion.Euler(new Vector3(x: coordinateFlags.HasFlag(CoordinateFlags.X) ? targetValue.x : transform.eulerAngles.x,
+                                                                                               y: coordinateFlags.HasFlag(CoordinateFlags.Y) ? targetValue.y : transform.eulerAngles.y,
+                                                                                               z: coordinateFlags.HasFlag(CoordinateFlags.Z) ? targetValue.z : transform.eulerAngles.z)), 
+                                                                  easeFactor);
                     break;
             }
                 

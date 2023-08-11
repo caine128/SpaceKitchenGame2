@@ -88,7 +88,7 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         _originalMeshColor = _meshrenderer.material.color;
         _actualTransform = base.transform;
 
-        floater = new(_actualTransform, this); 
+        floater = new(_rootTransform, _actualTransform, this); 
     }
 
 
@@ -173,7 +173,10 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         {
             StopCoroutine(moveRoutine);
         }*/
-        
+        floater.End();
+
+        Debug.Log("finalposition  is : " + finalPosition);
+
         if (rotateRoutine != null)
         {
             StopCoroutine(rotateRoutine);
@@ -186,7 +189,7 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
             nudgeRoutine = null;
         }
 
-        floater.End();
+        
 
         /*while(floatRoutines.Count > 0)
         {

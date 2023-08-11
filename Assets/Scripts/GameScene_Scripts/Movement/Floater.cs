@@ -6,28 +6,30 @@ using UnityEngine;
 public class Floater
 {
     private readonly List<IEnumerator> floatRoutines = new();
-    private readonly Transform transform;
+    private readonly Transform _rootTransform;
+    private readonly Transform _actualTransform;
     private readonly MonoBehaviour monoBehaviour;
 
 
-    public Floater(Transform transform, MonoBehaviour monoBehaviour)
+    public Floater(Transform rootTransform, Transform actualTransform, MonoBehaviour monoBehaviour)
     {
-        this.transform = transform;
+        this._rootTransform = rootTransform;
+        this._actualTransform = actualTransform;
         this.monoBehaviour = monoBehaviour;
     }
 
 
     public void Begin()
     {
-        /*var floatRoutineMmovement = transform.MoveRoutine1D(targetValue: new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z),
+        var floatRoutineMmovement = _rootTransform.MoveRoutine1D(targetValue: new Vector3(_rootTransform.position.x, _rootTransform.position.y + 1f, _rootTransform.position.z),
                                                         lerpDuration: 1f,
                                                         moveRoutineType: CRHelper.MoveRoutineType.Position,
                                                         coordinateFlags: CRHelper.CoordinateFlags.Y,
                                                         easeCurveType: TimeTickSystem.EaseCurveType.NudgeScale,
-                                                        routineRecursionType: CRHelper.RoutineRecursionType.Continous);*/
+                                                        routineRecursionType: CRHelper.RoutineRecursionType.Continous);
 
 
-        var floatRoutineRotation = transform.MoveRoutine1D(targetValue: new Vector3(transform.eulerAngles.x + 10, transform.eulerAngles.y, transform.eulerAngles.z),
+        var floatRoutineRotation = _actualTransform.MoveRoutine1D(targetValue: new Vector3(_actualTransform.eulerAngles.x + 10, _actualTransform.eulerAngles.y, _actualTransform.eulerAngles.z),
                                                     lerpDuration: 1f,
                                                     moveRoutineType: CRHelper.MoveRoutineType.Rotation,
                                                     coordinateFlags: CRHelper.CoordinateFlags.X,
@@ -36,7 +38,7 @@ public class Floater
 
 
 
-        //floatRoutines.Add(floatRoutineMmovement);
+        floatRoutines.Add(floatRoutineMmovement);
         floatRoutines.Add(floatRoutineRotation);
 
         floatRoutines.ForEach(fr => monoBehaviour.StartCoroutine(fr));
@@ -51,10 +53,10 @@ public class Floater
             floatRoutines.Remove(lastItem);
         }
 
-        if(transform.eulerAngles.x != 0)
+        if(_actualTransform.eulerAngles.x != 0)
         {
             Debug.LogWarning("rectifiying the rotation ofthe subtransform");
-            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
+            _actualTransform.rotation = Quaternion.Euler(0, _actualTransform.eulerAngles.y, _actualTransform.eulerAngles.z);
         }
     }
 }
