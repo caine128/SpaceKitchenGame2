@@ -16,11 +16,10 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
     public (int x, int z) Size = (4, 2);
     public PropManager.Direction PlacedDirection { get; set; } = PropManager.Direction.Up;
 
-    private readonly ConcurrentQueue<IEnumerator> moveRoutines = new();
-    private IEnumerator rotateRoutine;
-    private IEnumerator nudgeRoutine;
-    //private readonly List<IEnumerator> floatRoutines = new();
+    private Lifter lifter;
     private Floater floater;
+    private Rotater rotater;
+    private Nudger nudger;
 
 
     private MeshCollider[] _meshColliders;
@@ -88,7 +87,10 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         _originalMeshColor = _meshrenderer.material.color;
         _actualTransform = base.transform;
 
-        floater = new(_rootTransform, _actualTransform, this); 
+        lifter = new(_rootTransform, this);
+        floater = new(_rootTransform, _actualTransform, this);
+        rotater = new(_rootTransform, this);
+        nudger = new(_actualTransform, this);
     }
 
 
@@ -121,8 +123,8 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         }
     }
 
-    public void AnimatePropRotate()
-    {
+    public void Rotate() => rotater.Begin(PropManager.QuaternionFromDirection(PlacedDirection));
+    /*{
         if (rotateRoutine != null)
             StopCoroutine(rotateRoutine);
 
@@ -133,128 +135,12 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
                                                   followingActions: () => rotateRoutine = null );
 
         StartCoroutine(rotateRoutine);
-    }
-
-
-    public void AnimatePropUp(bool queueRequest)
-    {
-        /*if (!queueRequest && MoveRoutines.TryDequeue(out IEnumerator moveRoutine))
-        {
-            StopCoroutine(moveRoutine);
-        }*/
-        if (!queueRequest)
-            while (moveRoutines.TryDequeue(out IEnumerator moveRoutine))
-                StopCoroutine(moveRoutine);
-
-        var thisMmoveRoutine = _rootTransform.MoveRoutine1D(targetValue: new Vector3(_rootTransform.position.x, 3f, _rootTransform.position.z),
-                                                            lerpDuration: .25f,
-                                                            moveRoutineType: CRHelper.MoveRoutineType.Position,
-                                                            coordinateFlags: CRHelper.CoordinateFlags.Y,
-                                                            easeCurveType: TimeTickSystem.EaseCurveType.PropUp,
-                                                            followingActions: () =>
-                                                            {
-                                                                moveRoutines.TryDequeue(out var runningRoutine);
-                                                                
-                                                                if (moveRoutines.TryPeek(out var nextRoutine))
-                                                                    StartCoroutine(nextRoutine);
-                                                                else
-                                                                {
-                                                                    Float();
-                                                                }
-                                                            });
-        moveRoutines.Enqueue(thisMmoveRoutine);
-        if (moveRoutines.TryPeek(out IEnumerator nextMoveroutine) && nextMoveroutine == thisMmoveRoutine)
-            StartCoroutine(nextMoveroutine);
-    }
-
-    public void AnimatePropDown(Vector3 finalPosition, Quaternion finalRotation, params Action[] finalCallbacks)
-    {
-        /*if (!queueRequest && MoveRoutines.TryDequeue(out IEnumerator moveRoutine))
-        {
-            StopCoroutine(moveRoutine);
-        }*/
-        floater.End();
-
-        Debug.Log("finalposition  is : " + finalPosition);
-
-        if (rotateRoutine != null)
-        {
-            StopCoroutine(rotateRoutine);
-            rotateRoutine = null;
-        }
-
-        if(nudgeRoutine != null)
-        {
-            StopCoroutine(nudgeRoutine);
-            nudgeRoutine = null;
-        }
-
+    }*/
+    public void Nudge() => nudger.Begin();
+    /*{
+       
         
-
-        /*while(floatRoutines.Count > 0)
-        {
-            var lastItem = floatRoutines.Last();
-            StopCoroutine(lastItem);
-            floatRoutines.Remove(lastItem);
-        }*/
-
-
-
-        while (moveRoutines.TryDequeue(out IEnumerator moveRoutine))
-            StopCoroutine(moveRoutine);
-
-
-        var thisMoveRoutine = _rootTransform.MoveRoutine3D( targetPos: finalPosition,
-                                                            lerpDuration: .25f,
-                                                            easeCurveType: TimeTickSystem.EaseCurveType.PropDown,
-                                                            targetRotationQ: finalRotation,
-                                                            followingActions: () =>
-                                                            {
-                                                                moveRoutines.TryDequeue(out var runningRoutine);
-                                                                
-                                                                if (moveRoutines.TryPeek(out var nextRoutine))
-                                                                    StartCoroutine(nextRoutine);
-                                                                else
-                                                                {
-                                                                    foreach (var finalCallback in finalCallbacks)
-                                                                        finalCallback?.Invoke();
-
-                                                                   _actualTransform.localScale = Vector3.one;
-                                                                }
-                                                            });
-
-        moveRoutines.Enqueue(thisMoveRoutine);
-        
-        /*MoveRoutines.Enqueue(CRHelper.MoveRoutine1D(transform: this.transform,
-                                                    targetPos: 0.05f,
-                                                    lerpDuration: .5f,
-                                                    coorinateflags: CRHelper.CoodrinateFlags.Y,
-                                                    lerpSpeedModifier: 1,
-                                                    () =>
-                                                    {
-                                                        MoveRoutines.TryDequeue(out var runningRoutine);
-                                                        if (MoveRoutines.TryDequeue(out var nextRoutine))
-                                                            StartCoroutine(nextRoutine);
-                                                        //Debug.Log("count of routines : " + MoveRoutines.Count);
-                                                    }));*/
-        if (moveRoutines.TryPeek(out IEnumerator nextMoveroutine) && nextMoveroutine == thisMoveRoutine)
-            StartCoroutine(nextMoveroutine);
-    }
-
-    public void AnimatePropNudge()
-    {
-        /*var thisMoveRoutine1 = _rootTransform.MoveRoutine1D(targetValue: new Vector3(_rootTransform.position.x, 2.7f,_rootTransform.position.z),
-                                                            lerpDuration: .2f,
-                                                            moveRoutineType: CRHelper.MoveRoutineType.Position,
-                                                            coordinateFlags: CRHelper.CoordinateFlags.Y,                                                           
-                                                            followingActions: () =>
-                                                            {
-                                                                MoveRoutines.TryDequeue(out var runningRoutine);
-                                                                if (MoveRoutines.TryDequeue(out var nextRoutine))
-                                                                    StartCoroutine(nextRoutine);
-                                                            });*/
-        
-        nudgeRoutine = _actualTransform.MoveRoutine1D(targetValue: new Vector3(1.1f, 1.1f, 1.1f),
+        nudgeRoutine = _actualTransform.SingleTypeTransformRoutine(targetValue: new Vector3(1.1f, 1.1f, 1.1f),
                                                                 lerpDuration: .08f,
                                                                 moveRoutineType: CRHelper.MoveRoutineType.Scale,
                                                                 coordinateFlags: CRHelper.CoordinateFlags.X | CRHelper.CoordinateFlags.Y | CRHelper.CoordinateFlags.Z,
@@ -263,55 +149,10 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
                                                                 followingActions: () => nudgeRoutine = null);
 
         StartCoroutine(nudgeRoutine);
-        /*var thisNudgeRoutine1 = _actualTransform.MoveRoutine1D(targetValue: new Vector3(1.1f, 1.1f, 1.1f),
-                                                            lerpDuration: .08f,
-                                                            moveRoutineType: CRHelper.MoveRoutineType.Scale,
-                                                            coordinateFlags: CRHelper.CoordinateFlags.X |CRHelper.CoordinateFlags.Y | CRHelper.CoordinateFlags.Z,
-                                                            easeCurveType: TimeTickSystem.EaseCurveType.PropUp,
-                                                            followingActions: () =>
-                                                            {
-                                                                _nudgeRoutines.TryDequeue(out var runningRoutine);
-                                                                
-                                                                if (_nudgeRoutines.TryPeek(out var nextRoutine))
-                                                                    StartCoroutine(nextRoutine);
-                                                            });
-
         
 
-        var thisNudgeRoutine2 = _actualTransform.MoveRoutine1D(targetValue: _rootTransform.localScale,
-                                                            lerpDuration: .08f,
-                                                            moveRoutineType: CRHelper.MoveRoutineType.Scale,
-                                                            coordinateFlags: CRHelper.CoordinateFlags.X | CRHelper.CoordinateFlags.Y | CRHelper.CoordinateFlags.Z,
-                                                            easeCurveType: TimeTickSystem.EaseCurveType.PropUp,
-                                                            followingActions: () =>
-                                                            {
-                                                                _nudgeRoutines.TryDequeue(out var runningRoutine);
-                                                                
-                                                                if (_nudgeRoutines.TryPeek(out var nextRoutine))
-                                                                    StartCoroutine(nextRoutine);
-                                                            });
-
-        _nudgeRoutines.Enqueue(thisNudgeRoutine1);
-        _nudgeRoutines.Enqueue(thisNudgeRoutine2);
-
-        _nudgeRoutines.Enqueue(exampleNudgeoutine);
-
-        if (_nudgeRoutines.TryPeek(out IEnumerator nextNudgeRoutine) && nextNudgeRoutine == exampleNudgeoutine) ;// thisNudgeRoutine1)
-            StartCoroutine(nextNudgeRoutine);*/
-
-    }
-
-    public void Subscribe(bool shouldSubscribe)
-    {
-        if (shouldSubscribe)
-            BuildingGrid.Instance.OnValidate += VerificationCallback;
-        else
-        {
-            BuildingGrid.Instance.OnValidate -= VerificationCallback;
-        }
-    }
-
-    private void Float() => floater.Begin();
+    }*/
+    public void Float() => floater.Begin();
     /*{
 
         var floatRoutineMmovement = _rootTransform.MoveRoutine1D(targetValue: new Vector3(_rootTransform.position.x, _rootTransform.position.y + 1f, _rootTransform.position.z),
@@ -344,6 +185,88 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         //_actualTransform.rotation = Quaternion.Euler(pinpongedAngle, _actualTransform.eulerAngles.y, _actualTransform.eulerAngles.z);
     }*/
 
+    public void LiftUp(bool queueRequest) => lifter.LiftUp(queueRequest, () => Float());
+    /*{
+ 
+        if (!queueRequest)
+            while (moveRoutines.TryDequeue(out IEnumerator moveRoutine))
+                StopCoroutine(moveRoutine);
+
+        var thisMmoveRoutine = _rootTransform.SingleTypeTransformRoutine(targetValue: new Vector3(_rootTransform.position.x, 3f, _rootTransform.position.z),
+                                                            lerpDuration: .25f,
+                                                            moveRoutineType: CRHelper.MoveRoutineType.Position,
+                                                            coordinateFlags: CRHelper.CoordinateFlags.Y,
+                                                            easeCurveType: TimeTickSystem.EaseCurveType.PropUp,
+                                                            followingActions: () =>
+                                                            {
+                                                                moveRoutines.TryDequeue(out var runningRoutine);
+                                                                
+                                                                if (moveRoutines.TryPeek(out var nextRoutine))
+                                                                    StartCoroutine(nextRoutine);
+                                                                else
+                                                                {
+                                                                    Float();
+                                                                }
+                                                            });
+        moveRoutines.Enqueue(thisMmoveRoutine);
+        if (moveRoutines.TryPeek(out IEnumerator nextMoveroutine) && nextMoveroutine == thisMmoveRoutine)
+            StartCoroutine(nextMoveroutine);
+    }*/
+
+    public void LiftDown(Vector3 finalPosition, Quaternion finalRotation, params Action[] finalCallbacks)
+        => lifter.LiftDown(finalPosition: finalPosition,
+                          finalRotation: finalRotation,
+                          initialCallback: () =>
+                          {
+                              rotater.End();
+                              nudger.End();
+                              floater.End();
+                          },
+                          finalCallbacks: finalCallbacks);
+    /*{
+       
+        rotater.End();
+        nudger.End();
+        floater.End();
+
+        while (moveRoutines.TryDequeue(out IEnumerator moveRoutine))
+            StopCoroutine(moveRoutine);
+
+
+        var thisMoveRoutine = _rootTransform.MoveRoutine3D( targetPos: finalPosition,
+                                                            lerpDuration: .25f,
+                                                            easeCurveType: TimeTickSystem.EaseCurveType.PropDown,
+                                                            targetRotationQ: finalRotation,
+                                                            followingActions: () =>
+                                                            {
+                                                                moveRoutines.TryDequeue(out var runningRoutine);
+                                                                
+                                                                if (moveRoutines.TryPeek(out var nextRoutine))
+                                                                    StartCoroutine(nextRoutine);
+                                                                else
+                                                                {
+                                                                    foreach (var finalCallback in finalCallbacks)
+                                                                        finalCallback?.Invoke();
+
+                                                                   //_actualTransform.localScale = Vector3.one;
+                                                                }
+                                                            });
+
+        moveRoutines.Enqueue(thisMoveRoutine);
+        
+        if (moveRoutines.TryPeek(out IEnumerator nextMoveroutine) && nextMoveroutine == thisMoveRoutine)
+            StartCoroutine(nextMoveroutine);
+    }*/
+
+    public void SubscribeToVerifivationCallback(bool shouldSubscribe)
+    {
+        if (shouldSubscribe)
+            BuildingGrid.Instance.OnValidate += VerificationCallback;
+        else
+        {
+            BuildingGrid.Instance.OnValidate -= VerificationCallback;
+        }
+    }
 
     public void VerificationCallback(bool isVerified)
     {

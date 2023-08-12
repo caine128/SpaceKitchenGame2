@@ -32,13 +32,13 @@ public class GridMarkerSpawner : MonoBehaviour, ISerializationCallbackReceiver
 
     private static void GetPooledItem (GridMarker gridMarker)
     {
-        gridMarker.Subscribe(true);
+        gridMarker.SubscribeToVerifivationCallback(true);
         gridMarker.gameObject.SetActive(true);
     }
 
     private static void ReleasePooledItem (GridMarker gridMarker)
     {
-        gridMarker.Subscribe(false);
+        gridMarker.SubscribeToVerifivationCallback(false);
         gridMarker.gameObject.SetActive(false);
     }
 

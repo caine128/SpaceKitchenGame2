@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IVerificationCallbackReceiver 
 {
-    public void Subscribe(bool shouldSubscribe);
+    public void SubscribeToVerifivationCallback(bool shouldSubscribe);
     public void VerificationCallback(bool isVerified);
     
 }

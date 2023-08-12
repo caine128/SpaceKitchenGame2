@@ -23,7 +23,7 @@ public class GridMarker : MonoBehaviour, IVerificationCallbackReceiver
         transform.position = new Vector3(position_IN.x + offset.x, transform.position.y, position_IN.z + offset.z);
     }
 
-    public void Subscribe(bool shouldSubscribe)
+    public void SubscribeToVerifivationCallback(bool shouldSubscribe)
     {
         if (shouldSubscribe)
             BuildingGrid.Instance.OnValidate += VerificationCallback;

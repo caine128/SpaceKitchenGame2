@@ -1225,15 +1225,15 @@ public static class CRHelper
     }
 
 
-    public static IEnumerator MoveRoutine1D(this Transform transform,
-                                            Vector3 targetValue,
-                                            float lerpDuration,
-                                            MoveRoutineType moveRoutineType,
-                                            CoordinateFlags coordinateFlags,
-                                            TimeTickSystem.EaseCurveType easeCurveType = TimeTickSystem.EaseCurveType.Standard,
-                                            float lerpSpeedModifier = 1,
-                                            RoutineRecursionType routineRecursionType = RoutineRecursionType.None,
-                                            params Action[] followingActions)
+    public static IEnumerator SingleTypeTransformRoutine(this Transform transform,
+                                                         Vector3 targetValue,
+                                                         float lerpDuration,
+                                                         MoveRoutineType moveRoutineType,
+                                                         CoordinateFlags coordinateFlags,
+                                                         TimeTickSystem.EaseCurveType easeCurveType = TimeTickSystem.EaseCurveType.Standard,
+                                                         float lerpSpeedModifier = 1,
+                                                         RoutineRecursionType routineRecursionType = RoutineRecursionType.None,
+                                                         params Action[] followingActions)
     {
         float elapsedTime = 0f;
         Vector3 originalValue = moveRoutineType == MoveRoutineType.Position 
@@ -1328,8 +1328,13 @@ public static class CRHelper
                 transform.localScale = originalValue;
                 break;
 
-            case MoveRoutineType.Rotation:
-                Debug.LogError("his feature shouldn't be necessary yet ");
+            case MoveRoutineType.Rotation when routineRecursionType != RoutineRecursionType.RevertsToOriginal:
+                transform.rotation = Quaternion.Euler(new Vector3(x: coordinateFlags.HasFlag(CoordinateFlags.X) ? targetValue.x : transform.eulerAngles.x,
+                                                                  y: coordinateFlags.HasFlag(CoordinateFlags.Y) ? targetValue.y : transform.eulerAngles.y,
+                                                                  z: coordinateFlags.HasFlag(CoordinateFlags.Z) ? targetValue.z : transform.eulerAngles.z));
+                break;
+            case MoveRoutineType.Rotation when routineRecursionType == RoutineRecursionType.RevertsToOriginal:
+                transform.rotation = Quaternion.Euler(originalValue);
                 break;
         }
 

@@ -72,6 +72,8 @@ public class Detect_ShopPurchaseOrInfoclick : DetectClickRequest<ShopUpgrade>, I
                                     PanelManager.CraftWheelController.PlaceBars();
                                     PanelManager.ClearStackAndDeactivateElements();
                                 });
+
+                            PropManager.BeginBuildingNewProp
                         }
                         break;
 

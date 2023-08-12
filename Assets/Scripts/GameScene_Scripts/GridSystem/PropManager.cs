@@ -15,7 +15,7 @@ public class PropManager
 
     private static readonly List<Prop> builtProps = new();
 
-    private static Func<Transform, Quaternion, bool> OnRotationNecessery;
+    
 
     public enum Direction
     {
@@ -51,9 +51,9 @@ public class PropManager
             return;
 
         Prop newProp = UnityEngine.Object.Instantiate(propPrefab, new Vector3(grid.GridWorldPosition.x, 3f, grid.GridWorldPosition.z), Quaternion.identity).GetComponentInChildren<Prop>();
-        newProp.Subscribe(true);
+        newProp.SubscribeToVerifivationCallback(true);
         newProp.BuiltSate = Prop.BuiltState.NotFixed;
-
+        newProp.Float();
         
         selectedProp = newProp;
 
@@ -76,8 +76,8 @@ public class PropManager
             BuildingGrid.Instance.ClearGrids(selectedProp);
             BuildingGrid.Instance.PlaceGridMarkers(selectedProp);
 
-            selectedProp.AnimatePropNudge();
-            selectedProp.AnimatePropUp(queueRequest: true);           
+            selectedProp.Nudge();
+            selectedProp.LiftUp(queueRequest: true);           
         }
         else if (selectedProp == currentProp && selectedProp.BuiltSate == Prop.BuiltState.NotFixed)
         {
@@ -87,7 +87,7 @@ public class PropManager
             SetInterpolationValue(raycastToGroundPosition);
             SubscribeToMoveProp(pointerEventData);
 
-            selectedProp.AnimatePropNudge();
+            selectedProp.Nudge();
         }
         else
         {
@@ -112,10 +112,10 @@ public class PropManager
 
         if (BuildingGrid.Instance.TrySetPropToGrids(currentProp))
         {
-            selectedProp.Subscribe(false);
+            selectedProp.SubscribeToVerifivationCallback(false);
             selectedProp.BuiltSate = Prop.BuiltState.Fixed;
             builtProps.Add(selectedProp);
-            selectedProp.AnimatePropDown(BuildingGrid.Instance.MarkerParent.position,
+            selectedProp.LiftDown(BuildingGrid.Instance.MarkerParent.position,
                                          QuaternionFromDirection(selectedProp.PlacedDirection),
                                          () => BuildingGrid.Instance.RemoveGridMarkers(),
                                          () => selectedProp = null);
@@ -165,20 +165,8 @@ public class PropManager
 
         selectedProp.PlacedDirection = GetNextDirection(selectedProp.PlacedDirection);
         BuildingGrid.Instance.RotateGridMarkers(QuaternionFromDirection(selectedProp.PlacedDirection));
-        selectedProp.AnimatePropRotate();
+        selectedProp.Rotate();
     }
-
-    /* public static void BuildNewProp(UnityEngine.GameObject propPrefab, Grid grid) // TODO : later to change this to adressable , and make the method private 
-     {
-         if (selectedProp != null)
-             return;
-         Prop newProp = UnityEngine.GameObject.Instantiate(propPrefab, grid.GridWorldPosition, Quaternion.identity).GetComponentInChildren<Prop>();
-         newProp.BuiltSate = Prop.BuiltState.Fixed;
-
-
-         builtProps.Add(newProp);
-     }*/
-
 
     private static void SetInterpolationValue(Vector3 raycastToGroundPosition)
     {

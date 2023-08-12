@@ -21,15 +21,17 @@ public class Floater
 
     public void Begin()
     {
-        var floatRoutineMmovement = _rootTransform.MoveRoutine1D(targetValue: new Vector3(_rootTransform.position.x, _rootTransform.position.y + 1f, _rootTransform.position.z),
-                                                        lerpDuration: 1f,
-                                                        moveRoutineType: CRHelper.MoveRoutineType.Position,
-                                                        coordinateFlags: CRHelper.CoordinateFlags.Y,
-                                                        easeCurveType: TimeTickSystem.EaseCurveType.NudgeScale,
-                                                        routineRecursionType: CRHelper.RoutineRecursionType.Continous);
+        var floatRoutineMmovement = _rootTransform.SingleTypeTransformRoutine(
+                                                   targetValue: new Vector3(_rootTransform.position.x, _rootTransform.position.y + 1f, _rootTransform.position.z),
+                                                   lerpDuration: 1f,
+                                                   moveRoutineType: CRHelper.MoveRoutineType.Position,
+                                                   coordinateFlags: CRHelper.CoordinateFlags.Y,
+                                                   easeCurveType: TimeTickSystem.EaseCurveType.NudgeScale,
+                                                   routineRecursionType: CRHelper.RoutineRecursionType.Continous);
 
 
-        var floatRoutineRotation = _actualTransform.MoveRoutine1D(targetValue: new Vector3(_actualTransform.eulerAngles.x + 10, _actualTransform.eulerAngles.y, _actualTransform.eulerAngles.z),
+        var floatRoutineRotation = _actualTransform.SingleTypeTransformRoutine(
+                                                    targetValue: new Vector3(_actualTransform.eulerAngles.x + 10, _actualTransform.eulerAngles.y, _actualTransform.eulerAngles.z),
                                                     lerpDuration: 1f,
                                                     moveRoutineType: CRHelper.MoveRoutineType.Rotation,
                                                     coordinateFlags: CRHelper.CoordinateFlags.X,
