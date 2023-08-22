@@ -1186,7 +1186,7 @@ public static class CRHelper
         None,
         RevertsToOriginal,
         Continous,
-        ContinousWithInversiton,
+        ContinousWithInversion,
     }
 
     public static IEnumerator MoveRoutine3D(this Transform transform,
@@ -1249,10 +1249,10 @@ public static class CRHelper
         int inversionModifier = 1;
 
         while (routineRecursionType == RoutineRecursionType.Continous 
-            || routineRecursionType == RoutineRecursionType.ContinousWithInversiton 
+            || routineRecursionType == RoutineRecursionType.ContinousWithInversion 
             || elapsedTime < lerpDuration * lerpSpeedModifier)
         {
-            float easeFactor = routineRecursionType == RoutineRecursionType.Continous || routineRecursionType == RoutineRecursionType.ContinousWithInversiton
+            float easeFactor = routineRecursionType == RoutineRecursionType.Continous || routineRecursionType == RoutineRecursionType.ContinousWithInversion
                                     ? Mathf.PingPong(elapsedTime / (lerpDuration * lerpSpeedModifier) , 1f)
                                     : routineRecursionType == RoutineRecursionType.RevertsToOriginal
                                         ? Mathf.PingPong(elapsedTime / (lerpDuration * lerpSpeedModifier) * 2  , 1f) 
@@ -1296,7 +1296,7 @@ public static class CRHelper
                 
             elapsedTime += Time.deltaTime;
 
-            if(routineRecursionType == RoutineRecursionType.ContinousWithInversiton 
+            if(routineRecursionType == RoutineRecursionType.ContinousWithInversion 
                 && elapsedTime >= lerpDuration * lerpSpeedModifier * iterationNo )
             {
                 inversionModifier = iterationNo % 2 == 0 ? inversionModifier * -1 : inversionModifier;

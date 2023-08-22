@@ -6,7 +6,7 @@ public class Grid
     public GridPosition GridPosition { get;  private set; }
     public readonly Vector3 GridWorldPosition;
 
-    public readonly bool isBuildable;
+    public bool IsBuildable { get; private set; }
     public bool IsOccupied { get => prop != null ;}
     private Prop prop = null;
     
@@ -16,7 +16,12 @@ public class Grid
     {
         this.GridPosition = gridPosition;
         this.GridWorldPosition = gridWorldPosition;
-        this.isBuildable = isBuildable;
+        this.IsBuildable = isBuildable;
+    }
+
+    public void SetBuildableStatus(bool isBuildable)
+    {
+        IsBuildable=isBuildable;
     }
 
     public void PlaceProp(Prop prop) 

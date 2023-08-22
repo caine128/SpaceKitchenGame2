@@ -14,14 +14,17 @@ public class Nudger
         this.monoBehaviour = monoBehaviour;
     }
 
-    public void Begin()
+    public void Begin(float scaleMax, float duration, TimeTickSystem.EaseCurveType easeCurveType)
     {
+        if (nudgeRoutine != null)
+            return;
+
         Debug.Log("nudger working");
-        nudgeRoutine = _actualTransform.SingleTypeTransformRoutine(targetValue: new Vector3(1.1f, 1.1f, 1.1f),
-                                                                   lerpDuration: .08f,
+        nudgeRoutine = _actualTransform.SingleTypeTransformRoutine(targetValue: new Vector3(scaleMax, scaleMax, scaleMax),
+                                                                   lerpDuration: duration,
                                                                    moveRoutineType: CRHelper.MoveRoutineType.Scale,
                                                                    coordinateFlags: CRHelper.CoordinateFlags.X | CRHelper.CoordinateFlags.Y | CRHelper.CoordinateFlags.Z,
-                                                                   easeCurveType: TimeTickSystem.EaseCurveType.NudgeScale,
+                                                                   easeCurveType: easeCurveType,
                                                                    routineRecursionType: CRHelper.RoutineRecursionType.RevertsToOriginal,
                                                                    followingActions: () => nudgeRoutine = null);
 

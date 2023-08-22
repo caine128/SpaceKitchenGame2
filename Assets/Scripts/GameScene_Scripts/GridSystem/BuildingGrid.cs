@@ -10,8 +10,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IPointerDownHandler //, IPointerMoveHandler 
+public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPointerDownHandler //, IPointerMoveHandler 
 {
+    List<UnityEngine.GameObject> debugTexts = new(); // TODO : REMOVE ITS FOR TESTING 
+
 
     [SerializeField] private UnityEngine.GameObject testPropPrefab;
     [SerializeField] private UnityEngine.GameObject groundTile; // LaterToTakeFromScriptable with the texture of course
@@ -25,7 +27,7 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
     public GridSystem GridSystem { get; private set; }
 
     private List<Grid> ShopGrids;
-    private HashSet<Grid> invalidPlacementGrids;
+    private HashSet<Grid> invalidPlacementInitiationGrids;
     public static float cellSize = 1f;
 
     public event Action<bool> OnValidate;
@@ -48,11 +50,10 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
     private void Initialize(GridSystem gridSystem = null, List<Grid> shopGrids = null)
     {
         this.GridSystem = gridSystem ?? new(50, 50, cellSize: cellSize, shopSize: (10, 8), tile_PF: groundTile.transform, debugTextPrefab: debugTextEachTile.transform);
-        this.ShopGrids = shopGrids ?? GridSystem.GetGrids(g => g.isBuildable)
-                                                                    .OrderBy(g => CalculateDistanceFrom(fromGrid: GridSystem.CenterGrid, toGrid: g))
+        this.ShopGrids = shopGrids ?? GridSystem.GetGrids(g => g.IsBuildable)
+                                                                    .OrderBy(g=>g, new GridComparerByDistance(GridSystem.CenterGrid, GridComparerByDistance.CompareDirection.CounterClockWise))    //g => CalculateDistanceFrom(fromGrid: GridSystem.CenterGrid, toGrid: g))
                                                                     .ToList();
-
-        invalidPlacementGrids = new HashSet<Grid>(ShopGrids.Count);
+        invalidPlacementInitiationGrids = new HashSet<Grid>(ShopGrids.Count);
 
         ///////////////////////////////// TODO : FOR TEST PURPOSES LATER TO DELEETE 
         int counter = 0; 
@@ -63,29 +64,21 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
             tmComponent.text = $"{counter} {Environment.NewLine} {sg.GridPosition.x} , {sg.GridPosition.z}";
             debugTextGO.GetComponent<Transform>().position = new Vector3(sg.GridPosition.x + .5f, 0.2f, sg.GridPosition.z + .5f);
             counter++;
+            debugTexts.Add(debugTextGO);
         }
         /////////////////////////////////
     }
 
-    private int CalculateDistanceFrom(Grid fromGrid, Grid toGrid)
-    {
-        int distanceX = Mathf.Abs(toGrid.GridPosition.x - fromGrid.GridPosition.x);
-        int distanceZ = Mathf.Abs(toGrid.GridPosition.z - fromGrid.GridPosition.z);
-
-        return distanceX > distanceZ
-                    ? (14 * distanceZ) + (10 * (distanceX - distanceZ))
-                    : (14 * distanceX) + (10 * (distanceZ - distanceX));
-    }
 
     public Vector3 FindMostCentralPlacementPosition((int x, int z) propSize)
     {
-        invalidPlacementGrids.Clear();
+        invalidPlacementInitiationGrids.Clear();
         Vector3 posToReturn = GridSystem.CenterGrid.GridWorldPosition;
 
         for (int i = 0; i < ShopGrids.Count; i++)
         {
 
-            if (!invalidPlacementGrids.Contains(ShopGrids[i]) && CheckGridPositionsOfPropForAnchor(ShopGrids[i].GridPosition, propSize))
+            if (!invalidPlacementInitiationGrids.Contains(ShopGrids[i]) && CheckGridPositionsOfPropForAnchor(ShopGrids[i].GridPosition, propSize))
             {
                 posToReturn = ShopGrids[i].GridWorldPosition;
                 break;
@@ -93,7 +86,7 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
         }
 
         ///////////////////////////////// TODO : FOR TEST PURPOSES LATER TO DELEETE 
-        foreach (var sg in invalidPlacementGrids)
+        foreach (var sg in invalidPlacementInitiationGrids)
         {
             var debugTextGO = UnityEngine.Object.Instantiate(debugTextEachTile);
             var tmComponent = debugTextGO.GetComponent<TextMeshPro>();
@@ -113,22 +106,65 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
             for (int z = fakeAnchor.z; z < fakeAnchor.z + propSize.z; z++)
             {
                 var grid = GridSystem.GetGrid(new GridPosition(x, z));
-                Debug.LogWarning("cehcking gridpos : " + x + " , " + z);
-                if (!grid.isBuildable)
+                if (!grid.IsBuildable)
                 {
                     return false;
                 }
 
                 else if (grid.IsOccupied)
                 {
-                    invalidPlacementGrids.Add(grid);
+
+                    for (int g = propSize.x - 1; g > 0; g--)
+                    {
+                        for (int j = propSize.z - 1; j > 0 ; j--)
+                        {
+                            invalidPlacementInitiationGrids.Add(GridSystem.GetGrid(new GridPosition(x - g, z - j)));
+                        }
+                    }
+                    //invalidPlacementInitiationGrids.Add(grid);
                     return false;
                 }
             }
         }
-
         return true;
     }
+
+    public void ExpandShop(IEnumerable<Grid> expansionArea)
+    {
+        foreach (var grid in expansionArea)
+        {
+            if (!grid.IsBuildable)
+            {
+                grid.SetBuildableStatus(true);
+                ShopGrids.Add(grid);               
+            }
+        }
+
+        ShopGrids = ShopGrids.OrderBy(g => g, new GridComparerByDistance(GridSystem.CenterGrid, GridComparerByDistance.CompareDirection.CounterClockWise))    //g => CalculateDistanceFrom(fromGrid: GridSystem.CenterGrid, toGrid: g))
+                                    .ToList();
+
+
+        ///////////////////////////////// TODO : FOR TEST PURPOSES LATER TO DELEETE 
+        ///
+        for (int i = 0; i < debugTexts.Count; i++)
+        {
+            Destroy(debugTexts[i]);
+        }
+        debugTexts.Clear();
+        
+        int counter = 0;
+        foreach (var sg in ShopGrids)
+        {
+            var debugTextGO = UnityEngine.Object.Instantiate(debugTextEachTile);
+            var tmComponent = debugTextGO.GetComponent<TextMeshPro>();
+            tmComponent.text = $"{counter} {Environment.NewLine} {sg.GridPosition.x} , {sg.GridPosition.z}";
+            debugTextGO.GetComponent<Transform>().position = new Vector3(sg.GridPosition.x + .5f, 0.2f, sg.GridPosition.z + .5f);
+            counter++;
+            debugTexts.Add(debugTextGO);
+        }
+        /////////////////////////////////
+    }
+
 
     public bool TrySetPropToGrids(Prop prop)
     {
@@ -206,7 +242,7 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
     {
         var gridsTemp = _gridMarkers.Select(gm => GridSystem.GetGrid(gm.AnchorPosition));
 
-        if (gridsTemp.All(g => g.isBuildable && !g.IsOccupied))
+        if (gridsTemp.All(g => g.IsBuildable && !g.IsOccupied))
         {
             grids = gridsTemp;
             OnValidate?.Invoke(true);
@@ -236,4 +272,11 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>//, IP
         _gridMarkers.Clear();
     }
 
+    /////// TODO : Later to Remove When Shop Expansion funcitonaliy is linked to UI
+    public void OnPointerDown(PointerEventData eventData) 
+    {
+        Debug.Log($"Grid at {GridSystem.GetGrid(eventData.pointerPressRaycast.worldPosition).GridPosition} is buildable : {GridSystem.GetGrid(eventData.pointerPressRaycast.worldPosition).IsBuildable}");
+
+        ExpandShop(Enumerable.Repeat(GridSystem.GetGrid(eventData.pointerPressRaycast.worldPosition), 1));
+    }
 }

@@ -14,13 +14,10 @@ public class GridMarkerSpawner : MonoBehaviour, ISerializationCallbackReceiver
     {
         get
         {
-            if (_pool == null)
-            {
-                _pool = new ObjectPool<GridMarker>(createFunc: CreatePooledItem,
+            _pool ??= new ObjectPool<GridMarker>(createFunc: CreatePooledItem,
                                                    actionOnGet: GetPooledItem,
                                                    actionOnRelease: ReleasePooledItem,
                                                    actionOnDestroy: DestroyPooledItem, defaultCapacity: 4, maxSize: 10);
-            }
             return _pool;
         }
     }

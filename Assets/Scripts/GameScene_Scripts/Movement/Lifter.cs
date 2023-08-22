@@ -24,7 +24,7 @@ public class Lifter
                 monoBehaviour.StopCoroutine(moveRoutine);
 
         var thisMoveRoutine = _rootTransform.SingleTypeTransformRoutine(
-                                             targetValue: new Vector3(_rootTransform.position.x, 3f, _rootTransform.position.z),
+                                             targetValue: new Vector3(_rootTransform.position.x, 2.5f, _rootTransform.position.z),
                                              lerpDuration: .25f,
                                              moveRoutineType: CRHelper.MoveRoutineType.Position,
                                              coordinateFlags: CRHelper.CoordinateFlags.Y,

@@ -99,8 +99,9 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         BuiltSate = builtState;
         ShopUpgradeBluePrint = shopUpgradeBulePrint;
         PropSize = shopUpgradeBulePrint.GetPropSize;
-        _rootTransform.position = placementPos;
+        _rootTransform.position = new Vector3(placementPos.x, 2.5f, placementPos.z);
 
+        Nudge(1.25f,.13f,TimeTickSystem.EaseCurveType.Standard);
         Float();
     }
 
@@ -145,7 +146,8 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
 
         StartCoroutine(rotateRoutine);
     }*/
-    public void Nudge() => nudger.Begin();
+    public void Nudge(float scaleMax = 1.1f, float duration = .08f, TimeTickSystem.EaseCurveType easeCurveType = TimeTickSystem.EaseCurveType.NudgeScale) 
+        => nudger.Begin(scaleMax, duration, easeCurveType);
     /*{
        
         
@@ -231,7 +233,7 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
                               nudger.End();
                               floater.End();
                           },
-                          finalCallbacks: finalCallbacks);
+                          finalCallbacks:  finalCallbacks);
     /*{
        
         rotater.End();
