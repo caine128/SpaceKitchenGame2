@@ -45,16 +45,19 @@ public class PropManager
             _ => throw new NotImplementedException(),
         };
 
-    public static void BeginBuildingNewProp(UnityEngine.GameObject propPrefab, Grid grid)
+    public static void BeginBuildingNewProp(ShopUpgrade shopUpgrade)
     {
         if (selectedProp != null)
             return;
 
-        Prop newProp = UnityEngine.Object.Instantiate(propPrefab, new Vector3(grid.GridWorldPosition.x, 3f, grid.GridWorldPosition.z), Quaternion.identity).GetComponentInChildren<Prop>();
-        newProp.SubscribeToVerifivationCallback(true);
-        newProp.BuiltSate = Prop.BuiltState.NotFixed;
-        newProp.Float();
-        
+
+        Prop newProp = UnityEngine.Object.Instantiate(shopUpgrade.GetPrefab).GetComponentInChildren<Prop>();
+
+        newProp.Initialize(shopUpgrade,
+                           subscribeToVerificationCallback: true,
+                           builtState: Prop.BuiltState.NotFixed,
+                           placementPos: BuildingGrid.Instance.FindMostCentralPlacementPosition(shopUpgrade.GetPropSize));
+  
         selectedProp = newProp;
 
         BuildingGrid.Instance.PlaceGridMarkers(selectedProp);

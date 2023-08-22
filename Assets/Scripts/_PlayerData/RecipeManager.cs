@@ -27,7 +27,7 @@ public class RecipeManager : MonoBehaviour  /// MAKE ITE SINGLEDTON ///
     [SerializeField] private CraftPanel_Manager craftPanel_Manager_Script;
     [SerializeField] private PanelManager panelManager_Script;
 
-    private void Awake() // Later to take on config // pay attention that execute event of default dict request comes before this script starts
+    private void Awake() // TODO : Later to take on config // pay attention that execute event of default dict request comes before this script starts
     {
         if (_instance != null && _instance != this)
         {

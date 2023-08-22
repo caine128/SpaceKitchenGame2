@@ -73,7 +73,7 @@ public class Detect_ShopPurchaseOrInfoclick : DetectClickRequest<ShopUpgrade>, I
                                     PanelManager.ClearStackAndDeactivateElements();
                                 });
 
-                            PropManager.BeginBuildingNewProp
+                            PropManager.BeginBuildingNewProp(shopUpgradeContainer.bluePrint);//, GridSystem.shopCenter)
                         }
                         break;
 

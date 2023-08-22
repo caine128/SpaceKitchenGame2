@@ -667,6 +667,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite: []
       description: The description of The Solar Grill Station will be coming and
@@ -679,6 +681,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite: []
       description: The description of The Hand Cranked Pasta Machine Station will
@@ -691,6 +695,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite: []
       description: The description of The Plasmatic Deepfry Station will be coming
@@ -703,6 +709,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite: []
       description: The description of The Laser Precision Carving Knife will be coming
@@ -715,6 +723,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite:
       - requiredWorkstation: 600
@@ -729,6 +739,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite:
       - requiredWorkstation: 300
@@ -743,6 +755,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 1
       workstationUpgradePrerequisite:
       - requiredWorkstation: 200
@@ -757,6 +771,8 @@ MonoBehaviour:
         m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         m_EditorAssetChanged: 0
+      workStationPrefabRef: {fileID: 3685156847493971598, guid: 9553f398239df5c4c81334b10565df49, type: 3}
+      propSize: {x: 4, y: 2}
       tierMultiplier: 2
       workstationUpgradePrerequisite:
       - requiredWorkstation: 100

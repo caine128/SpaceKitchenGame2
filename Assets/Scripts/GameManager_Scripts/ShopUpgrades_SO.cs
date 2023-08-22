@@ -142,10 +142,15 @@ using UnityEngine.AddressableAssets;
         public WorkstationType.Type workstationType;
         public string name;        
         public AssetReferenceAtlasedSprite spriteRef;
+        public UnityEngine.GameObject workStationPrefabRef;
+        [SerializeField] private Vector2Int propSize;
         [Range(1, 2)] public int tierMultiplier;
         public WorkstationUpgradePrerequisite[] workstationUpgradePrerequisite;
         public string description;
-        public UnityEngine.GameObject workStationPrefab;
+
+
+        public (int x, int z) GetPropSize() => (propSize.x, propSize.y);
+
     }
 
     [Serializable]

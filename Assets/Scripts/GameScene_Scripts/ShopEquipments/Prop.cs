@@ -13,7 +13,7 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
     public GridPosition AnchorGridPosition { get => BuildingGrid.Instance.GridSystem.FromWorldPosToGridPos(transform.position); }
 
     public BuiltState BuiltSate { get; set; } = BuiltState.NotFixed;
-    public (int x, int z) Size = (4, 2);
+    public (int x, int z) PropSize { get; private set; } 
     public PropManager.Direction PlacedDirection { get; set; } = PropManager.Direction.Up;
 
     private Lifter lifter;
@@ -41,36 +41,36 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         switch (PlacedDirection)
         {
             case PropManager.Direction.Up:
-                for (int x = AnchorGridPosition.x; x < AnchorGridPosition.x + Size.x; x++)
+                for (int x = AnchorGridPosition.x; x < AnchorGridPosition.x + PropSize.x; x++)
                 {
-                    for (int z = AnchorGridPosition.z; z < AnchorGridPosition.z + Size.z; z++)
+                    for (int z = AnchorGridPosition.z; z < AnchorGridPosition.z + PropSize.z; z++)
                     {
                         yield return new(x: x, z: z);
                     }
                 }
                 break;
             case PropManager.Direction.Left:
-                for (int x = AnchorGridPosition.x; x < AnchorGridPosition.x + Size.z; x++)
+                for (int x = AnchorGridPosition.x; x < AnchorGridPosition.x + PropSize.z; x++)
                 {
-                    for (int z = AnchorGridPosition.z - 1; z > AnchorGridPosition.z - Size.x - 1; z--)
+                    for (int z = AnchorGridPosition.z - 1; z > AnchorGridPosition.z - PropSize.x - 1; z--)
                     {
                         yield return new(x: x, z: z);
                     }
                 }
                 break;
             case PropManager.Direction.Down:
-                for (int x = AnchorGridPosition.x - 1; x > AnchorGridPosition.x - Size.x - 1; x--)
+                for (int x = AnchorGridPosition.x - 1; x > AnchorGridPosition.x - PropSize.x - 1; x--)
                 {
-                    for (int z = AnchorGridPosition.z - 1; z > AnchorGridPosition.z - Size.z - 1; z--)
+                    for (int z = AnchorGridPosition.z - 1; z > AnchorGridPosition.z - PropSize.z - 1; z--)
                     {
                         yield return new(x: x, z: z);
                     }
                 }
                 break;
             case PropManager.Direction.Right:
-                for (int x = AnchorGridPosition.x - 1; x > AnchorGridPosition.x - Size.z - 1; x--)
+                for (int x = AnchorGridPosition.x - 1; x > AnchorGridPosition.x - PropSize.z - 1; x--)
                 {
-                    for (int z = AnchorGridPosition.z; z < AnchorGridPosition.z + Size.x; z++)
+                    for (int z = AnchorGridPosition.z; z < AnchorGridPosition.z + PropSize.x; z++)
                     {
                         yield return new(x: x, z: z);
                     }
@@ -93,7 +93,16 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         nudger = new(_actualTransform, this);
     }
 
+    public void Initialize(ShopUpgrade shopUpgradeBulePrint, bool subscribeToVerificationCallback, BuiltState builtState, Vector3 placementPos)//, Grid anchorGrid)
+    {
+        SubscribeToVerifivationCallback(subscribeToVerificationCallback);
+        BuiltSate = builtState;
+        ShopUpgradeBluePrint = shopUpgradeBulePrint;
+        PropSize = shopUpgradeBulePrint.GetPropSize;
+        _rootTransform.position = placementPos;
 
+        Float();
+    }
 
 
     public void OnPointerDown(PointerEventData eventData)

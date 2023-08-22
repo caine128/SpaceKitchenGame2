@@ -4,14 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using static ShopUpgrades_SO;
+//using static ShopUpgrades_SO;
 
 public abstract class ShopUpgrade : SortableBluePrint, IAmountable, IValuable, ILevellable, IRushable// IRankable
 {
     [SerializeField] public readonly ShopUpgradeType.Type shopUpgradeType;  // is this necessary ???
     protected readonly int indexNo;
     protected int currentLevel;
-   
+    public UnityEngine.GameObject GetPrefab => this switch
+    {
+        ResourceCabinetUpgrade resourceCabinetUpgrade => throw new System.NotImplementedException(),
+        FoodDisplayUpgrade foodDisplayUpgrade => throw new System.NotImplementedException(),
+        InventoryUpgrade inventoryUpgrade => throw new System.NotImplementedException(),
+        WorkStationUpgrade workStationUpgrade => ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].workStationPrefabRef,
+        _ => throw new System.NotImplementedException()
+    };
+
+    public (int x,int z) GetPropSize => this switch
+    {
+        ResourceCabinetUpgrade resourceCabinetUpgrade => throw new System.NotImplementedException(),
+        FoodDisplayUpgrade foodDisplayUpgrade => throw new System.NotImplementedException(),
+        InventoryUpgrade inventoryUpgrade => throw new System.NotImplementedException(),
+        WorkStationUpgrade workStationUpgrade => ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].GetPropSize(),
+        _ => throw new System.NotImplementedException()
+    };
+
     //protected int amountInShop = 0;      //Make sure its loadable ALSO same in GameItem
 
     public bool isAtMaxLevel => this switch

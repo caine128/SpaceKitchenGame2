@@ -1,8 +1,9 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class GridSystem
 {
@@ -11,8 +12,11 @@ public class GridSystem
     private readonly float cellSize;
 
     private readonly Grid[,] grid;
+    public readonly Grid CenterGrid;   //=> grid[shopCenter.x, shopCenter.z];
 
-    public GridSystem(int width, int height, float cellSize , (int x, int z) shopSize , Transform tile_PF, Transform debugTextPrefab)
+    //private readonly (int x, int z) shopCenter;
+
+    public GridSystem(int width, int height, float cellSize, (int x, int z) shopSize, Transform tile_PF, Transform debugTextPrefab)
     {
         this.width = width;
         this.height = height;
@@ -21,33 +25,43 @@ public class GridSystem
 
         int tilePerGrid = 5;
 
+        int xAxisOffset = Mathf.FloorToInt((width - shopSize.x) / 2f);
+        int zAxisOffset = Mathf.FloorToInt((height - shopSize.z) / 2f);
+
+        var shopCenter = (xAxisOffset + Mathf.CeilToInt(shopSize.x / 2f), zAxisOffset + Mathf.CeilToInt(shopSize.z / 2f));
+
+
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
-                var isWithinShopSize = x < 20 + shopSize.x && x > 20 && z < 20 + shopSize.z && z > 20;
+                var isWithinShopSize = x <= xAxisOffset + shopSize.x && x > xAxisOffset && z <= zAxisOffset + shopSize.z && z > zAxisOffset;
 
                 GridPosition gridPosition = new(x: x, z: z);
-                grid[x, z] = new Grid(gridPosition, FromGridPosToWorldPos(gridPosition), isBuildable: isWithinShopSize ? true : false);
 
-                if(isWithinShopSize)
+                var newGrid = new Grid(gridPosition, FromGridPosToWorldPos(gridPosition), isBuildable: isWithinShopSize);
+                if ((x, z) == shopCenter) CenterGrid = newGrid;
+                grid[x, z] = newGrid;
+
+                /*if (isWithinShopSize)
                 {
-                    var debugTextGO = UnityEngine.GameObject.Instantiate<Transform>(debugTextPrefab);
+                    var debugTextGO = UnityEngine.Object.Instantiate(debugTextPrefab);
                     var tmComponent = debugTextGO.GetComponent<TextMeshPro>();
                     tmComponent.text = $"{x} , {z}";
+                    if((x,z) == shopCenter) tmComponent.color = Color.yellow;  // TODO : Later to remove it's or debug purposes 
                     debugTextGO.position = new Vector3(x + .5f, 0.2f, z + .5f);
-                }
-              
+                    
+                }*/
 
-                if (x% tilePerGrid == 0 && z% tilePerGrid == 0)
+                if (x % tilePerGrid == 0 && z % tilePerGrid == 0)
                 {
-                    var tile_Go = Object.Instantiate(tile_PF);
+                    var tile_Go = UnityEngine.Object.Instantiate(tile_PF);
                     tile_Go.eulerAngles = new Vector3(90, 0, 0);
                     tile_Go.localScale = new Vector3(cellSize * 5, cellSize * 5, 1);
                     tile_Go.position = new Vector3(x + (float)tilePerGrid / 2f, 0, z + (float)tilePerGrid / 2f);
-                }      
+                }
             }
-        }
+        }      
     }
 
     // TODO : Later to do private when onpointerdown instantiation of props are removed from the buildinggrid script
@@ -59,12 +73,24 @@ public class GridSystem
 
     // TODO : Later to do private when onpointerdown instantiation of props are removed from the buildinggrid script
     public GridPosition FromWorldPosToGridPos(Vector3 worldPosition)
-    {        
+    {
         GridPosition gridPosition = new(Mathf.FloorToInt(worldPosition.x / cellSize), Mathf.FloorToInt(worldPosition.z / cellSize));
         return gridPosition;
     }
 
-    public Grid GetGrid(GridPosition gridPosition)//, out Grid grid)
+    public IEnumerable<Grid> GetGrids(Predicate<Grid> predicate)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int z = 0; z < height; z++)
+            {
+                if (predicate(grid[x,z]))
+                    yield return grid[x,z];
+            }
+        } 
+    }
+
+    public Grid GetGrid(GridPosition gridPosition)
     {
         (int x, int z) rectifiedGridPositions;
 
@@ -79,27 +105,115 @@ public class GridSystem
                                                 ? height - 1
                                                 : gridPosition.z;
 
-        /*if (gridPosition.x >= 0 && gridPosition.z >= 0 && gridPosition.x <width && gridPosition.z < height)
-        {
-            grid = this.grid[gridPosition.x, gridPosition.z];
-            return true;
-        }
-        else
-        {
-            Debug.Log($"there is no grid to get at position : {gridPosition}");
-            grid = null;
-            return false;
-        }*/
-
         return this.grid[rectifiedGridPositions.x, rectifiedGridPositions.z];
     }
 
-    public Grid GetGrid(Vector3 worldPosition)//, out Grid grid)
+    public Grid GetGrid(Vector3 worldPosition)
     {
-        return GetGrid(FromWorldPosToGridPos(worldPosition));//, out Grid grid_Out);
-        //grid = grid_Out;
-        //return canReturn;
+        return GetGrid(FromWorldPosToGridPos(worldPosition));
     }
+
+    private enum IterationDirection
+    {
+        DownWards = 0,
+        UpWards = 1,
+    }
+
+
+    /*public Grid GetCenterGridAdjustedToPropSize(Prop prop)
+    {
+
+        (int x, int z) offsets = (0, 0);
+        IterationDirection iterationDirection = IterationDirection.DownWards;
+        int verticalFullIterationAmount = 0;
+ 
+        var shouldIterate = true;
+
+
+        while (shouldIterate)
+        {
+            shouldIterate = false;
+
+            foreach (var gridpos in OffsettedGridpositions())
+            {
+
+
+                var grid = GetGrid(gridpos);
+                if (grid.isBuildable)
+                {
+                    if (grid.IsOccupied)
+                    {
+                        offsets = iterationDirection switch
+                        {
+                            IterationDirection.DownWards => (offsets.x, offsets.z - 1),
+                            IterationDirection.UpWards => (offsets.x, offsets.z + 1),
+                            _ => throw new NotImplementedException(),
+                        };
+                        shouldIterate = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    switch (iterationDirection)
+                    {
+
+                        case IterationDirection.DownWards when gridpos.z <= currentLowerPoint :
+                            currentLowerPoint = gridpos.z;
+                            iterationDirection = IterationDirection.UpWards;
+                            offsets = (offsets.x, +1);
+                            shouldIterate = true;
+                            break;
+
+                        case IterationDirection.DownWards when gridpos.z > currentLowerPoint:
+                            shouldIterate = true;
+                            break;
+
+                        case IterationDirection.UpWards when gridpos.z >= currentUpperPoint:
+                            currentUpperPoint = gridpos.z;
+                            verticalFullIterationAmount++;
+                            offsets = verticalFullIterationAmount % 2 != 0
+                                            ? (offsets.x - verticalFullIterationAmount, 0)
+                                            : (offsets.x + verticalFullIterationAmount, 0);
+                            iterationDirection = IterationDirection.DownWards;                  
+                            shouldIterate = true;
+                            break;
+
+                        case IterationDirection.UpWards when gridpos.z < currentUpperPoint:
+                            currentUpperPoint = gridpos.z;
+                            verticalFullIterationAmount++;
+                            offsets = verticalFullIterationAmount % 2 != 0
+                                            ? (offsets.x - verticalFullIterationAmount, 0)
+                                            : (offsets.x + verticalFullIterationAmount, 0);
+                            iterationDirection = IterationDirection.DownWards;
+                            shouldIterate = true;
+                            break;
+                    }
+
+                }
+            }
+
+
+        }
+
+
+
+        return GetGrid(OffsettedGridpositions().First());
+
+
+
+        IEnumerable<GridPosition> OffsettedGridpositions()
+        {
+            foreach (var gridPos in prop.GetCurrentGridPositions())
+            {
+
+                yield return new GridPosition(x: gridPos.x + offsets.x, z: gridPos.z + offsets.z);
+                Debug.Log("yielding grippos :" + new GridPosition(x: gridPos.x + offsets.x, z: gridPos.z + offsets.z));
+            }
+        }
+
+    }*/
+
 
     public bool IsWithinEffectiveRange(Vector3 worldPosition)
     {
@@ -108,31 +222,5 @@ public class GridSystem
             && worldPosition.y % cellSize > 0.05f
             && worldPosition.y % cellSize < 0.95f;
     }
-
-   /*public bool ValidateGrids(GridPosition gridPosition, (int x,int z) propSize)
-    {
-        if (gridPosition.x >= 0 && gridPosition.z >= 0 && gridPosition.x < width && gridPosition.z < height 
-            && gridPosition.x + propSize.x <width && gridPosition.z + propSize.z < height)
-        {
-            for (int x = gridPosition.x; x < gridPosition.x + propSize.x; x++)
-            {
-                for (int z = gridPosition.z; z < gridPosition.z + propSize.z; z++)
-                {
-                    if (grid[x, z].IsOccupied)
-                    {
-                        Debug.Log("grid(s) are occupied");
-                        return false;
-                    }                      
-                }
-            }
-            return true;
-        }
-        else
-        {
-            Debug.Log($"there is no grid to get at position : {gridPosition}");
-            return false;
-        }
-
-    }*/
 
 }
