@@ -73,4 +73,15 @@ public class ButtonFunctionType
         Collect_Rarity=1,
         Upgrade_Rarity=2,
     }
+
+    public enum BuildOptionsPanel
+    {
+        None=0,
+        Apply =1,
+        Rotate=2,
+        Archive=3,
+        Exit=4,
+        Move=5,
+        Upgrade=6,
+    }
 }

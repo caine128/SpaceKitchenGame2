@@ -64,15 +64,19 @@ public class Detect_ShopPurchaseOrInfoclick : DetectClickRequest<ShopUpgrade>, I
                     default:
                         if (ShopData.Instance.TryPurchaseShopUpgrade(shopUpgradeContainer.bluePrint, new Gold()))
                         {
-                            PanelManager.DeactivatePanel(PanelManager.SelectedPanels.Peek(), nextPanelLoadAction_IN: null, unloadAction:
+                           /* PanelManager.DeactivatePanel(PanelManager.SelectedPanels.Peek(), nextPanelLoadAction_IN: null, unloadAction:
                                 () =>
                                 {
                                     PanelManager.TopBarsController.ArrangeBarsFinal();
                                     PanelManager.BottomBarsController.PlaceBars();
                                     PanelManager.CraftWheelController.PlaceBars();
                                     PanelManager.ClearStackAndDeactivateElements();
-                                });
+                                });*/
 
+
+                            /*PanelManager.ActivateAndLoad(
+                                          invokablePanel_IN: PanelManager.InvokablePanels[typeof(BuildOptionsPanel_Manager)],
+                                          panelLoadAction_IN: null);*/
                             PropManager.BeginBuildingNewProp(shopUpgradeContainer.bluePrint);//, GridSystem.shopCenter)
                         }
                         break;

@@ -62,6 +62,7 @@ SpriteAtlas:
     - {fileID: 21300000, guid: bd324ecaaef437c42847281b39fda4da, type: 3}
     - {fileID: 21300000, guid: 38d2b98992349e341b3e65291f5ff558, type: 3}
     - {fileID: 21300000, guid: 6b8156e064e67e342b5d8262d0f916d9, type: 3}
+    - {fileID: 21300000, guid: 1fe38fae631c1ec45ac6133875acc6e3, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -83,6 +84,7 @@ SpriteAtlas:
     - fb4412fc4efded5479525a8e55686e07: 21300000
     - e8c6f97e50907f145b4e6ab581dd3d88: 21300000
     - effdf48edeb644b40b10054a5f77f744: 21300000
+    - 1fe38fae631c1ec45ac6133875acc6e3: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 4bb0115018d01dd43960cc4a6d18a29f, type: 3}
@@ -102,6 +104,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fb4412fc4efded5479525a8e55686e07, type: 3}
   - {fileID: 21300000, guid: e8c6f97e50907f145b4e6ab581dd3d88, type: 3}
   - {fileID: 21300000, guid: effdf48edeb644b40b10054a5f77f744, type: 3}
+  - {fileID: 21300000, guid: 1fe38fae631c1ec45ac6133875acc6e3, type: 3}
   m_PackedSpriteNamesToIndex:
   - Diamond
   - Craft
@@ -120,6 +123,7 @@ SpriteAtlas:
   - B4
   - LevelBar_ExperienceArea_Progressbar
   - LevelBar_ExperienceArea_BG
+  - Space Bar Still
   m_RenderDataMap: {}
   m_Tag: UI_Panels
   m_IsVariant: 0

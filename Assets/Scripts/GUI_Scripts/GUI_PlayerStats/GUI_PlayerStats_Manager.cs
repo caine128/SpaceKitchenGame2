@@ -29,7 +29,7 @@ public class GUI_PlayerStats_Manager : MonoBehaviour
     [Space]
 
     [SerializeField] private TextMeshProUGUI text_LevelBar_LevelText;
-    [SerializeField] private TextMeshProUGUI text_LevelBar_ExperienceExistingAmount; // THOSE WILL BE NEEDED FOR LOAD GAME 
+    [SerializeField] private TextMeshProUGUI text_LevelBar_ExperienceExistingAmount; // TODO : THOSE WILL BE NEEDED FOR LOAD GAME 
     [SerializeField] private TextMeshProUGUI text_LevelBar_ExperienceMaxAmount;
     [SerializeField] private TextMeshProUGUI text_EnergyBar_ExistingAmount;
     [SerializeField] private TextMeshProUGUI text_EnergyBar_MaxAmount;
@@ -64,25 +64,12 @@ public class GUI_PlayerStats_Manager : MonoBehaviour
                 if (_instance == null)
                 {
                     _instance = this;
-                    // LATER TO MAKE DONTDESTROY ON LOAD OBJECT AND ARRANGE THE VARIABLE REFERENCES 
+                    // TODO : LATER TO MAKE DONTDESTROY ON LOAD OBJECT AND ARRANGE THE VARIABLE REFERENCES 
                 }
             }
         }
     }
 
-
-    //public void SceneConfig()
-    //{
-    //    foreach (GUI_LerpMethods_Float lerpableObject in FindObjectsOfType<GUI_LerpMethods_Float>())
-    //    {
-    //        lerpableObject.PanelConfig();
-    //    }
-
-    //    foreach (GUI_LerpMethods_Int lerpableObject in FindObjectsOfType<GUI_LerpMethods_Int>())
-    //    {
-    //        lerpableObject.PanelConfig();
-    //    }
-    //}
 
     public void SetStat(StatName.Stat statName_IN, int initialValue_IN, int finalValue_IN = 0, float lerpSpeedModifier_IN = 1, float initialProgressAmount_IN = 0, float finalProgressAmount_IN = 0, int maxValue_IN = 0)
     {
@@ -120,34 +107,15 @@ public class GUI_PlayerStats_Manager : MonoBehaviour
             case StatName.Stat.researchPoint:
                 if (PanelManager.SelectedPanels.TryPeek(out InvokablePanelController scrollRelatedPanel) &&
                     (scrollRelatedPanel.MainPanel is CraftPanel_Manager or RecipeInfoPanel_Manager or ResearchPopupPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue); 
-                //scrollRelatedPanel.PanelName == Panel.Name.craftPanel ||
-                //    scrollRelatedPanel.PanelName == Panel.Name.recipeInfoPanel ||
-                //    scrollRelatedPanel.PanelName == Panel.Name.researchPopupPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue);
                 break;
-            //var activePanel = PanelManager.SelectedPanels.TryPeek(out InvokablePanelController result);
-            //if (activePanel != null && (activePanel.PanelName == Panel.Name.craftPanel || activePanel.PanelName == Panel.Name.recipeInfoPanel || activePanel.PanelName == Panel.Name.researchPopupPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue);
-            //break;
             case StatName.Stat.inventoryCapacity:
                 if (PanelManager.SelectedPanels.TryPeek(out InvokablePanelController inventoryCapRelatedPanel) &&
                     (inventoryCapRelatedPanel.MainPanel is InventoryPanel_Manager or GameItemInfoPanel_Manager or EnhanceItemPopupPanel or DeleteItemPopupPanel or ConfirmationPopupPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
-
-                //(inventoryCapRelatedPanel.PanelName == Panel.Name.inventoryPanel ||
-                //    inventoryCapRelatedPanel.PanelName == Panel.Name.gameItemInfoPanel))
-                //    SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
                 break;
-            //activePanel = PanelManager.SelectedPanels.Peek();
-            // if (activePanel != null && (activePanel.PanelName == Panel.Name.inventoryPanel || activePanel.PanelName == Panel.Name.gameItemInfoPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
-            //break;
             case StatName.Stat.shopCapacity:
                 if (PanelManager.SelectedPanels.TryPeek(out InvokablePanelController shopCapRelatedPanel) &&
-                    (shopCapRelatedPanel.MainPanel is ShopPanel_Manager or ShopUpgradesPanel_Manager or ConfirmationPopupPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
-                //(shopCapRelatedPanel.PanelName == Panel.Name.shopPanel ||
-                //    shopCapRelatedPanel.PanelName == Panel.Name.shopUpgradesPanel))
-                //    SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
+                    (shopCapRelatedPanel.MainPanel is ShopPanel_Manager or ShopUpgradesPanel_Manager or ConfirmationPopupPanel or BuildOptionsPanel_Manager)) SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
                 break;
-            //activePanel = PanelManager.SelectedPanels.Peek();
-            //if (activePanel != null && (activePanel.PanelName == Panel.Name.shopPanel || activePanel.PanelName == Panel.Name.shopUpgradesPanel)) SetStatFlat(text_ReplacableStat_Amount, initialValue, maxValue);
-            //break;
             default: break;
         }
     }

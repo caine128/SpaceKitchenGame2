@@ -15,8 +15,7 @@ public class ShopUpgradesManager : MonoBehaviour
 
     [SerializeField] private ShopUpgrades_SO shopUpgrades_SO;
     [SerializeField] private InvestmentCosts_SO investmentCosts_SO;
-    //public ShopUpgrade_Specs_SO ShopUpgrade_Specs_SO { get { return shopUpgrade_Specs_SO; } }
-    //[SerializeField] private ShopUpgrade_Specs_SO shopUpgrade_Specs_SO;
+
 
     public static Dictionary<ShopUpgradeType.Type, List<ShopUpgrade>> shopUpgradesAvilable_Dict = new Dictionary<ShopUpgradeType.Type, List<ShopUpgrade>>();
     private static Dictionary<string,ShopUpgrade> shopUpgradesAvailable_IteratinoDict = new Dictionary<string, ShopUpgrade>();
@@ -51,13 +50,6 @@ public class ShopUpgradesManager : MonoBehaviour
         LoadInternalDicts();
     }
 
-    //private void InitDict()
-    //{
-    //    foreach (int shopUpgradeEnum in Enum.GetValues(typeof(ShopUpgradeType.Type)))
-    //    {
-    //        shopUpgradesAvilable_Dict.Add((ShopUpgradeType.Type)shopUpgradeEnum, new List<ShopUpgrade>());
-    //    }
-    //}
 
     private void PopulateAvailableUpgradesDict()
     {
@@ -106,16 +98,4 @@ public class ShopUpgradesManager : MonoBehaviour
             ResourceCabinetUpgrade resourceCabinetUpgrade => (ResourceCabinetUpgrade)shopUpgradesAvailable_IteratinoDict[ShopUpgrades_SO.resourceCabinet_Upgrades.baseInfo.First(bi => bi.name == resourceCabinetUpgrade.GetName()).name],
             _ => throw new Exception()
         };
-   /* {
-        try
-        {
-            var shopUpgradeName = ShopUpgrades_SO.resourceCabinet_Upgrades.baseInfo[(int)ingredient_IN.IngredientType].name;
-            return (ResourceCabinetUpgrade)shopUpgradesAvailable_IteratinoDict[shopUpgradeName] ;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("this item is not existing in the shopupgrades");
-            throw ex;
-        }
-    }*/
 }

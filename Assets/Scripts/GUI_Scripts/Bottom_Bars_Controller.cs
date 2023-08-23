@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bottom_Bars_Controller : HUDBarsController, IAlternative_HUDBarsController  // don not forget to DÝSABLE ENABLE THE ALTERNATE BARS 
 {
-    //[SerializeField] protected RectTransform[] alternativeBars;
+
     [SerializeField] protected GUI_LerpMethods_Movement[] alternativeBars_LerpScripts;
     private IEnumerator co_alternate = null;
 

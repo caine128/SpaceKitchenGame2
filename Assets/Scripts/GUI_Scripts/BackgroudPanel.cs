@@ -55,7 +55,7 @@ public class BackgroudPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             
             case (true, _) when (!gameObject.activeInHierarchy ||gUI_LerpMethods_Color.RunningCoroutine is not null)
-                   && invokablePanelController.MainPanel is not ShopPanel_Manager:
+                   && invokablePanelController.MainPanel is not ShopPanel_Manager or  BuildOptionsPanel_Manager:
 
                 this.gameObject.SetActive(true);
                 gUI_LerpMethods_Color.ColorLerpInitialCall(lerpedColor: adressableSpriteToLoad is not null
@@ -77,7 +77,8 @@ public class BackgroudPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHand
                 break;
 
             case (false, true):
-            case (true, true) when invokablePanelController.MainPanel is ShopPanel_Manager:
+            case (true, true) when invokablePanelController.MainPanel is ShopPanel_Manager or BuildOptionsPanel_Manager:
+                                   //|| invokablePanelController.MainPanel is BuildOptionsPanel_Manager:
 
                 gUI_LerpMethods_Color.ColorLerpFinalCall(disableObject: true,
                                                          adressableAction: !_backgroundImage_Adressable.IsLoadedSpriteRefSameWith(null)

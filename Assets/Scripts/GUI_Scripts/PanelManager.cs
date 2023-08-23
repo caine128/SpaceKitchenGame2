@@ -17,13 +17,13 @@ public class PanelManager : MonoBehaviour
     {
         get => _backgroundPanel_LerpColor_NoImage;
     }
-    private static Color _backgroundPanel_LerpColor_NoImage = new Color(0f, 0f, 0f, 0.8f);
+    private static Color _backgroundPanel_LerpColor_NoImage = new(0f, 0f, 0f, 0.8f);
 
     public static Color BackgroundPanel_LerpColor_WithImage
     {
         get => _backgroundPanel_LerpColor_WithImage;
     }
-    private static Color _backgroundPanel_LerpColor_WithImage = new Color(0.3679245f, 0.3280082f, 0.3280082f, 1f);
+    private static Color _backgroundPanel_LerpColor_WithImage = new(0.3679245f, 0.3280082f, 0.3280082f, 1f);
 
     public static Top_Bars_Controller TopBarsController => _topBarsController;
     private static Top_Bars_Controller _topBarsController;
@@ -41,18 +41,13 @@ public class PanelManager : MonoBehaviour
     {
         get { return selectedPanels; }
     }
-    private static Stack<InvokablePanelController> selectedPanels = new Stack<InvokablePanelController>();
+    private static Stack<InvokablePanelController> selectedPanels = new();
 
     public static Dictionary<Type, InvokablePanelController> InvokablePanels => _invokablePanels;
-    private static Dictionary<Type, InvokablePanelController> _invokablePanels = new Dictionary<Type, InvokablePanelController>();
+    private static Dictionary<Type, InvokablePanelController> _invokablePanels = new();
 
-    private static ConcurrentStack<PanelLoadData> missingRequirementsPanelPreviousLoadDatas = new ConcurrentStack<PanelLoadData>();
+    private static ConcurrentStack<PanelLoadData> missingRequirementsPanelPreviousLoadDatas = new();
 
-
-    //private void Update()    // FOR TEST PUTPOSES LATER TO DELETE 
-    //{
-    //    Debug.Log(missingRequirementsPanelPreviousLoadDatas.Count);
-    //}
 
     void Awake()
     {
@@ -123,6 +118,7 @@ public class PanelManager : MonoBehaviour
         FindPanelAndAdd<ShopUpgradesInfoPanel_Manager>();
         FindPanelAndAdd<Tooltip_Panel_Manager>();
         FindPanelAndAdd<ProgressPopupPanel>();
+        FindPanelAndAdd<BuildOptionsPanel_Manager>();
 
         void FindPanelAndAdd<T_PanelType>()
             where T_PanelType : Panel_Base
@@ -154,19 +150,6 @@ public class PanelManager : MonoBehaviour
 
         if (backgroundStateCheck.isChangeNeeded) backgroundPanelCanvas.sortingOrder = (int)backgroundStateCheck.modifiedSortingOrder;
     }
-    //=> selectedPanels.TryPeek(out InvokablePanelController controller) switch
-    //{
-    //    true => (controller.MainPanel, backgroundPanelCanvas.sortingOrder) switch
-    //    {
-    //        (PopupPanel, 10) => (false, null),
-    //        (PopupPanel, not 10) => (true, 10),
-    //        (not PopupPanel, 0) => (false, null),
-    //        (not PopupPanel, not 0) => (true, 0),
-    //    },
-    //    false => (false, null),
-
-    //    (bool isChangeNeeded, int? modifiedSortingOrder)
-    //};
 
 
     public static void ActivateAndLoad(InvokablePanelController invokablePanel_IN, Action panelLoadAction_IN, Action preLoadAction_IN = null, Action alternativeLoadAction_IN = null, params Action[] extraLoadActions_IN)
@@ -244,7 +227,6 @@ public class PanelManager : MonoBehaviour
                 break;
             case ShopPanel_Manager when isFirstPanelOfItsType:
                 _topBarsController.ArrangeBarsInitial();
-                //bottomBarsController.DisplaceBars();
                 _craftWheelController.DisplaceBars();
                 _bottomBarsController.ArrangeBarsInitial();
                 break;
@@ -277,17 +259,6 @@ public class PanelManager : MonoBehaviour
                 _bottomBarsController.PlaceBars();
                 _craftWheelController.PlaceBars();
                 break;
-            /* case MissingRequirementsPopupPanel when selectedPanels.Any(panel => panel.MainPanel is MissingRequirementsPopupPanel):
-                 var previousMsPanel = selectedPanels.First(panel => panel.MainPanel is MissingRequirementsPopupPanel).MainPanel as MissingRequirementsPopupPanel;
-                 var previousPanelLoadData = new PanelLoadDatas(mainLoadInfo: null,
-                                                                panelHeader: MissingRequirementsPopupPanel.PopupHeader,
-                                                                tcs_IN: previousMsPanel.TCS,
-                                                                bluePrintsToLoad: FunctionalHelpers.CreateEnumerableFromSequences(
-                                                                                                             sequence1: previousMsPanel.ListToIterate,
-                                                                                                             sequence2: previousMsPanel.RequiredAmounts).ToList());
-                 missingRequirementsPanelPreviousLoadDatas.Push(previousPanelLoadData);
-
-                 break;*/
             case Information_Modal_Panel when isFirstPanelOfItsType:
                 _bottomBarsController.DisplaceBars();
                 _craftWheelController.DisplaceBars();
@@ -392,11 +363,6 @@ public class PanelManager : MonoBehaviour
                 _bottomBarsController.PlaceBars();
                 _craftWheelController.PlaceBars();
                 break;
-            //case PopupPanel when selectedPanels.Count == 0:
-            //    _topBarsController.ArrangeBarsFinal();
-            //    _bottomBarsController.PlaceBars();
-            //    _craftWheelController.PlaceBars();
-            //    break;
             case PopupPanel when isLastPanelOfType && selectedPanels.Count != 0:
                 _bottomBarsController.DisplaceBars();
                 _craftWheelController.DisplaceBars();
@@ -442,11 +408,6 @@ public class PanelManager : MonoBehaviour
 
     public static void ClearStackAndDeactivateElements()
     {
-        /*while (selectedPanels.TryPop(out InvokablePanelController activePanel))
-        {
-            activePanel.DisplacePanels(isInterpolated: false, unloadAction: null);
-        }*/
-
         while (selectedPanels.TryPeek(out _))
         {
             RemoveCurrentPanelFromNavigationStack();
@@ -476,10 +437,6 @@ public class PanelManager : MonoBehaviour
 
         var removedPanel = selectedPanels.Pop();
         removedPanel.DisplacePanels(isInterpolated: false, unloadAction: null);
-
-        //SetBGPanelSortingOrder();
-        //var bgPanelStateChangeCheck = SetBGPanelSortingOrder();
-        //if (bgPanelStateChangeCheck.isChangeNeeded) backgroundPanelCanvas.sortingOrder = (int)bgPanelStateChangeCheck.modifiedSortingOrder;
     }
 
     public static void RemoveFromNavigationStack_Until(Type removeUntilType)
@@ -493,14 +450,10 @@ public class PanelManager : MonoBehaviour
             else
             {
                 RemoveCurrentPanelFromNavigationStack();
-                //var removedPanel = selectedPanels.Pop();
-                //removedPanel.DisplacePanels(isInterpolated: false, unloadAction: null);
             }
         }
 
         SetBGPanelSortingOrder();
-        //var bgPanelStateChangeCheck = SetBGPanelSortingOrder();
-        //if (bgPanelStateChangeCheck.isChangeNeeded) backgroundPanelCanvas.sortingOrder = (int)bgPanelStateChangeCheck.modifiedSortingOrder;
     }
     #endregion
 
@@ -524,31 +477,6 @@ public class PanelManager : MonoBehaviour
 
     private static void EnableAndUpdateBackgroundPanel()
     {
-        /*var isThereAnyActivePanel  = selectedPanels.TryPeek(out InvokablePanelController invokablePanelController);
-        var adressableSpriteToLoad = isThereAnyActivePanel ? ImageManager.SelectSprite(invokablePanelController.MainPanel.GetType().ToString()) : null;
-
-        switch (isThereAnyActivePanel)
-        {
-            case true when invokablePanelController.MainPanel is not ShopPanel_Manager 
-                           && (backgroundPanel.gameObject.activeInHierarchy != true || backgroundPanel.GUI_LerpMethods_Color.RunningCoroutine is not null):
-                
-                backgroundPanel.gameObject.SetActive(true);
-                backgroundPanel.GUI_LerpMethods_Color.ColorLerpInitialCall(lerpedColor: adressableSpriteToLoad is not null
-                                                                                        ? _backgroundPanel_LerpColor_WithImage
-                                                                                        : _backgroundPanel_LerpColor_NoImage,
-                                                                           adressableAction: adressableSpriteToLoad is not null
-                                                                                        ? () => backgroundPanel.BackgroundImage.LoadSprite(adressableSpriteToLoad)
-                                                                                        : null);
-                break;
-            case true when backgroundPanel.gameObject.activeInHierarchy == true
-                           && !backgroundPanel.BackgroundImage.IsLoadedSpriteRefSameWith(adressableSpriteToLoad):
-                backgroundPanel.GUI_LerpMethods_Color.ColorLerpInitialCall(lerpedColor: BackgroundPanel_LerpColor_WithImage,
-                                                                           adressableAction: adressableSpriteToLoad is not null
-                                                                                        ? () => backgroundPanel.BackgroundImage.LoadSprite(adressableSpriteToLoad)
-                                                                                        : () => backgroundPanel.BackgroundImage.UnloadSprite());
-                break;
-        }*/
-
         if (selectedPanels.TryPeek(out InvokablePanelController invokableController) &&
             invokableController.MainPanel is not ShopPanel_Manager &&
             (backgroundPanel.gameObject.activeInHierarchy != true || backgroundPanel.GUI_LerpMethods_Color.RunningCoroutine is not null))
@@ -557,41 +485,5 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-
-
-    /*private static void DisableAndUpdateBackgroundPanel()
-    {
-       /* var isThereAnyActivePanel = selectedPanels.TryPeek(out InvokablePanelController invokablePanelController);
-        var adressableSpriteToLoad = isThereAnyActivePanel ? ImageManager.SelectSprite(invokablePanelController.MainPanel.GetType().ToString()) : null;
-
-        switch ((isThereAnyActivePanel && invokablePanelController.MainPanel is ShopPanel_Manager) 
-                ||!selectedPanels.TryPeek(out _))
-        {
-            case true:
-                backgroundPanel.GUI_LerpMethods_Color.ColorLerpFinalCall(disableObject: true,
-                                                                         adressableAction: !backgroundPanel.BackgroundImage.IsLoadedSpriteRefSameWith(adressableSpriteToLoad)
-                                                                                  ? () => backgroundPanel.BackgroundImage.UnloadSprite()
-                                                                                  : null);
-                break;
-            case false when !backgroundPanel.BackgroundImage.IsLoadedSpriteRefSameWith(adressableSpriteToLoad):
-                backgroundPanel.GUI_LerpMethods_Color.ColorLerpInitialCall(lerpedColor: adressableSpriteToLoad is not null
-                                                                                        ? _backgroundPanel_LerpColor_WithImage
-                                                                                        : _backgroundPanel_LerpColor_NoImage,
-                                                                           adressableAction: adressableSpriteToLoad is not null
-                                                                                        ? () => backgroundPanel.BackgroundImage.LoadSprite(adressableSpriteToLoad)
-                                                                                        : () => backgroundPanel.BackgroundImage.UnloadSprite());
-                break;
-
-        }
-        
-            
-        if (((selectedPanels.TryPeek(out InvokablePanelController invokableController) &&
-                invokableController.MainPanel is ShopPanel_Manager) ||
-                !selectedPanels.TryPeek(out _))
-                && backgroundPanel.gameObject.activeInHierarchy != false)
-        {
-            //backgroundPanel.GUI_LerpMethods_Color.ColorLerpFinalCall(disableObject: true, 1.5f);
-        }
-    }*/
     #endregion
 }

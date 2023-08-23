@@ -7,10 +7,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(GUI_TintScale))]
-public abstract class MultiPurposeButton<T_FunctionType> : Button_Base  //MonoBehaviour, IPointerDownHandler
+public abstract class MultiPurposeButton<T_FunctionType> : Button_Base  
     where T_FunctionType : Enum
 {
-    //[SerializeField] protected Adressable_SpriteDisplay buttonInnerImage;
     [SerializeField] protected AdressableImage buttonInnerImage_Adressable;
     
     protected string[] buttonNames;
@@ -19,7 +18,7 @@ public abstract class MultiPurposeButton<T_FunctionType> : Button_Base  //MonoBe
 
     protected delegate void ButtonFunctionDelegate();
     protected ButtonFunctionDelegate buttonFunctionDelegate;
-    protected T_FunctionType buttonFunction;       // this should go as well !!! serialied for debug purposes 
+    protected T_FunctionType buttonFunction;       // TODO : this should go as well !!! serialied for debug purposes 
 
 
 

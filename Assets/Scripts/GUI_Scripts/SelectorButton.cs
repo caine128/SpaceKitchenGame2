@@ -3,23 +3,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class SelectorButton<T> : Button_Base//MonoBehaviour, IPointerDownHandler
+public abstract class SelectorButton<T> : Button_Base
     where T : System.Enum
 {
 
-    [SerializeField] public T type; // { get; protected set; } Later to make autopropertY !!!!
-    //protected Image buttonImage;   
-    public RectTransform rt;                     // later to make autoproperty !!!! or dont display on editor !! its confusing
+    [SerializeField] public T type;   
+    public RectTransform rt;                     // TODO : later to make autoproperty !!!! or dont display on editor !! its confusing
     protected bool isMainSelector = false;
 
     private void Awake()
     {
         rt = GetComponent<RectTransform>();
-        //buttonImage = GetComponent<Image>();
     }
-
-    //public abstract void OnPointerDown(PointerEventData eventData);
-
 
     public void SetButtonColor(Color colorIN)
     {

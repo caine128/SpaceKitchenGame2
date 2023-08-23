@@ -9,13 +9,33 @@ using UnityEngine.UIElements;
 
 public class PropManager
 {
-    private static Prop selectedProp;
+    public static Prop SelectedProp
+    {
+        get { return selectedProp_backingField; }
+        set
+        {
+            selectedProp_backingField = value;
+
+            if(value != null)
+            {
+                var invokablePanel = PanelManager.InvokablePanels[typeof(BuildOptionsPanel_Manager)];
+
+                PanelManager.ActivateAndLoad(invokablePanel_IN: invokablePanel,
+                                             panelLoadAction_IN: () => ((BuildOptionsPanel_Manager)invokablePanel.MainPanel).LoadPanel(value));
+            }
+            else
+            {
+                PanelManager.DeactivatePanel(invokablePanelIN: PanelManager.SelectedPanels.Peek(),
+                                             nextPanelLoadAction_IN: null);
+            }
+       
+        }
+    }
+    private static Prop selectedProp_backingField;
     private static Vector3 interpolation;
     private static PointerEventData pointerEventData;
 
     private static readonly List<Prop> builtProps = new();
-
-    
 
     public enum Direction
     {
@@ -47,7 +67,7 @@ public class PropManager
 
     public static void BeginBuildingNewProp(ShopUpgrade shopUpgrade)
     {
-        if (selectedProp != null)
+        if (SelectedProp != null)
             return;
 
 
@@ -58,39 +78,39 @@ public class PropManager
                            builtState: Prop.BuiltState.NotFixed,
                            placementPos: BuildingGrid.Instance.FindMostCentralPlacementPosition(shopUpgrade.GetPropSize));
   
-        selectedProp = newProp;
+        SelectedProp = newProp;
 
-        BuildingGrid.Instance.PlaceGridMarkers(selectedProp);
+        BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
     }
 
     public static void SelectProp(Prop currentProp, PointerEventData pointerEventData, Vector3 raycastToGroundPosition)
     {
 
-        if (selectedProp == null)
+        if (SelectedProp == null)
         {
-            selectedProp = currentProp;
+            SelectedProp = currentProp;
             
-            selectedProp.BuiltSate = Prop.BuiltState.NotFixed;
+            SelectedProp.BuiltSate = Prop.BuiltState.NotFixed;
             builtProps.ForEach(bp => bp.ActivateColliers(shouldActivate: false));
 
             SetInterpolationValue(raycastToGroundPosition);
             SubscribeToMoveProp(pointerEventData);
 
-            BuildingGrid.Instance.ClearGrids(selectedProp);
-            BuildingGrid.Instance.PlaceGridMarkers(selectedProp);
+            BuildingGrid.Instance.ClearGrids(SelectedProp);
+            BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
 
-            selectedProp.Nudge();
-            selectedProp.LiftUp(queueRequest: true);           
+            SelectedProp.Nudge();
+            SelectedProp.LiftUp(queueRequest: true);           
         }
-        else if (selectedProp == currentProp && selectedProp.BuiltSate == Prop.BuiltState.NotFixed)
+        else if (SelectedProp == currentProp && SelectedProp.BuiltSate == Prop.BuiltState.NotFixed)
         {
-            selectedProp.ActivateColliers(shouldActivate: false);
+            SelectedProp.ActivateColliers(shouldActivate: false);
             builtProps.ForEach(bp => bp.ActivateColliers(shouldActivate: false));
 
             SetInterpolationValue(raycastToGroundPosition);
             SubscribeToMoveProp(pointerEventData);
 
-            selectedProp.Nudge();
+            SelectedProp.Nudge();
         }
         else
         {
@@ -101,7 +121,7 @@ public class PropManager
     {
         currentProp.BuiltSate = Prop.BuiltState.Fixing;
 
-        if (selectedProp == null || selectedProp != currentProp)
+        if (SelectedProp == null || SelectedProp != currentProp)
         {
             Debug.Log($"there is no selectedprop or selectedprop is not this, reverting BuiltState to NotFixed");
             currentProp.BuiltSate = Prop.BuiltState.NotFixed;
@@ -115,13 +135,13 @@ public class PropManager
 
         if (BuildingGrid.Instance.TrySetPropToGrids(currentProp))
         {
-            selectedProp.SubscribeToVerifivationCallback(false);
-            selectedProp.BuiltSate = Prop.BuiltState.Fixed;
-            builtProps.Add(selectedProp);
-            selectedProp.LiftDown(BuildingGrid.Instance.MarkerParent.position,
-                                         QuaternionFromDirection(selectedProp.PlacedDirection),
+            SelectedProp.SubscribeToVerifivationCallback(false);
+            SelectedProp.BuiltSate = Prop.BuiltState.Fixed;
+            builtProps.Add(SelectedProp);
+            SelectedProp.LiftDown(BuildingGrid.Instance.MarkerParent.position,
+                                         QuaternionFromDirection(SelectedProp.PlacedDirection),
                                          () => BuildingGrid.Instance.RemoveGridMarkers(),
-                                         () => selectedProp = null);
+                                         () => SelectedProp = null);
         }
         else
         {
@@ -131,7 +151,7 @@ public class PropManager
 
     private static void MoveProp()
     {
-        if (selectedProp == null)
+        if (SelectedProp == null)
             return;
 
         if (pointerEventData.pointerCurrentRaycast.gameObject?.layer != CollisionLayers.GROUND_LAYER)
@@ -139,8 +159,8 @@ public class PropManager
 
         var interpolatedPointerPos = pointerEventData.pointerCurrentRaycast.worldPosition - interpolation;
 
-        selectedProp.transform.position = Vector3.Lerp(selectedProp.transform.position,
-                                                       new Vector3(interpolatedPointerPos.x, selectedProp.transform.position.y, interpolatedPointerPos.z),//new Vector3(pointerEventData.pointerCurrentRaycast.worldPosition.x - interpolation.x, selectedProp.transform.position.y, pointerEventData.pointerCurrentRaycast.worldPosition.z - interpolation.z),
+        SelectedProp.transform.position = Vector3.Lerp(SelectedProp.transform.position,
+                                                       new Vector3(interpolatedPointerPos.x, SelectedProp.transform.position.y, interpolatedPointerPos.z),//new Vector3(pointerEventData.pointerCurrentRaycast.worldPosition.x - interpolation.x, selectedProp.transform.position.y, pointerEventData.pointerCurrentRaycast.worldPosition.z - interpolation.z),
                                                        Time.deltaTime * 15);
 
 
@@ -154,7 +174,7 @@ public class PropManager
             BuildingGrid.Instance.MoveGridMarkers(hoveredGridWorldPosition);
         }
 
-        var selectedPropRotation = QuaternionFromDirection(selectedProp.PlacedDirection);
+        var selectedPropRotation = QuaternionFromDirection(SelectedProp.PlacedDirection);
         if (BuildingGrid.Instance.MarkerParent.rotation != selectedPropRotation)
         {
             BuildingGrid.Instance.RotateGridMarkers(selectedPropRotation);
@@ -163,19 +183,19 @@ public class PropManager
 
     public static void RotateProp()
     {
-        if (selectedProp == null || selectedProp.BuiltSate != Prop.BuiltState.NotFixed)
+        if (SelectedProp == null || SelectedProp.BuiltSate != Prop.BuiltState.NotFixed)
             return;
 
-        selectedProp.PlacedDirection = GetNextDirection(selectedProp.PlacedDirection);
-        BuildingGrid.Instance.RotateGridMarkers(QuaternionFromDirection(selectedProp.PlacedDirection));
-        selectedProp.Rotate();
+        SelectedProp.PlacedDirection = GetNextDirection(SelectedProp.PlacedDirection);
+        BuildingGrid.Instance.RotateGridMarkers(QuaternionFromDirection(SelectedProp.PlacedDirection));
+        SelectedProp.Rotate();
     }
 
     private static void SetInterpolationValue(Vector3 raycastToGroundPosition)
     {
-        interpolation = new Vector3(raycastToGroundPosition.x - selectedProp.transform.position.x,
+        interpolation = new Vector3(raycastToGroundPosition.x - SelectedProp.transform.position.x,
                                     0f,
-                                    raycastToGroundPosition.z - selectedProp.transform.position.z);
+                                    raycastToGroundPosition.z - SelectedProp.transform.position.z);
     }
 
     private static void SubscribeToMoveProp(PointerEventData pointerEventData_IN)

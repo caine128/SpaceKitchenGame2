@@ -39,13 +39,13 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
         Initialize(); // TODO : Later to take on config // pay attention that execute event of default dict request comes before this script starts
     }
 
-    private void Update()     //TODO: FOR TEST PURPOSES LATER TO DELEETE 
+    /*private void Update()     //TODO: FOR TEST PURPOSES LATER TO DELEETE 
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             PropManager.RotateProp();
         }
-    }
+    }*/
 
     private void Initialize(GridSystem gridSystem = null, List<Grid> shopGrids = null)
     {

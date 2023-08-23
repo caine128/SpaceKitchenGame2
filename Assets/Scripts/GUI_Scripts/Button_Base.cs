@@ -9,7 +9,6 @@ public abstract class Button_Base : MonoBehaviour, IPointerDownHandler , IPointe
     public abstract void OnPointerDown(PointerEventData eventData);
     public abstract void OnPointerUp(PointerEventData eventData);
 
-    //[SerializeField] protected Adressable_SpriteDisplay buttonImage;
     [SerializeField] protected AdressableImage buttonImage_Adressable;
 
 }

@@ -44,44 +44,6 @@ public class Top_Bars_Controller : HUDBarsController, IAlternative_HUDBarsContro
 
     }
 
-    /*
-    IEnumerator ArrangeBarsInitialroutine(float lerpDuration)
-    {
-        barLerpScripts[3].InitialCallWithDiff(barWidths[1], lerpDuration, moveDirection: moveDirection);
-
-
-        switch (PanelManager.SelectedPanels.Peek().PanelName)
-        {
-            case Panel.Name.craftPanel:
-                GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.researchPoint, initialValue_IN: Inventory.Instance.CheckAmountInInventory_Name(SpecialItemsManager.Instance.Keys_Shards_Scrolls_SO.researchScrollInfo.name, GameItemType.Type.SpecialItem));
-                alternativeBarBG.color = Color.green;
-                break;
-            case Panel.Name.inventoryPanel:
-                alternativeBarBG.color = Color.red;
-                GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.inventoryCapacity, initialValue_IN: Inventory.ExistingItemAmount, maxValue_IN: Inventory.InventoryCapacity);
-                break;
-            case Panel.Name.shopPanel:
-                alternativeBarBG.color = Color.blue;
-                GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.shopCapacity, initialValue_IN: ShopData.ShopUpgradesAmount, maxValue_IN: ShopData.ShopCapacity);
-                break;
-
-        }
-
-
-        while (barLerpScripts[3].RunningCoroutine != null)
-        {
-            yield return null;
-        }
-
-
-        alternativeBars[0].gameObject.SetActive(true);
-        alternativeBars_LerpScripts[0].InitialCallWithPos(Vector2.zero, lerpDuration);
-
-
-        co = null;
-    }
-    */
-
     private void SetupAlternativeBarProps()
     {
         alternativeBars_LerpScripts[0].gameObject.SetActive(true);
@@ -97,8 +59,9 @@ public class Top_Bars_Controller : HUDBarsController, IAlternative_HUDBarsContro
                 alternativeBarBG.color = Color.red;
                 GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.inventoryCapacity, initialValue_IN: Inventory.ExistingItemAmount, maxValue_IN: Inventory.InventoryCapacity);
                 break;
-            case ShopPanel_Manager:
-            case ShopUpgradesPanel_Manager:
+            case ShopPanel_Manager or ShopUpgradesPanel_Manager or BuildOptionsPanel_Manager:
+            //case BuildOptionsPanel_Manager:
+            //case ShopUpgradesPanel_Manager:
                 alternativeBarBG.color = Color.blue;
                 GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.shopCapacity, initialValue_IN: ShopData.ShopUpgradesAmount, maxValue_IN: ShopData.ShopCapacityMax);
                 break;
