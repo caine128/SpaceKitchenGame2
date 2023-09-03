@@ -39,13 +39,13 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
         Initialize(); // TODO : Later to take on config // pay attention that execute event of default dict request comes before this script starts
     }
 
-    /*private void Update()     //TODO: FOR TEST PURPOSES LATER TO DELEETE 
+    private void Update()     //TODO: FOR TEST PURPOSES LATER TO DELEETE 
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             PropManager.RotateProp();
         }
-    }*/
+    }
 
     private void Initialize(GridSystem gridSystem = null, List<Grid> shopGrids = null)
     {
@@ -70,17 +70,19 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
     }
 
 
-    public Vector3 FindMostCentralPlacementPosition((int x, int z) propSize)
+    public Grid FindMostCentralPlacementGrid((int x, int z) propSize)
     {
         invalidPlacementInitiationGrids.Clear();
-        Vector3 posToReturn = GridSystem.CenterGrid.GridWorldPosition;
+        Grid gridToReturn = GridSystem.CenterGrid;
+        //Vector3 posToReturn = GridSystem.CenterGrid.GridWorldPosition;
 
         for (int i = 0; i < ShopGrids.Count; i++)
         {
 
             if (!invalidPlacementInitiationGrids.Contains(ShopGrids[i]) && CheckGridPositionsOfPropForAnchor(ShopGrids[i].GridPosition, propSize))
             {
-                posToReturn = ShopGrids[i].GridWorldPosition;
+                //posToReturn = ShopGrids[i].GridWorldPosition;
+                gridToReturn = ShopGrids[i];
                 break;
             }
         }
@@ -96,7 +98,8 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
         }
         /////////////////////////////////
 
-        return posToReturn;
+        //return posToReturn;
+        return gridToReturn;
     }
 
     private bool CheckGridPositionsOfPropForAnchor(GridPosition fakeAnchor, (int x, int z) propSize)
@@ -166,23 +169,8 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
     }
 
 
-    public bool TrySetPropToGrids(Prop prop)
-    {
-        /*List<Grid> freeGrids = new(prop.Size.x * prop.Size.z);
-
-        foreach (var gridMarker in _gridMarkers)
-        {
-            if (ValidateGridMarker(gridMarker, out var grid))
-            {
-                freeGrids.Add(grid);
-            }
-            else
-            {
-                Debug.Log("cannot set prop at position(s)");
-                return false;
-            }
-        }*/
-
+    /*public bool TrySetPropToGrids(Prop prop)
+    {    
         if (ValidateGridMarkers(out IEnumerable<Grid> freeGrids))
         {
             foreach (var freeGrid in freeGrids)
@@ -194,11 +182,23 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
 
         return false;
 
+    }*/
+
+    public void RegisterPropToGrids(Prop prop)
+    {
+        var markedGridsByGridMarkers = _gridMarkers.Select(gm => GridSystem.GetGrid(gm.AnchorPosition));
+        foreach (var markedGrid in markedGridsByGridMarkers)
+        {
+
+            Debug.Log($"setting prop to grid no :  {markedGrid.GridPosition}");
+            markedGrid.PlaceProp(prop);
+        }
     }
 
     public void ClearGrids(Prop prop)
     {
         ClearGrids(prop.GetCurrentGridPositions());
+        Debug.Log($"clearing grids at {prop.GetCurrentGridPositions()} ");
     }
 
     private void ClearGrids(IEnumerable<GridPosition> gridPositions)
@@ -224,7 +224,6 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
 
             gridMarker.transform.SetParent(markerParent);
             _gridMarkers.Add(gridMarker);
-
         }
 
         ValidateGridMarkers(out _);

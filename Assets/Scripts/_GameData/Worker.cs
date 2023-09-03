@@ -162,7 +162,7 @@ public class Worker : Character
               },
           };
 
-    private IEnumerable<(SortableBluePrint, int)> GetMissingWorkStations() // CAN BE OPTIMIZED BY IFALLMET? BOOL ON THE WORKER LIKE PRODUCRECIPE
+    private IEnumerable<(SortableBluePrint, int)> GetMissingWorkStations() // TODO : CAN BE OPTIMIZED BY IFALLMET? BOOL ON THE WORKER LIKE PRODUCRECIPE
     {
         foreach (var r_wtl in workerspecs.workStationPrerequisites)
         {

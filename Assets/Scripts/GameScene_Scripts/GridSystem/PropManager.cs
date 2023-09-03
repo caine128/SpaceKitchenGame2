@@ -18,17 +18,48 @@ public class PropManager
 
             if(value != null)
             {
+                if(PanelManager.SelectedPanels.TryPeek(out var invokablePanelController) 
+                    && invokablePanelController == PanelManager.InvokablePanels[typeof(BuildOptionsPanel_Manager)])
+                {
+                    // TODO : Buildoptionspanel buttons should be reassigned asccording to the new selection
+                    Debug.Log("// TODO : Buildoptionspanel buttons should be reassigned asccording to the new selection");
+                }
+                else
+                {
+                    var invokablePanel = PanelManager.InvokablePanels[typeof(BuildOptionsPanel_Manager)];
+
+                    PanelManager.ActivateAndLoad(invokablePanel_IN: invokablePanel,
+                                                 panelLoadAction_IN: () => ((BuildOptionsPanel_Manager)invokablePanel.MainPanel).LoadPanel(value));
+                }
+            }
+
+            /*if (selectedProp_backingField == null && value != null)
+            {
                 var invokablePanel = PanelManager.InvokablePanels[typeof(BuildOptionsPanel_Manager)];
 
                 PanelManager.ActivateAndLoad(invokablePanel_IN: invokablePanel,
                                              panelLoadAction_IN: () => ((BuildOptionsPanel_Manager)invokablePanel.MainPanel).LoadPanel(value));
             }
+            else if (selectedProp_backingField != null && value != null)
+            {
+                // TODO : Buildoptionspanel buttons should be reassigned asccording to the new selection 
+            }*/
+            /*else if(selectedProp_backingField.IsPurchased && value == null)
+            {
+                PanelManager.DeactivatePanel(PanelManager.SelectedPanels.Peek(), nextPanelLoadAction_IN: null, unloadAction:
+                                () =>
+                                {
+                                    PanelManager.TopBarsController.ArrangeBarsFinal();
+                                    PanelManager.BottomBarsController.PlaceBars();
+                                    PanelManager.CraftWheelController.PlaceBars();
+                                    PanelManager.ClearStackAndDeactivateElements();
+                                });
+            }
             else
             {
                 PanelManager.DeactivatePanel(invokablePanelIN: PanelManager.SelectedPanels.Peek(),
                                              nextPanelLoadAction_IN: null);
-            }
-       
+            }    */       
         }
     }
     private static Prop selectedProp_backingField;
@@ -55,6 +86,8 @@ public class PropManager
             _ => throw new NotImplementedException(),
         };
 
+
+
     public static Quaternion QuaternionFromDirection(Direction direction)
         => direction switch
         {
@@ -65,36 +98,54 @@ public class PropManager
             _ => throw new NotImplementedException(),
         };
 
-    public static void BeginBuildingNewProp(ShopUpgrade shopUpgrade)
+    public static void BeginBuildingNewProp(ShopUpgrade shopUpgradeBlueprintToBeCloned)
     {
         if (SelectedProp != null)
             return;
 
 
-        Prop newProp = UnityEngine.Object.Instantiate(shopUpgrade.GetPrefab).GetComponentInChildren<Prop>();
+        Prop newProp = UnityEngine.Object.Instantiate(shopUpgradeBlueprintToBeCloned.GetPrefab).GetComponentInChildren<Prop>();
 
-        newProp.Initialize(shopUpgrade,
+        newProp.Initialize(shopUpgradeBlueprintToBeCloned,
                            subscribeToVerificationCallback: true,
                            builtState: Prop.BuiltState.NotFixed,
-                           placementPos: BuildingGrid.Instance.FindMostCentralPlacementPosition(shopUpgrade.GetPropSize));
-  
-        SelectedProp = newProp;
+                           anchorGrid: BuildingGrid.Instance.FindMostCentralPlacementGrid(shopUpgradeBlueprintToBeCloned.GetPropSize),
+                           onInitialized: p => BuildingGrid.Instance.PlaceGridMarkers(p));
 
-        BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
+
+        SelectedProp = newProp;
+        //BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
+        //BuildingGrid.Instance.SetPropToGrids(SelectedProp);
     }
 
-    public static void SelectProp(Prop currentProp, PointerEventData pointerEventData, Vector3 raycastToGroundPosition)
+    public static void SelectProp(Prop currentProp, PropMovementInterpolationData propMovementInterpolationData = null) //PointerEventData pointerEventData = null, Vector3? raycastToGroundPosition = null)
     {
+        if(SelectedProp == null)
+        {
+            SelectedProp = currentProp;
+            builtProps.ForEach(bp => bp.ActivateColliders(shouldActivate: false));
 
-        if (SelectedProp == null)
+            if(propMovementInterpolationData != null)
+            {
+                SetInterpolationValue(propMovementInterpolationData.raycastToGroundPosition);
+                SubscribeToMoveProp(propMovementInterpolationData.pointerEventData);//  pointerEventData);
+
+                BuildingGrid.Instance.ClearGrids(SelectedProp);
+                BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
+
+                SelectedProp.Nudge();
+                SelectedProp.LiftUp(queueRequest: true);
+            }
+
+        }
+        /*if (SelectedProp == null && propMovementInterpolationData != null)
         {
             SelectedProp = currentProp;
             
-            SelectedProp.BuiltSate = Prop.BuiltState.NotFixed;
-            builtProps.ForEach(bp => bp.ActivateColliers(shouldActivate: false));
+            builtProps.ForEach(bp => bp.ActivateColliders(shouldActivate: false));
 
-            SetInterpolationValue(raycastToGroundPosition);
-            SubscribeToMoveProp(pointerEventData);
+            SetInterpolationValue(propMovementInterpolationData.raycastToGroundPosition);
+            SubscribeToMoveProp(propMovementInterpolationData.pointerEventData);//  pointerEventData);
 
             BuildingGrid.Instance.ClearGrids(SelectedProp);
             BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
@@ -102,52 +153,118 @@ public class PropManager
             SelectedProp.Nudge();
             SelectedProp.LiftUp(queueRequest: true);           
         }
-        else if (SelectedProp == currentProp && SelectedProp.BuiltSate == Prop.BuiltState.NotFixed)
+        else if(SelectedProp == null && propMovementInterpolationData == null)
         {
-            SelectedProp.ActivateColliers(shouldActivate: false);
-            builtProps.ForEach(bp => bp.ActivateColliers(shouldActivate: false));
 
-            SetInterpolationValue(raycastToGroundPosition);
-            SubscribeToMoveProp(pointerEventData);
+        }*/
+
+        else if (SelectedProp == currentProp && SelectedProp.Built_State != Prop.BuiltState.Fixing)
+        {
+            Debug.LogWarning("REselecting existing prop");
+
+            SelectedProp.SubscribeToVerifivationCallback(true);
+            SelectedProp.ActivateColliders(shouldActivate: false);
+            builtProps.ForEach(bp => bp.ActivateColliders(shouldActivate: false));
+
+            SetInterpolationValue(propMovementInterpolationData.raycastToGroundPosition);
+            SubscribeToMoveProp(propMovementInterpolationData.pointerEventData);
+
+            //BuildingGrid.Instance.ClearGrids(SelectedProp);
+            //BuildingGrid.Instance.RemoveGridMarkers();
+            //BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
 
             SelectedProp.Nudge();
+           
+            if(SelectedProp.Built_State == Prop.BuiltState.Fixed) 
+                SelectedProp.LiftUp(queueRequest: true);
+                     
         }
         else
         {
             Debug.Log("there is already a selected prop");
         }
     }
-    public static void ReleaseProp(Prop currentProp)
-    {
-        currentProp.BuiltSate = Prop.BuiltState.Fixing;
 
+
+
+    public static void ReleaseProp(Prop currentProp, params Action[] postReleaseActions)
+    {
         if (SelectedProp == null || SelectedProp != currentProp)
         {
-            Debug.Log($"there is no selectedprop or selectedprop is not this, reverting BuiltState to NotFixed");
-            currentProp.BuiltSate = Prop.BuiltState.NotFixed;
             return;
         }
-        
 
-        builtProps.ForEach(bp => bp.ActivateColliers(shouldActivate: true));
-
+        builtProps.ForEach(bp => bp.ActivateColliders(shouldActivate: true));
         UnsubscribeToMoveProp();
 
-        if (BuildingGrid.Instance.TrySetPropToGrids(currentProp))
+        if (SelectedProp.HasValidPosition)
         {
+            //SelectedProp.BuiltSsate = Prop.BuiltState.Fixing;
+            //BuildingGrid.Instance.SetPropToGrids(SelectedProp);
             SelectedProp.SubscribeToVerifivationCallback(false);
-            SelectedProp.BuiltSate = Prop.BuiltState.Fixed;
-            builtProps.Add(SelectedProp);
-            SelectedProp.LiftDown(BuildingGrid.Instance.MarkerParent.position,
-                                         QuaternionFromDirection(SelectedProp.PlacedDirection),
-                                         () => BuildingGrid.Instance.RemoveGridMarkers(),
-                                         () => SelectedProp = null);
+
+            SelectedProp.LiftDown(BuildingGrid.Instance.GridSystem.GetGrid(BuildingGrid.Instance.MarkerParent.position),
+                                  QuaternionFromDirection(SelectedProp.PlacedDirection),
+                                  finalCallbacks: postReleaseActions);//.Append(() => SelectedProp.BuiltSsate = Prop.BuiltState.Fixed).ToArray());
+                                                                      //.Append(() => SelectedProp = null).ToArray()); 
         }
-        else
+        /*if (BuildingGrid.Instance.TrySetPropToGrids(currentProp))
+        {
+            currentProp.BuiltSate = Prop.BuiltState.Fixing;
+            SelectedProp.SubscribeToVerifivationCallback(false);
+            //SelectedProp.BuiltSate = Prop.BuiltState.Fixed;
+            //builtProps.Add(SelectedProp);
+            postReleaseActions = postReleaseActions.Append(() => SelectedProp.BuiltSate = Prop.BuiltState.Fixed)
+                                                   .Append(() => SelectedProp = null).ToArray();
+
+            SelectedProp.LiftDown(BuildingGrid.Instance.MarkerParent.position,
+                                  QuaternionFromDirection(SelectedProp.PlacedDirection),
+                                  postReleaseActions);
+                                  //() => BuildingGrid.Instance.RemoveGridMarkers(),                                        
+                                  //() => SelectedProp.BuiltSate = Prop.BuiltState.Fixed,
+                                  //() => SelectedProp = null);
+        }*/
+        /*else
         {
             currentProp.BuiltSate = Prop.BuiltState.NotFixed;
-        }
+        }*/
     }
+
+    public static void PurchaseProp(Prop currentProp)
+    {
+        if(SelectedProp == null || SelectedProp != currentProp || !SelectedProp.HasValidPosition)
+        {
+            Debug.Log("there is no selectedprop or selectedprop is not this, cannot purchase prop");
+            return;
+        }
+
+        BuildingGrid.Instance.RegisterPropToGrids(SelectedProp);       
+        
+        //SelectedProp.IsPurchased = true;
+        var clonedShopUpgrade = ShopData.Instance.CloneAndPurchaseShopUpgrade(currentProp.ShopUpgradeBluePrint);
+
+        SelectedProp.RegisterClonedBluePrint(clonedShopUpgrade);
+        builtProps.Add(currentProp);
+        ReleaseProp(currentProp,
+                            () => BuildingGrid.Instance.RemoveGridMarkers(),
+                            () => SelectedProp = null);  // TODO : Nulling the selection closes the panel ?? but is it the thing ?
+        /*switch (currentProp.Built_State)
+        {
+            case Prop.BuiltState.NotFixed:
+                ReleaseProp(currentProp,
+                            () => BuildingGrid.Instance.RemoveGridMarkers(),
+                            () => SelectedProp = null);  // TODO : Nulling the selection closes the panel ?? but is it the thing ?
+                break;
+
+            case Prop.BuiltState.Fixing:
+            case Prop.BuiltState.Fixed:
+                BuildingGrid.Instance.RemoveGridMarkers();
+                SelectedProp = null;                      // TODO : Nulling the selection closes the panel ?? but is it the thing ?
+                break;
+        }*/
+    }
+
+
 
     private static void MoveProp()
     {
@@ -171,7 +288,9 @@ public class PropManager
         if (hoveredGridWorldPosition != BuildingGrid.Instance.MarkerParent.position
             && BuildingGrid.Instance.GridSystem.IsWithinEffectiveRange(pointerEventData.pointerCurrentRaycast.worldPosition - interpolation))
         {
-            BuildingGrid.Instance.MoveGridMarkers(hoveredGridWorldPosition);
+            BuildingGrid.Instance.MoveGridMarkers(SelectedProp.IsCentrallypositionedToGrid 
+                                                      ? new Vector3(hoveredGridWorldPosition.x+ (BuildingGrid.cellSize/2f), hoveredGridWorldPosition.y,hoveredGridWorldPosition.z + (BuildingGrid.cellSize / 2f)) 
+                                                      :hoveredGridWorldPosition);
         }
 
         var selectedPropRotation = QuaternionFromDirection(SelectedProp.PlacedDirection);
@@ -183,13 +302,25 @@ public class PropManager
 
     public static void RotateProp()
     {
-        if (SelectedProp == null || SelectedProp.BuiltSate != Prop.BuiltState.NotFixed)
+        if (SelectedProp == null || SelectedProp.Built_State == Prop.BuiltState.Fixing) //SelectedProp.BuiltSsate != Prop.BuiltState.NotFixed)
             return;
 
         SelectedProp.PlacedDirection = GetNextDirection(SelectedProp.PlacedDirection);
         BuildingGrid.Instance.RotateGridMarkers(QuaternionFromDirection(SelectedProp.PlacedDirection));
         SelectedProp.Rotate();
     }
+
+    public static void DestroyProp(Prop prop)
+    {
+        if (SelectedProp == null || prop != SelectedProp)
+            return;
+
+        UnityEngine.Object.Destroy(prop);
+        BuildingGrid.Instance.RemoveGridMarkers();
+        SelectedProp = null;
+    }
+
+
 
     private static void SetInterpolationValue(Vector3 raycastToGroundPosition)
     {

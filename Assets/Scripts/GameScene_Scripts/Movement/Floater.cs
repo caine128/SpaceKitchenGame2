@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Floater
 {
-    private readonly List<IEnumerator> floatRoutines = new();
+    private readonly List<IEnumerator> floatRoutines = new();  // TODO : THINK ABOUT MAKING THOSE ARRAYS FOR PERFORMANCE ?
     private readonly Transform _rootTransform;
     private readonly Transform _actualTransform;
     private readonly MonoBehaviour monoBehaviour;

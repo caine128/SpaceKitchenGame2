@@ -456,10 +456,10 @@ public static class GUI_CentralPlacement
 
 
 
-    public static void PlaceImageWithText(TextMeshProUGUI textToplace, RectTransform textToplaceRect, RectTransform imageToPlaceRect, bool isImageOnLeft)
+    public static void PlaceImageWithText(TextMeshProUGUI textToplace, RectTransform textToplaceRect, RectTransform imageToPlaceRect, bool isImageOnLeft, float? customSpacing = null)
     {
 
-        var spacingBetween = 5f;
+        var spacingBetween = customSpacing.HasValue ? customSpacing.Value : 5f;
         var textWdth = textToplace.GetPreferredValues(textToplace.text);
         textToplaceRect.sizeDelta = new Vector2(textWdth.x, textToplaceRect.sizeDelta.y);
         var totalAmount = textToplaceRect.sizeDelta.x + spacingBetween + imageToPlaceRect.sizeDelta.x;

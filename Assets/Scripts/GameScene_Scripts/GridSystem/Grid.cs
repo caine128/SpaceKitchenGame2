@@ -28,6 +28,7 @@ public class Grid
     {
         if (!IsOccupied)
         {
+            Debug.Log($"placing prop: {prop.ShopUpgradeBluePrint?.GetName()}");
             this.prop = prop;
         }
         else

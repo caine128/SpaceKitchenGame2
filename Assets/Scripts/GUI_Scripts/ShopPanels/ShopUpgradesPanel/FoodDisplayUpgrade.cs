@@ -7,8 +7,6 @@ using UnityEngine.AddressableAssets;
 
 public class FoodDisplayUpgrade : SalesCabinetUpgrade
 {
-    //private readonly int indexNo;     // CAN THIS BE IN THE PARENT AND SET IN THE CONSTRUCTOR ?? 
-
 
     public FoodDisplayUpgrade(int indexNo_IN, ShopUpgradeType.Type shopUpgradeType_IN , ShopUpgradeType.SalesCabinetUpgradeType salesCabinetUpgradeType_IN) : base(indexNo_IN, shopUpgradeType_IN, salesCabinetUpgradeType_IN)
     {
@@ -21,7 +19,6 @@ public class FoodDisplayUpgrade : SalesCabinetUpgrade
     public override AssetReferenceAtlasedSprite GetAdressableImage()
     {
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.foodDisplay_Upgrades.baseInfo[indexNo].spriteRef;
-        //return ShopUpgradesManager.Instance.ShopUpgrades_SO.foodDisplay_Upgrades.baseInfo[indexNo].sprite;
     }
 
 
@@ -31,10 +28,16 @@ public class FoodDisplayUpgrade : SalesCabinetUpgrade
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.foodDisplay_Upgrades.baseInfo[indexNo].name;
     }
 
-    public override int GetValue()
+    public override ISpendable PurchaseCost()
+    {
+        var cost = ShopUpgradesManager.Instance.ShopUpgrades_SO.foodDisplay_Upgrades.specsBylevel[0].upgradeGoldCost;
+        return new Gold(cost);
+    }
+
+    /*public override int GetValue()
     {
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.foodDisplay_Upgrades.specsBylevel[0].upgradeGoldCost;
-    }
+    }*/
 
     public override int GetAmount()
          => ShopData.ShopUpgradesIteration_Dict[ShopUpgradeType.Type.SalesCabinetUpgrade]
@@ -74,5 +77,5 @@ public class FoodDisplayUpgrade : SalesCabinetUpgrade
         throw new NotImplementedException();
     }
 
-    
+
 }

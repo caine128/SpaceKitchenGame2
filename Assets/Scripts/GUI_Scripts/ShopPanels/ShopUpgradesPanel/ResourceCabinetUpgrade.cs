@@ -35,10 +35,16 @@ public class ResourceCabinetUpgrade : ShopUpgrade
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.resourceCabinet_Upgrades.baseInfo[indexNo].name;
     }
 
-    public override int GetValue()
+    public override ISpendable PurchaseCost()
+    {
+        var cost= ShopUpgradesManager.Instance.ShopUpgrades_SO.resourceCabinet_Upgrades.tier[tier].specsByLevel[0].upgradeGoldCost;
+        return new Gold(cost);
+    }
+
+    /*public override int GetValue()
     {
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.resourceCabinet_Upgrades.tier[tier].specsByLevel[0].upgradeGoldCost;
-    }
+    }*/
 
     public override int GetAmount()
         => ShopData.ShopUpgradesIteration_Dict[ShopUpgradeType.Type.ResourceCabinetUpgrade]
@@ -79,4 +85,6 @@ public class ResourceCabinetUpgrade : ShopUpgrade
     {
         throw new NotImplementedException();
     }
+
+
 }

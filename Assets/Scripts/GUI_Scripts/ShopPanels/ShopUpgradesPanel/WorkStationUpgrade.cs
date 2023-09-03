@@ -7,26 +7,11 @@ using UnityEngine.AddressableAssets;
 
 public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
 {
-
-    //public InvestmentCosts_SO.InvestmentCosts InvestmentCostCurrentLevel { get => _investmentCostsCurrentLevel; }
     private InvestmentCosts_SO.InvestmentCosts _investmentCostsCurrentLevel;
 
     public (int currentTickAmount, int maxTickAmount) TickAmounts { get => _tickAmounts; }
     private (int currentTickAmount, int maxTickAmount) _tickAmounts;
 
-    //public float MaxUpgradeDuration { get => ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.specsByLevel[currentLevel].upgradeDuration; }
-    //public float RemainingDuration { get => _remainingUpgradeDuration; }
-    //private float _remainingUpgradeDuration;
-    //private float _maxTimeTickCount;
-    //private float _currentTimeTickCount =0;
-
-    //public bool IsReadyToReclaim { get => _isReadyToClaimLevelUp; }
-    //private bool _isReadyToClaimLevelUp = false;
-
-    //public int TotalRushCostGem { get => ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.specsByLevel[currentLevel].upgradeGemCost ;}
-    //public SortableBluePrint BluePrint => this;
-    //public float CurrentProgress => _currentTimeTickCount/_maxTimeTickCount ;
-    //public float RemainingDuration => throw new NotImplementedException();
     public override event Action<float, float> OnProgressTicked;
     public override event Action OnUpgradeTimerUpdate;
 
@@ -64,7 +49,6 @@ public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
     public override AssetReferenceAtlasedSprite GetAdressableImage()
     {
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].spriteRef;
-        //return ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].sprite;
     }
 
     public override string GetName()
@@ -72,10 +56,16 @@ public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].name;
     }
 
-    public override int GetValue() // This has to be adjusted !!! There is no VALUE maybe we ca remove the interface from here totally
+    public override ISpendable PurchaseCost()
+    {
+        var cost = ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.specsByLevel[0].upgradeGoldCost * ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].tierMultiplier;
+        return new Gold(cost);
+    }
+
+    /*public override int GetValue() // This has to be adjusted !!! There is no VALUE maybe we ca remove the interface from here totally
     {
         return ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.specsByLevel[0].upgradeGoldCost * ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.baseInfo[indexNo].tierMultiplier;
-    }
+    }*/
 
     public override int GetAmount()
         => ShopData.ShopUpgradesIteration_Dict[ShopUpgradeType.Type.WorkstationUpgrades]
@@ -117,7 +107,6 @@ public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
 
     public override IEnumerable<(string benefitName, string benefitValue, AssetReferenceT<Sprite> bnefitIcon)> GetDisplayableBenefits()
     {
-        //var associatedWorker = CharacterManager.Instance.WorkerList_SO.listOfWorkers.First(w => w.workStationPrerequisites[0].type == this.GetWorkstationType());
         var (currentLevelCap, nextLevelCap) = GetMaxWorkerLevelCapCurrentAndNext();
         if(nextLevelCap is not null) 
             yield return ("Duration For Upgrade" ,
@@ -129,39 +118,6 @@ public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
                       $"{currentLevelCap} {(nextLevelCap is null?string.Empty : ">")} {nextLevelCap}",
                       ImageManager.SelectSprite(GetAssociatedWorker().workerType.ToString()));
     }
-
-    /*public override void TryLevelUp(ISpendable spendable)
-    {
-        //check that current level is not the max level
-        var nextLevelInfo = ShopUpgradesManager.Instance.ShopUpgrades_SO.workstation_Upgrades.specsByLevel.Where(sbl => sbl.level == currentLevel + 1);
-
-        if (!nextLevelInfo.Any())
-        {
-            Debug.Log("You are at the max level available for now");
-        }
-
-        //check if there's enough spendable either gold or gem and fire panel Event
-        else if (StatsData.IsSpendableAmountEnough(requiredAmount: spendable.Amount, spendable: spendable))
-        {
-            StatsData.SetSpendableValue(spendable: spendable, amountDelta: spendable.Amount * -1);
-            currentLevel++;
-            var (currentLevelCap, nextLevelCap) = GetMaxWorkerLevelCapCurrentAndNext();
-
-            var modalLoadData = new ModalPanel_DisplayBonuses_LoadData(mainSprite_IN: this.GetAdressableImage(),
-                                                                       secondarySprite_IN: GetAssociatedWorker().characterImageRef,
-                                                                       bonusExplanationStringTuple_IN: (bonusExplanationString1_IN: "Max Worker Level", bonusExplanationString2_IN: $"{currentLevelCap} {(nextLevelCap is null?string.Empty : ">")} {nextLevelCap}"),
-                                                                       subheaderString_IN: $"Congratulations! {GetName()} reached Level {currentLevel}",
-                                                                       modalState_IN: Information_Modal_Panel.ModalState.WorkStationUpgrade);
-            PanelManager.ActivateAndLoad(invokablePanel_IN: PanelManager.InvokablePanels[typeof(Information_Modal_Panel)],
-                                         preLoadAction_IN: () =>PanelManager.RemoveCurrentPanelFromNavigationStackIf(removeConditions:ipc => ipc.MainPanel is ShopUpgradesInfoPanel_Manager ),
-                                         panelLoadAction_IN: () => Information_Modal_Panel.Instance.LoadModalQueue(modalLoadData_IN: modalLoadData,
-                                                                                                                   modalLoadDatas: Enumerable.Empty<ModalLoadData>()));                                                                     
-        }
-        else
-        {
-            Debug.Log("your spendable is not enough for leveling up!");
-        }
-    }*/
 
     public override void LevelUp()
     {
@@ -259,8 +215,6 @@ public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
         {
             TimeTickSystem.onTickTriggered -= UpgateUpgradeTimer;
             _remainingUpgradeDuration = 0;
-            //_currentTimeTickCount = 0;
-            //_maxTimeTickCount = 0;
             _isReadyToClaimLevelUp = true;
 
             OnUpgradeTimerUpdate?.Invoke();           
@@ -275,4 +229,6 @@ public class WorkStationUpgrade : ShopUpgrade, IInvestable//, IRushable
         var ticksToRush = Mathf.CeilToInt(_maxTimeTickCount - _currentTimeTickCount);
         UpgateUpgradeTimer(ticksToRush, false);
     }
+
+
 }

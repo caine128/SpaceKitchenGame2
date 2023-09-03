@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 //using static ShopUpgrades_SO;
 
-public abstract class ShopUpgrade : SortableBluePrint, IAmountable, IValuable, ILevellable, IRushable// IRankable
+public abstract class ShopUpgrade : SortableBluePrint, IAmountable, ILevellable, IRushable// IValuable, IRankable
 {
     [SerializeField] public readonly ShopUpgradeType.Type shopUpgradeType;  // is this necessary ???
     protected readonly int indexNo;
@@ -83,9 +83,9 @@ public abstract class ShopUpgrade : SortableBluePrint, IAmountable, IValuable, I
     }
 
 
-    public object ClonePurchase()
+    public ShopUpgrade ClonePurchase()
     {
-        return this.MemberwiseClone();
+        return (ShopUpgrade)this.MemberwiseClone();
     }
 
 
@@ -95,16 +95,15 @@ public abstract class ShopUpgrade : SortableBluePrint, IAmountable, IValuable, I
     }*/
 
 
-
+    public abstract ISpendable PurchaseCost();
     public abstract int GetAmount();     
-   /* {
+    /* {
 #if UNITY_EDITOR
         if (amountInShop > 1) Debug.LogError($"amountInShop of {this.GetName()} should not be more than 1, Please inspect");
 #endif
         return amountInShop;
     }*/
-
-    public abstract int GetValue();
+    /*public abstract int GetValue();*/
 
     public abstract IEnumerable<(string benefitName, string benefitValue, AssetReferenceT<Sprite> bnefitIcon)> GetDisplayableBenefits();
 
