@@ -113,7 +113,7 @@ public class PropManager
                            onInitialized: p => BuildingGrid.Instance.PlaceGridMarkers(p));
 
 
-        SelectedProp = newProp;
+        SelectProp(newProp);
         //BuildingGrid.Instance.PlaceGridMarkers(SelectedProp);
         //BuildingGrid.Instance.SetPropToGrids(SelectedProp);
     }
@@ -196,12 +196,13 @@ public class PropManager
 
         builtProps.ForEach(bp => bp.ActivateColliders(shouldActivate: true));
         UnsubscribeToMoveProp();
+        SelectedProp.SubscribeToVerifivationCallback(false);
 
         if (SelectedProp.HasValidPosition)
         {
             //SelectedProp.BuiltSsate = Prop.BuiltState.Fixing;
             //BuildingGrid.Instance.SetPropToGrids(SelectedProp);
-            SelectedProp.SubscribeToVerifivationCallback(false);
+            
 
             SelectedProp.LiftDown(BuildingGrid.Instance.GridSystem.GetGrid(BuildingGrid.Instance.MarkerParent.position),
                                   QuaternionFromDirection(SelectedProp.PlacedDirection),

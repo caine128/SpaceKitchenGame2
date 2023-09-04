@@ -25,8 +25,8 @@ public class StatsData : MonoBehaviour   ///// MUST BE SINGLETON  /////
     private int experienceMax;
     private int energyExisting = 50;
     private int energyMax;
-    private static ISpendable goldObject = new Gold(1000000000); 
-    private static ISpendable gemObject = new Gem(750);
+    private static readonly ISpendable goldObject = new Gold(30); 
+    private static readonly ISpendable gemObject = new Gem(750);
 
 
     private const float LERP_SPEED_XP = 30f;
@@ -35,6 +35,8 @@ public class StatsData : MonoBehaviour   ///// MUST BE SINGLETON  /////
     private bool energyRefillSubscribed = false;
 
     public static event EventHandler<CharacterLevels.PlayerLevelledEventArgs> OnPlayerLevelled;
+    public static event Action<int> OnGoldAmountChanged;
+    public static event Action<int> OnGemAmountChanged;
   
     private void Awake()
     {
@@ -109,7 +111,8 @@ public class StatsData : MonoBehaviour   ///// MUST BE SINGLETON  /////
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SetEnergyMax(5);
+            //SetEnergyMax(5);
+            SetSpendableValue(new Gold(), -40);
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -255,12 +258,18 @@ public class StatsData : MonoBehaviour   ///// MUST BE SINGLETON  /////
             case Gold:
                 GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.gold, goldObject.Amount, goldObject.Amount + amountDelta, lerpSpeedModifier);
                 goldObject.SetAmount(amountDelta);
+
+                OnGoldAmountChanged?.Invoke(goldObject.Amount);
                 break;
             case Gem:
                 GUI_PlayerStats_Manager.Instance.SetStat(StatName.Stat.gem, gemObject.Amount, gemObject.Amount + amountDelta, lerpSpeedModifier);
                 gemObject.SetAmount(amountDelta);
+
+                OnGemAmountChanged?.Invoke(gemObject.Amount);
                 break;
         }
+
+
         
     }
 }

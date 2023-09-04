@@ -44,11 +44,6 @@ public class Information_Modal_Panel : Panel_Base, IDeallocatable, IAanimatedPan
 
     private bool _isAnimating = false;
 
-    //public bool IsThereMorePanelsToLoad
-    //{
-    //    get => _isThereMorePanelsToLoad;
-    //}
-    //private bool _isThereMorePanelsToLoad;
     public ConcurrentQueue<ModalLoadData> ModalLoadDataQueue
     {
         get => _modalLoadDataQueue;

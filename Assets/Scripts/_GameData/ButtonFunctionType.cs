@@ -81,7 +81,10 @@ public class ButtonFunctionType
         Rotate=2,
         Archive=3,
         Exit=4,
-        Move=5,
+        Edit=5,
         Upgrade=6,
+        Purchase =7,
+        Skins = 8,
+        Content = 9,
     }
 }

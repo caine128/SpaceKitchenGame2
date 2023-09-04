@@ -244,12 +244,14 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
         if (gridsTemp.All(g => g.IsBuildable && !g.IsOccupied))
         {
             grids = gridsTemp;
+            Debug.Log("gridmarkers are validating true");
             OnValidate?.Invoke(true);
             return true;
         }
         else
         {
             grids = null;
+            Debug.Log("gridmarkers are validating false");
             OnValidate?.Invoke(false);
             return false;
         }

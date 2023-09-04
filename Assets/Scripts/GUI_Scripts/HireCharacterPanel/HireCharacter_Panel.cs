@@ -66,10 +66,8 @@ public class HireCharacter_Panel : Panel_Base, IDeallocatable, IAanimatedPanelCo
         waitUntilLastButtonScaled = new WaitUntil(() => buttons[buttons.Length - 1].IsAnimating);
     }
 
-    //private PanelLoadData panelLoadData_temp;
     public void LoadPanel(PanelLoadData panelLoadData)
     {
-        //var mainLoadInfoAsChar = (Character)panelLoadData.mainLoadInfo;
         hasCompletedAnimation = false;
         switch (panelLoadData.mainLoadInfo)
         {
@@ -86,29 +84,7 @@ public class HireCharacter_Panel : Panel_Base, IDeallocatable, IAanimatedPanelCo
                 buttons[0].SetupButton(ButtonFunctionType.HireCharactersPanel.RecruitWithGold);
                 buttons[1].SetupButton(ButtonFunctionType.HireCharactersPanel.RecruitWithGem);
                 break;
-        }
-        /*_selectedCharacter = (Character)panelLoadData.mainLoadInfo;
-        dialogueDisplay_Panel.LoadPanel((_selectedCharacter as Worker).workerspecs.allDialoguePhrases[0].phrases);
-        bigImageContainer.LoadSprite(_selectedCharacter.GetAdressableImage());
-        infographics_Panel.LoadPanel(_selectedCharacter);
-
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].ScaleDirect(isVisible: false, finalValueOperations:null);
-        }
-        buttons[0].SetupButton(ButtonFunctionType.HireCharactersPanel.RecruitWithGold);
-        buttons[1].SetupButton(ButtonFunctionType.HireCharactersPanel.RecruitWithGem);*/
-
-
-        /*displayInfoGraphicsPanel = () =>
-        {
-            
-            infographics_Panel.DisplayContainers();
-            _isAnimating = false;
-        };*/
-
-
-        //dialogueDisplay_Panel.DialogueEnded += loadAction;        
+        }       
     }
  
     public void DisplayContainers()
