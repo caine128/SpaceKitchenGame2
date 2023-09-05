@@ -65,24 +65,6 @@ public class ProgressPopupPanel : PopupPanel_Single_SNG<ProgressPopupPanel>, IBr
             _PopupHeader = string.IsNullOrEmpty(panelLoadData.panelHeader) ? string.Empty : panelLoadData.panelHeader;
             LoadSingleItem(ListToIterate[_currentIndice]);
         }
-
-        /*if (panelLoadData is ProgressPanelLoadDatasOfProductRecipee)
-        {
-            if(ListToIterate.Count != 0 || RequiredAmounts.Count != 0)
-            {
-                ListToIterate.Clear();
-                RequiredAmounts.Clear();
-            }
-
-            foreach (var (blueprint,missingAmount) in panelLoadDatas.bluePrintsToLoad)
-            {
-                ListToIterate.Add(blueprint);
-                RequiredAmounts.Add(missingAmount);
-            }
-            _currentIndice = 0;
-            _PopupHeader = string.IsNullOrEmpty(panelLoadData.panelHeader) ? string.Empty : panelLoadData.panelHeader;
-            LoadSingleItem(ListToIterate[_currentIndice]);
-        }*/
     }
 
     private void LoadSingleItem(IRushable rushableBlueprint)

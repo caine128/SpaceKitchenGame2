@@ -5,8 +5,30 @@ using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOptionsPanel>,
-                                  IVerificationCallbackReceiver,IAmountChangeCallbackReceiver
+                                  IVerificationCallbackReceiver,IAmountChangeCallbackReceiver,IPlacableRt
 {
+    public RectTransform RT { get; private set; }
+    private Vector2 originalSize;
+
+    private void Awake()
+    {
+        RT = GetComponent<RectTransform>();
+        originalSize = RT.sizeDelta;
+#if UNITY_EDITOR
+        if (RT == null) throw new MissingComponentException($"missing component RT on : {this.name}");
+#endif
+    }
+
+    public void SizeRevertToPriginal()
+    {
+        RT.sizeDelta = originalSize;
+        RT.anchoredPosition = new Vector2(RT.anchoredPosition.x, RT.sizeDelta.y / 2);
+    }
+    public void Resize(Vector2 sizeFactor)
+    {
+        RT.sizeDelta = originalSize * sizeFactor;
+        RT.anchoredPosition = new Vector2(RT.anchoredPosition.x, RT.sizeDelta.y / 2);
+    }
 
     public override void SetupButton(ButtonFunctionType.BuildOptionsPanel buttonFunction_IN)
     {

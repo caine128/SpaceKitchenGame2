@@ -287,8 +287,6 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
 
     public void VerificationCallback(bool isVerified)
     {
-        //Debug.Log("verification :" + isVerified + "for prop name : " + ShopUpgradeBluePrint.GetName());
-        Debug.Log($"callback on prop id : {this.GetInstanceID()}");
         HasValidPosition = isVerified;
         _meshrenderer.material.color = isVerified ? _originalMeshColor : Color.red;
     }
