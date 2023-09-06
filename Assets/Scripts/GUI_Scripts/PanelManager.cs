@@ -427,7 +427,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    private static void RemoveCurrentPanelFromNavigationStack()
+    private static async void RemoveCurrentPanelFromNavigationStack()
     {
         if (selectedPanels.Peek().MainPanel is MissingRequirementsPopupPanel && selectedPanels.Where(p => p.MainPanel is MissingRequirementsPopupPanel).Count() == missingRequirementsPanelPreviousLoadDatas.Count)
         {
@@ -436,7 +436,7 @@ public class PanelManager : MonoBehaviour
         }
 
         var removedPanel = selectedPanels.Pop();
-        removedPanel.DisplacePanels(isInterpolated: false, unloadAction: null);
+        await removedPanel.DisplacePanels(isInterpolated: false, unloadAction: null);
     }
 
     public static void RemoveFromNavigationStack_Until(Type removeUntilType)
@@ -466,9 +466,9 @@ public class PanelManager : MonoBehaviour
         selectedPanelIN.PlacePanels(loadAction, extraLoadActions);
     }
 
-    private static void MoveOutDeselectedPanel(InvokablePanelController selectedPanelIN, Action unloadAction)
+    private static async void MoveOutDeselectedPanel(InvokablePanelController selectedPanelIN, Action unloadAction)
     {
-        selectedPanelIN.DisplacePanels(isInterpolated: true, unloadAction: unloadAction);
+        await selectedPanelIN.DisplacePanels(isInterpolated: true, unloadAction: unloadAction);
     }
 
     #endregion

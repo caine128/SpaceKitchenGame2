@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class InvokablePanelController_Slide : InvokablePanelController<GUI_LerpMethods_Movement>
@@ -61,11 +62,11 @@ public class InvokablePanelController_Slide : InvokablePanelController<GUI_LerpM
 
 
 
-    public override void DisplacePanels(bool isInterpolated, Action unloadAction)
+    public override async Task DisplacePanels(bool isInterpolated, Action unloadAction)
     {
         unloadAction?.Invoke();
 
-        CheckInterfacesOnDisplace();
+        await CheckInterfacesOnDisplace();
 
         if (isInterpolated)
         {

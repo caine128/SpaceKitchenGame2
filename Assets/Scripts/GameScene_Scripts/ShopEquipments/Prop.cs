@@ -276,12 +276,10 @@ public class Prop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IVeri
         if (shouldSubscribe)
         {
             BuildingGrid.Instance.OnValidate += VerificationCallback;
-            Debug.LogWarning("subscribed for: "  + ShopUpgradeBluePrint?.GetName());
         }        
         else
         {
             BuildingGrid.Instance.OnValidate -= VerificationCallback;
-            Debug.LogWarning("unsubscribed for: " + ShopUpgradeBluePrint?.GetName());
         }
     }
 

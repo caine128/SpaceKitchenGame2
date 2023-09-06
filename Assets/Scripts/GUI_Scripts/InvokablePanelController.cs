@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public abstract class InvokablePanelController : MonoBehaviour
@@ -71,9 +72,9 @@ public abstract class InvokablePanelController : MonoBehaviour
     }
 
 
-    public abstract void DisplacePanels(bool isInterpolated, Action unloadAction);
+    public abstract Task DisplacePanels(bool isInterpolated, Action unloadAction);
 
-    protected void CheckInterfacesOnDisplace ()
+    protected async Task CheckInterfacesOnDisplace ()
     {
         for (int i = 0; i < panels.Length; i++)
         {
@@ -91,7 +92,18 @@ public abstract class InvokablePanelController : MonoBehaviour
             }
             if (panels[i] is IAanimatedPanelController aanimatedPanelController)
             {
-                aanimatedPanelController.HideContainers(); ///
+                aanimatedPanelController.HideContainers();
+
+                if (aanimatedPanelController is BuildOptionsPanel_Manager bpm)
+                {
+                    Debug.Log("awaiting the Task");
+                    Debug.Log(bpm.Tcs.Task.Result);
+                    await bpm.Tcs.Task;
+                }
+
+                //aanimatedPanelController.HideContainers(); ///
+
+              
             }
             panels[i].FireOnPanelMovedEvent(ScrollablePanel.PanelState.Deactivating);
         }
