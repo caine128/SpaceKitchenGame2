@@ -127,7 +127,7 @@ public abstract class PopupPanelSingleton<T_PopupPanel> : PopupPanel
 
 
 
-public abstract class PopupPanel_Single_SNG<T_PopupPanel> : PopupPanelSingleton<T_PopupPanel>, IAanimatedPanelController//, ILoadablePanel
+public abstract class PopupPanel_Single_SNG<T_PopupPanel> : PopupPanelSingleton<T_PopupPanel>, IAnimatedPanelController_ManualHide//, ILoadablePanel
     where T_PopupPanel : PopupPanel
 {
     [SerializeField] protected ContentDisplayFrame contentDisplay;
@@ -194,7 +194,7 @@ public abstract class PopupPanel_Single_SNG<T_PopupPanel> : PopupPanelSingleton<
 
 
 
-public abstract class PopupPanel_Multi_SNG< T_ContentDisplayType> : PopupPanel, IAanimatedPanelController 
+public abstract class PopupPanel_Multi_SNG< T_ContentDisplayType> : PopupPanel, IAnimatedPanelController_ManualHide 
     where T_ContentDisplayType : ContentDisplayFrame
 {
     [SerializeField] private RectTransform panel_BG;

@@ -392,7 +392,7 @@ public static class GUI_CentralPlacement
                                                                       Action followingAction = null)
 
         where T_ContentDisplay : MonoBehaviour, IGUI_Animatable
-        where T_ParentPanel : MonoBehaviour, IAanimatedPanelController
+        where T_ParentPanel : MonoBehaviour, IAnimatedPanelController
     {
         if (parentPanel_IN.CO[enumeratorIndex] != null)
         {
@@ -424,7 +424,7 @@ public static class GUI_CentralPlacement
                                                                                       Action followingAction)
 
         where T_ContentDisplay : MonoBehaviour, IGUI_Animatable
-        where T_ParentPanel : MonoBehaviour, IAanimatedPanelController
+        where T_ParentPanel : MonoBehaviour, IAnimatedPanelController
     {
         while (parentPanel_IN.PanelToAwait.RunningCoroutine != null)
         {

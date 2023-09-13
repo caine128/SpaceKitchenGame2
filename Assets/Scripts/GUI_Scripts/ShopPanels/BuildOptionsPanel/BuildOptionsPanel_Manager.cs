@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimatedPanelController
+public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAnimatedPanelController_SelfDeactivate
 {
     [SerializeField] private BuildOptionsButton[] buildOptionsButtons;
     [SerializeField] private TextMeshProUGUI propDisplayName;
@@ -21,7 +20,7 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
     public GUI_LerpMethods PanelToAwait { get => _panelToAwait;}
     [SerializeField] private GUI_LerpMethods _panelToAwait;
 
-    public TaskCompletionSource<bool> Tcs { get; private set; }
+    public string SelfDeactivateCallerMemberName { get => nameof(this.SelfDeactivatePanelRoutine); }
 
     private void Awake()
     {
@@ -33,10 +32,10 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
             buildOptionsButtons[i].gameObject.transform.SetAsFirstSibling();
         }
 
-        /// 0 :DisplayContainersRoutine 1: First chunk of 2 buttons  2:second chunk of two buttons
+        /// 0 :DisplayContainersRoutine 1: First chunk of 2 buttons  2:second chunk of two buttons 3:selfdeactivation routine
         /// Designed for max 5 buttons , main button or main buttons (in case of round number of total buttons)
         /// are not included in routines, they are set in the beginning.    
-        _co = new IEnumerator[3]; 
+        _co = new IEnumerator[4]; 
     }
 
     private void Update() //TODO: For debug purposes only later to delete 
@@ -98,6 +97,7 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
         for (int i = 0; i < buildOptionsButtons.Length; i++)
         {
             buildOptionsButtons[i].gameObject.SetActive(i < requiredAmountOfButtons);
+            buildOptionsButtons[i].SetIsButtonRaycastTarget(false);
         }
 
         foreach (var (rts,targetPos) in GetRequiredButtonsAndTargetPositions().Take(requiredAmountOfButtons % 2 == 0 ? 2: 1))
@@ -169,99 +169,31 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
 
             return (buildOptionsButtons[i].RT, new Vector2(finalPosX, buildOptionsButtons[i].RT.anchoredPosition.y));
 
-           // buildOptionsButtons[i].RT.anchoredPosition = new Vector2(finalPosX, buildOptionsButtons[i].RT.anchoredPosition.y);
         }
     }
 
-
+    private void SetIfButtonsRaycastTarget(bool isRaycastTarget)
+    {
+        Debug.Log("raycast ttarget is :" + isRaycastTarget);
+        for (int i = 0; i < requiredAmountOfButtons; i++)
+        {
+            buildOptionsButtons[i].SetIsButtonRaycastTarget(isRaycastTarget);    
+        }
+    }
     public void DisplayContainers()
     {
-        Tcs = new(false);
 
         if (_co[0] != null)
         {
             StopCoroutine(_co[0]);
             _co[0] = null;
-            Debug.LogWarning("stopping displaycontainers ");
         }
 
-        _co[0] = DisplayContainersRoutine(Tcs);
+        _co[0] = DisplayContainersRoutine();
         StartCoroutine(_co[0]);
-
-        /*foreach (var (rts, targetpos) in GetTarGetPositionsOfRts())
-        {
-            Debug.Log(targetpos);
-            rts.anchoredPosition = targetpos;
-        }*/
-        /*int mirroringMultiplier;
-        int columnNo = 0;
-        bool isIndexRound;
-        float offsetBetween_X;
-        float lastPosRoundX = 0; float lastPosOddX = 0;
-        float finalPosX;
-        if (requiredAmountOfButtons%2 == 0)
-        {
-            for (int i = 0; i < requiredAmountOfButtons; i++)
-            {
-                if (i == 0 || i == 1)
-                    buildOptionsButtons[i].Resize(new Vector2(1.5f, 1.5f));
-                else
-                    buildOptionsButtons[i].SizeRevertToPriginal();
-
-
-
-                offsetBetween_X = i == 0 || i == 1
-                                        ? buildOptionsButtons[i].RT.sizeDelta.x / 2
-                                        : buildOptionsButtons[Mathf.Max(i - 2, 0)].RT.sizeDelta.x / 2 + buildOptionsButtons[i].RT.sizeDelta.x / 2;
-                CalculatePositions(i);
-
-            
-
-            }
-        }
-        else
-        {
-            for (int i = 0; i < requiredAmountOfButtons; i++)
-            {
-                if (i == 0)
-                    buildOptionsButtons[i].Resize(new Vector2(1.5f, 1.5f));
-                else
-                    buildOptionsButtons[i].SizeRevertToPriginal();
-
-                
-                
-                offsetBetween_X = i == 0 
-                                        ? 0 
-                                        : buildOptionsButtons[Mathf.Max(i - 2,0)].RT.sizeDelta.x/2 + buildOptionsButtons[i].RT.sizeDelta.x/2;
-
-                CalculatePositions(i);
-
-            }
-        }
-
-        void CalculatePositions(int i)
-        {
-            isIndexRound = i % 2 == 0;
-            mirroringMultiplier = isIndexRound ? 1 : -1;
-            columnNo += isIndexRound ? 0 : 1;
-
-            if (isIndexRound)
-            {
-                finalPosX = lastPosRoundX + mirroringMultiplier * offsetBetween_X;
-                lastPosRoundX = finalPosX;
-            }
-            else
-            {
-                finalPosX = lastPosOddX + mirroringMultiplier * offsetBetween_X;
-                lastPosOddX = finalPosX;
-            }
-
-            buildOptionsButtons[i].RT.anchoredPosition = new Vector2(finalPosX, buildOptionsButtons[i].RT.anchoredPosition.y);
-        }*/
-
     }
 
-    private IEnumerator DisplayContainersRoutine(TaskCompletionSource<bool> Tcs)
+    private IEnumerator DisplayContainersRoutine()
     {
         bool isRound = requiredAmountOfButtons % 2 == 0;
         int chunkAmount = (requiredAmountOfButtons - (isRound ? 2 : 1)) / 2;
@@ -277,29 +209,23 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
             }
 
             _co[i+1] = CRHelper.MoveRoutine(rtInfos: enumerableCurrentState.Skip(i*2).Take(2), 
-                                            lerpDuration: 1f, 
-                                            followingAction: i==chunkAmount-1 ? () => Tcs.TrySetResult(true) : null );
+                                            lerpDuration: .4f,
+                                            easeCurveType: TimeTickSystem.EaseCurveType.PropUp,
+                                            followingAction: i==chunkAmount-1 ? ()=> SetIfButtonsRaycastTarget(true) : null, 
+                                            forceLastValueOfAnimCurve:true);
             StartCoroutine(_co[i + 1]);
 
-            yield return TimeTickSystem.WaitForSeconds_One;
+            yield return TimeTickSystem.WaitForSeconds_EighthSec;
         }
         _co[0] = null;
-
-        //Tcs.TrySetResult(true);
-
-       /*_co[1] = CRHelper.MoveRoutine(rtInfos: GetRequiredButtonsAndTargetPositions(), lerpDuration: 1f, followingAction: () => Debug.LogWarning("Routine Done!"));
-        StartCoroutine(_co[0]);*/
     }
 
-    public void HideContainers()
+    private void HideContainers() // TODO: LATER TO DELETE ITS ONLY ON UPDATE 
     {
-        Tcs = new(false);
-
         if (_co[0] != null)
         {
             StopCoroutine(_co[0]);
             _co[0] = null;
-            Debug.LogWarning("stopping HideContainers ");
         }
 
         _co[0] = HideContainersRoutine();
@@ -308,6 +234,8 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
 
     private IEnumerator HideContainersRoutine()
     {
+        SetIfButtonsRaycastTarget(false);
+
         bool isRound = requiredAmountOfButtons % 2 == 0;
         int chunkAmount = (requiredAmountOfButtons - (isRound ? 2 : 1)) / 2;
 
@@ -318,28 +246,72 @@ public class BuildOptionsPanel_Manager : Panel_Base ,IDeallocatable , IAanimated
 
         for (int i = chunkAmount; i > 0; i--)
         {
-            /// Here the +1 on the index used in DisplayContainers() is not necessary becuase it's an inverse iteration 
+           
             if (_co[i] != null)
             {
                 StopCoroutine(_co[i]);
             }
 
             _co[i] = CRHelper.MoveRoutine(rtInfos: enumerableCurrentState.Skip((chunkAmount - i) * 2).Take(2),
-                                                   lerpDuration: 1f,
-                                                   followingAction: null); //i == 1 ? () => Tcs.TrySetResult(true) : null);
+                                                   lerpDuration: .4f,
+                                                   easeCurveType: TimeTickSystem.EaseCurveType.PropDown,
+                                                   followingAction: null); 
 
             StartCoroutine(_co[i]);
 
-            yield return TimeTickSystem.WaitForSeconds_One;
+            yield return TimeTickSystem.WaitForSeconds_EighthSec;
         }
         _co[0] = null;
     }
+
+    public void SelfDeactivatePanel(Action beforeDeactivate = null,
+                                    Action unloadAction = null,
+                                    Action nextPanelLoadAction = null,
+                                    params Action[] extaLoadActions)
+    {
+        if (_co[3] != null)
+        {
+            StopCoroutine(_co[3]);
+            _co[3] = null;
+        }
+        _co[3] = SelfDeactivatePanelRoutine(beforeDeactivate, unloadAction, nextPanelLoadAction, extaLoadActions);
+        StartCoroutine(_co[3]);
+
+    }
+
+
+
+    private IEnumerator SelfDeactivatePanelRoutine(Action beforeDeactivate,
+                                                  Action unloadAction ,
+                                                  Action nextPanelLoadAction,
+                                                  params Action[] extaLoadActions)
+    {
+        if (_co[0] != null)
+        {
+            StopCoroutine(_co[0]);
+            _co[0] = null;
+        }
+        _co[0] = HideContainersRoutine();
+        
+        yield return  StartCoroutine(_co[0]);
+
+        beforeDeactivate?.Invoke();
+
+        PanelManager.DeactivatePanel(invokablePanelIN: PanelManager.SelectedPanels.Peek(),
+                                     unloadAction:unloadAction,
+                                     nextPanelLoadAction_IN: nextPanelLoadAction,
+                                     extraLoadActions_IN: extaLoadActions);
+
+        _co[3] = null;
+    }
+
 
     public void UnloadAndDeallocate()
     {
         propIconContentDisplay.Unload();
         foreach (var button in buildOptionsButtons)
         {
+            button.SetIsButtonRaycastTarget(false);
             button.UnloadButton();
         }
     }

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOptionsPanel>,
-                                  IVerificationCallbackReceiver,IAmountChangeCallbackReceiver,IPlacableRt
+                                  IVerificationCallbackReceiver, IAmountChangeCallbackReceiver, IPlacableRt
 {
     public RectTransform RT { get; private set; }
     private Vector2 originalSize;
@@ -30,10 +30,16 @@ public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOpt
         RT.anchoredPosition = new Vector2(RT.anchoredPosition.x, RT.sizeDelta.y / 2);
     }
 
+    public void SetIsButtonRaycastTarget(bool isRaycastTarget)
+        =>buttonImage_Adressable.raycastTarget = isRaycastTarget;
+    
+
     public override void SetupButton(ButtonFunctionType.BuildOptionsPanel buttonFunction_IN)
     {
         SubscribeToVerifivationCallback(false);
         SubscribeToAmountChangeCallback(false);
+
+        var parentPanel = (BuildOptionsPanel_Manager)PanelManager.SelectedPanels.Peek().MainPanel;
 
         switch (buttonFunction_IN)
         {
@@ -63,12 +69,14 @@ public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOpt
 
                 buttonFunctionDelegate = () =>
                 {
+                    Debug.Log("purchase buton pressed");
                     gUI_TintScale.TintSize();
                     (bool hasValidPos, bool isSpendableAmountEnough) = (PropManager.SelectedProp.HasValidPosition, StatsData.IsSpendableAmountEnough(spendableRequired.Amount, spendableRequired));
 
                     if (hasValidPos && isSpendableAmountEnough)
                     {
                         PropManager.PurchaseProp(PropManager.SelectedProp);
+                        
                         PanelManager.DeactivatePanel(PanelManager.SelectedPanels.Peek(), nextPanelLoadAction_IN: null, unloadAction:
                                 () =>
                                 {
@@ -105,26 +113,32 @@ public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOpt
                 if (buttonImage_Adressable.color != Color.grey) buttonImage_Adressable.color = Color.grey;
                 buttonName.color = Color.white;
                 buttonName.text = "Back";
+
                 
                 buttonFunctionDelegate = gUI_TintScale.TintSize;
                 buttonFunctionDelegate += () =>
                 {
 
-                    if (!PropManager.SelectedProp.IsPurchased)
-                    {
-                        PropManager.DestroyProp(PropManager.SelectedProp);
-                    }
-                    else
-                    {
-                        // Check if the prop has valid position and if not 
-                        // TODO : Move Prop to the last valid position and release 
-                        Debug.Log("Move Prop to the last valid position and release");
-                    }
+                    PropManager.SelectedProp.ActivateColliders(false);
+                    
 
                     PanelManager.DeactivatePanel(invokablePanelIN: PanelManager.SelectedPanels.Peek(),
-                                                 nextPanelLoadAction_IN: null);
+                                                 nextPanelLoadAction_IN: null,
+                                                 unloadAction: () =>
+                                                 {
+                                                     if (!PropManager.SelectedProp.IsPurchased)
+                                                     {
+                                                         PropManager.DestroyProp(PropManager.SelectedProp);
+                                                     }
+                                                     else
+                                                     {
+                                                         // Check if the prop has valid position and if not 
+                                                         // TODO : Move Prop to the last valid position and release 
+                                                         Debug.Log("Move Prop to the last valid position and release");
+                                                     }
+                                                 });
                 };
-              
+
                 break;
             case ButtonFunctionType.BuildOptionsPanel.Edit:
                 break;
@@ -156,7 +170,7 @@ public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOpt
                 case Gem:
                     StatsData.OnGemAmountChanged += AmountChangeCallback;
                     break;
-            }          
+            }
         }
         else
         {
@@ -164,7 +178,6 @@ public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOpt
             StatsData.OnGemAmountChanged -= AmountChangeCallback;
         }
     }
-
     public void VerificationCallback(bool isVerified)
     {
         buttonImage_Adressable.color = isVerified
@@ -172,9 +185,11 @@ public class BuildOptionsButton : MultiPurposeButton<ButtonFunctionType.BuildOpt
     }
     public void AmountChangeCallback(int newAmount)
     {
-        buttonName.color = newAmount >= PropManager.SelectedProp.ShopUpgradeBluePrint.PurchaseCost().Amount 
+        buttonName.color = newAmount >= PropManager.SelectedProp.ShopUpgradeBluePrint.PurchaseCost().Amount
                                             ? Color.white : Color.red;
     }
+
+
     public override void UnloadButton()
     {
         SubscribeToVerifivationCallback(false);

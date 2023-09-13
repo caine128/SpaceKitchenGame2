@@ -17,7 +17,7 @@ public abstract class TabPanel<T_TabType> : MonoBehaviour
 
 
 
-public abstract class TabPanel_Animated<T_TabType> : TabPanel<T_TabType>, IAanimatedPanelController
+public abstract class TabPanel_Animated<T_TabType> : TabPanel<T_TabType>, IAnimatedPanelController_ManualHide
     where T_TabType : System.Enum
 {
 

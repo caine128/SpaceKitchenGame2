@@ -46,7 +46,7 @@ public abstract class InvokablePanelController : MonoBehaviour
                 refreshablePanel.RefreshPanel();
             }
 
-            if (panels[i] is IAanimatedPanelController_Cancellable modalPanel)
+            if (panels[i] is IAnimatedPanelController_ManualHide_Cancellable modalPanel)
             {
                 modalPanel.IsAnimating = true;
             }
@@ -72,9 +72,9 @@ public abstract class InvokablePanelController : MonoBehaviour
     }
 
 
-    public abstract Task DisplacePanels(bool isInterpolated, Action unloadAction);
+    public abstract void DisplacePanels(bool isInterpolated, Action unloadAction);
 
-    protected async Task CheckInterfacesOnDisplace ()
+    protected void CheckInterfacesOnDisplace ()
     {
         for (int i = 0; i < panels.Length; i++)
         {
@@ -90,21 +90,14 @@ public abstract class InvokablePanelController : MonoBehaviour
             {
                 quickUnloadablePanel.QuickUnload();
             }
-            if (panels[i] is IAanimatedPanelController aanimatedPanelController)
+            if (panels[i] is IAnimatedPanelController_ManualHide aanimatedPanelController)
             {
-                aanimatedPanelController.HideContainers();
-
-                if (aanimatedPanelController is BuildOptionsPanel_Manager bpm)
-                {
-                    Debug.Log("awaiting the Task");
-                    Debug.Log(bpm.Tcs.Task.Result);
-                    await bpm.Tcs.Task;
-                }
-
-                //aanimatedPanelController.HideContainers(); ///
-
-              
+                aanimatedPanelController.HideContainers();             
             }
+            /*if(panels[i] is IAnimatedPanelController_SelfDeactivate animatedPanelController_SelfDeactivate)
+            {
+                animatedPanelController_SelfDeactivate.SelfDeactivatePanel();
+            }*/
             panels[i].FireOnPanelMovedEvent(ScrollablePanel.PanelState.Deactivating);
         }
     }

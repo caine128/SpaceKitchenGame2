@@ -1137,14 +1137,20 @@ public static class CRHelper
         followingAction?.Invoke();
     }
 
-    public static IEnumerator MoveRoutine(IEnumerable<(RectTransform rts, Vector2 targetpos)> rtInfos, float lerpDuration, float lerpSpeedModifier=1, Action followingAction = null)
+    public static IEnumerator MoveRoutine(IEnumerable<(RectTransform rts, Vector2 targetpos)> rtInfos, 
+                                          float lerpDuration, 
+                                          TimeTickSystem.EaseCurveType easeCurveType = TimeTickSystem.EaseCurveType.Standard,
+                                          float lerpSpeedModifier = 1, 
+                                          Action followingAction = null, 
+                                          bool forceLastValueOfAnimCurve =false)
     {
         float elapsedTime = 0f;
+        var easeCurve = TimeTickSystem.Instance.GetCurve(easeCurveType);
         (RectTransform rt, Vector2 currentPos, Vector2 targetPos)[] itemsToMove = rtInfos.Select(rti => (rti.rts, rti.rts.anchoredPosition, rti.targetpos)).ToArray();
         while (elapsedTime < lerpDuration * lerpSpeedModifier)
         {
             float easeFactor = elapsedTime / (lerpDuration * lerpSpeedModifier);
-            easeFactor = TimeTickSystem.Instance.easeCurve.Evaluate(easeFactor);
+            easeFactor = easeCurve.Evaluate(easeFactor);
 
             for (int i = 0; i < itemsToMove.Length; i++)
             {
@@ -1160,7 +1166,9 @@ public static class CRHelper
 
         for (int i = 0; i < itemsToMove.Length; i++)
         {
-            itemsToMove[i].rt.anchoredPosition = itemsToMove[i].targetPos;
+            itemsToMove[i].rt.anchoredPosition = forceLastValueOfAnimCurve 
+                                                      ? Vector2.LerpUnclamped(itemsToMove[i].currentPos, itemsToMove[i].targetPos, easeCurve.Evaluate(1f)) 
+                                                      : itemsToMove[i].targetPos;
         }
         followingAction?.Invoke();
     }

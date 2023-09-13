@@ -98,7 +98,7 @@ public class BackgroudPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         var currentPanel = PanelManager.SelectedPanels.Peek();
 
-        if (currentPanel.MainPanel is IAanimatedPanelController_Cancellable aanimatedPanelController_Cancellable && aanimatedPanelController_Cancellable.IsAnimating)
+        if (currentPanel.MainPanel is IAnimatedPanelController_ManualHide_Cancellable aanimatedPanelController_Cancellable && aanimatedPanelController_Cancellable.IsAnimating)
         {
             aanimatedPanelController_Cancellable.FastForwardDisplayAnimation();
             Debug.Log("is animatiing still ? :");

@@ -53,7 +53,7 @@ public class TimeTickSystem : MonoBehaviour
         PropUp = 1,
         PropDown = 2,
         NudgeScale = 3,
-        SmoothContinous = 4
+        SmoothContinous = 4,
     }
     [SerializeField]
     [LabeledArray(typeof(EaseCurveType))]

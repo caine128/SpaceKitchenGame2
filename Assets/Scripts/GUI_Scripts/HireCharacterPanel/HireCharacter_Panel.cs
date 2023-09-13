@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class HireCharacter_Panel : Panel_Base, IDeallocatable, IAanimatedPanelController_Cancellable
+public class HireCharacter_Panel : Panel_Base, IDeallocatable, IAnimatedPanelController_ManualHide_Cancellable
 {
     public static HireCharacter_Panel Instance => _instance;
     private static HireCharacter_Panel _instance;

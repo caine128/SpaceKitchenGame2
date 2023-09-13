@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
-public class Information_Modal_Panel : Panel_Base, IDeallocatable, IAanimatedPanelController_Cancellable, ITaskHandlerPanel, IVariableButtonPanel
+public class Information_Modal_Panel : Panel_Base, IDeallocatable, IAnimatedPanelController_ManualHide_Cancellable, ITaskHandlerPanel, IVariableButtonPanel
 {
     public InvokablePanelController InvokablePanelController { get; private set; }
 

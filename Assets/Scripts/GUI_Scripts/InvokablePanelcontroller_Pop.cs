@@ -27,7 +27,7 @@ public class InvokablePanelcontroller_Pop : InvokablePanelController<GUI_LerpMet
                                                                                                              finalScale: Vector3.one, 
                                                                                                              lerpSpeedModifier: 1.2f); // there is with SWITC Hstatement a doubling of the same command (which is rescale )
             
-            extraLoadActions = (MainPanel is IAanimatedPanelController animatedPanelController)
+            extraLoadActions = (MainPanel is IAnimatedPanelController animatedPanelController)
                 ? extraLoadActions.Append(() => 
                 {
                     MainPanel.FireOnPanelMovedEvent(ScrollablePanel.PanelState.Active);
@@ -61,11 +61,11 @@ public class InvokablePanelcontroller_Pop : InvokablePanelController<GUI_LerpMet
         }
     }
 
-    public override async Task DisplacePanels(bool isInterpolated, Action unloadAction)
+    public override void DisplacePanels(bool isInterpolated, Action unloadAction)
     {
         unloadAction?.Invoke();
 
-        await CheckInterfacesOnDisplace();
+        CheckInterfacesOnDisplace();
 
         if (isInterpolated)
         {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -278,19 +279,30 @@ public class PanelManager : MonoBehaviour
     }
 
 
-    public static void DeactivatePanel(InvokablePanelController invokablePanelIN, Action nextPanelLoadAction_IN, Action unloadAction = null, params Action[] extraLoadActions_IN)
+    public static void DeactivatePanel(InvokablePanelController invokablePanelIN,
+                                       Action nextPanelLoadAction_IN,
+                                       [CallerMemberName] string callerMemberName = "",
+                                       Action unloadAction = null, 
+                                       params Action[] extraLoadActions_IN)
     {
         if (invokablePanelIN != selectedPanels.Peek())
         {
             Debug.LogError("the incoming invokable is not matching to the selected panles Top pamel, panel name is : " + invokablePanelIN.MainPanel.name);
         }
 
+        if(invokablePanelIN.MainPanel is IAnimatedPanelController_SelfDeactivate selfDeactivatedPanel 
+            && callerMemberName != selfDeactivatedPanel.SelfDeactivateCallerMemberName)
+        {
+            selfDeactivatedPanel.SelfDeactivatePanel(unloadAction: unloadAction, 
+                                                     nextPanelLoadAction: nextPanelLoadAction_IN, 
+                                                     extaLoadActions:extraLoadActions_IN);
+
+            return;
+        }
 
         MoveOutDeselectedPanel(selectedPanels.Pop(), unloadAction);
 
         SetBGPanelSortingOrder();
-        //var bgPanelStateChangeCheck = SetBGPanelSortingOrder();
-        //if (bgPanelStateChangeCheck.isChangeNeeded) backgroundPanelCanvas.sortingOrder = (int)bgPanelStateChangeCheck.modifiedSortingOrder;
 
         var isLastPanelOfType = !selectedPanels.Contains(invokablePanelIN);
 
@@ -427,7 +439,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    private static async void RemoveCurrentPanelFromNavigationStack()
+    private static void RemoveCurrentPanelFromNavigationStack()
     {
         if (selectedPanels.Peek().MainPanel is MissingRequirementsPopupPanel && selectedPanels.Where(p => p.MainPanel is MissingRequirementsPopupPanel).Count() == missingRequirementsPanelPreviousLoadDatas.Count)
         {
@@ -436,7 +448,7 @@ public class PanelManager : MonoBehaviour
         }
 
         var removedPanel = selectedPanels.Pop();
-        await removedPanel.DisplacePanels(isInterpolated: false, unloadAction: null);
+        removedPanel.DisplacePanels(isInterpolated: false, unloadAction: null);
     }
 
     public static void RemoveFromNavigationStack_Until(Type removeUntilType)
@@ -466,9 +478,9 @@ public class PanelManager : MonoBehaviour
         selectedPanelIN.PlacePanels(loadAction, extraLoadActions);
     }
 
-    private static async void MoveOutDeselectedPanel(InvokablePanelController selectedPanelIN, Action unloadAction)
+    private static void MoveOutDeselectedPanel(InvokablePanelController selectedPanelIN, Action unloadAction)
     {
-        await selectedPanelIN.DisplacePanels(isInterpolated: true, unloadAction: unloadAction);
+        selectedPanelIN.DisplacePanels(isInterpolated: true, unloadAction: unloadAction);
     }
 
     #endregion

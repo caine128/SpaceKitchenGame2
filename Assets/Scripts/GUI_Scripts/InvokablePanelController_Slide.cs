@@ -33,7 +33,7 @@ public class InvokablePanelController_Slide : InvokablePanelController<GUI_LerpM
         {
             if(panelLerpScripts.Length > 1 && i != panelLerpScripts.Length - 1) panelLerpScripts[i].InitialCall(targetPos: panelInScreenAnchors[i]);
 
-            extraLoadActions = (MainPanel is IAanimatedPanelController animatedPanelController)
+            extraLoadActions = (MainPanel is IAnimatedPanelController animatedPanelController)
                 ? extraLoadActions.Append(() =>
                 {
                     MainPanel.FireOnPanelMovedEvent(ScrollablePanel.PanelState.Active);
@@ -62,11 +62,11 @@ public class InvokablePanelController_Slide : InvokablePanelController<GUI_LerpM
 
 
 
-    public override async Task DisplacePanels(bool isInterpolated, Action unloadAction)
+    public override void DisplacePanels(bool isInterpolated, Action unloadAction)
     {
         unloadAction?.Invoke();
 
-        await CheckInterfacesOnDisplace();
+        CheckInterfacesOnDisplace();
 
         if (isInterpolated)
         {

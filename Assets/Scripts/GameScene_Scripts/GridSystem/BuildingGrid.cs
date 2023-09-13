@@ -189,8 +189,6 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
         var markedGridsByGridMarkers = _gridMarkers.Select(gm => GridSystem.GetGrid(gm.AnchorPosition));
         foreach (var markedGrid in markedGridsByGridMarkers)
         {
-
-            Debug.Log($"setting prop to grid no :  {markedGrid.GridPosition}");
             markedGrid.PlaceProp(prop);
         }
     }
@@ -198,7 +196,6 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
     public void ClearGrids(Prop prop)
     {
         ClearGrids(prop.GetCurrentGridPositions());
-        Debug.Log($"clearing grids at {prop.GetCurrentGridPositions()} ");
     }
 
     private void ClearGrids(IEnumerable<GridPosition> gridPositions)
@@ -244,14 +241,12 @@ public class BuildingGrid : SingletonMonoBehaviourPersistent<BuildingGrid>, IPoi
         if (gridsTemp.All(g => g.IsBuildable && !g.IsOccupied))
         {
             grids = gridsTemp;
-            Debug.Log("gridmarkers are validating true");
             OnValidate?.Invoke(true);
             return true;
         }
         else
         {
             grids = null;
-            Debug.Log("gridmarkers are validating false");
             OnValidate?.Invoke(false);
             return false;
         }
